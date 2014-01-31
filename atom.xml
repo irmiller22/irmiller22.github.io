@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-01-31T12:43:48-05:00</updated>
+  <updated>2014-01-31T13:06:27-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -14,10 +14,13 @@
 
   
   <entry>
+    
     <title type="html"><![CDATA[SCALA Basics: An Introduction]]></title>
     <link href="http://irmiller22.github.io/blog/2014/01/21/scala-basics-an-introduction/"/>
+    
     <updated>2014-01-21T14:55:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2014/01/21/scala-basics-an-introduction</id>
+    
     <content type="html"><![CDATA[<p>Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed language, meaning that it binds a type to a variable for the variable&rsquo;s lifetime, whereas dynamically typed languages bind the type to the value referenced by a variable. Simply, statically typed variables are immutable, whereas dynamically typed variables are mutable. Scala also supports both functional and object-oriented programming. It seems that these attributes would conflict with one another, but the argument is that both attributes in conjunction lead to synergies in both performance and architecture.</p>
 
 <p>Let&rsquo;s get started on the introduction.</p>
@@ -84,13 +87,17 @@
 
 <p>This is the first day I&rsquo;ve used Scala, and my first impression is that it&rsquo;s a lot like a hybrid of Ruby and Java/JavaScript. I still need to get better at understanding how collections are referenced to and organized inside of functions, but I&rsquo;m looking forward to learning more Scala.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[JavaScript Basics: An Introduction]]></title>
     <link href="http://irmiller22.github.io/blog/2014/01/03/javascript-basics-an-introduction/"/>
+    
     <updated>2014-01-03T23:29:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2014/01/03/javascript-basics-an-introduction</id>
+    
     <content type="html"><![CDATA[<p>Variable Declaration and Constant</p>
 
 <figure class='code'><figcaption><span>Variables</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -228,13 +235,17 @@
 
 <p>These are mostly for me to remember and repeat.  I&rsquo;m currently branching out into other languages at the moment, and will be focusing on JS, jQuery, and Ajax.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
     <link href="http://irmiller22.github.io/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
+    
     <updated>2013-12-27T11:08:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
+    
     <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
 
 <p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
@@ -292,13 +303,17 @@
 
 <p>That&rsquo;s pretty much it for a basic mailer.  You can style the mailer using HTML/CSS, and you can also add front-end features via Javascript (AJAX, jQuery).</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
     <link href="http://irmiller22.github.io/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
+    
     <updated>2013-12-22T13:26:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/12/22/impetus-for-a-career-in-programming</id>
+    
     <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
 
 <p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
@@ -321,13 +336,17 @@
 
 <p>Fast forward five months later. I am two weeks out of boot camp at Flatiron School. Has it been worth it? The reasons may be different for everyone, but for me, it certainly has. I’d even go as far as to say that it’s been life changing. I’ve met the most wonderful group of individuals at Flatiron, and I’ve learned a lot from them. And I can now call myself a programmer. Not a skilled one yet, but that’s what I am working towards, step by step. But there are three important results that have been made possible by my experiences in the past year. I’ve discovered my passion. I’ve re-ignited my desire to learn. And I’ve finally learned the lesson that I should have learned long ago, even with a particularly limiting disability; there  is no limit.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Microhaus App: Part I]]></title>
     <link href="http://irmiller22.github.io/blog/2013/12/17/walkthrough-of-microhaus-app/"/>
+    
     <updated>2013-12-17T12:42:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/12/17/walkthrough-of-microhaus-app</id>
+    
     <content type="html"><![CDATA[<p>Today I decided to build a microblog app.  It is like a traditional blog, but it is private to a specific group of friends.  There are other options out there for a microblog, but I wanted to create the experience for myself, and how I would customize it for my group of friends.  After I finish the app, I plan to release it to my friends from college, and see what their feedback is.<br/>
 I started out by creating a new app via rails.  For the moment, I am calling the app &ldquo;microhaus.&rdquo;  I came up with this name particularly because it&rsquo;s a microblog, and it is accessible only to a small number of people (a circle of friends, if you will).</p>
 
@@ -521,13 +540,17 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 
 <p>The next step is to start building out the functionality for the ERB templates and also to build out the corresponding RSpec tests to ensure that the functionality is there.  These concepts will be covered in the next &ldquo;Microhaus&rdquo; post.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Big O Notation]]></title>
     <link href="http://irmiller22.github.io/blog/2013/12/14/big-o-notation/"/>
+    
     <updated>2013-12-14T12:32:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/12/14/big-o-notation</id>
+    
     <content type="html"><![CDATA[<p>Big O Notation is simply a measure of an algorithm&rsquo;s performance.  It focuses on two primary components: speed and size.  It also presents a best-case scenario of an algorithm as well as a worst-case scenario.</p>
 
 <p>There are four primary scenarios that the majority of individuals will deal with in Big O Notation: O(1), O(n), O(n<sup>2</sup>), and O(log n).</p>
@@ -644,13 +667,17 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[The Art of a Question]]></title>
     <link href="http://irmiller22.github.io/blog/2013/11/17/the-art-of-a-question/"/>
+    
     <updated>2013-11-17T22:27:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/11/17/the-art-of-a-question</id>
+    
     <content type="html"><![CDATA[<p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
 
 <p>From time to time, I have found myself unable to ask the right questions.  It&rsquo;s as if there is a mental block in my head, unable to move forward beyond an obstacle, a metaphorical wrench stuck in the gears of my neocortex.  When that process unfolds, it is easy to doubt yourself and your ability to lead yourself out of the quagmire.  There is a reason why many individuals are daunted by the prospect of learning how to program.  It is a seemingly endless black hole that manifests itself as a negative feedback loop.  Despite the organized chaos that arises, most often overlook the key decision making component of programming: knowing where to start.</p>
@@ -676,13 +703,17 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 <p>So perhaps the best question is not simply a targeted question that seeks a one-dimensional answer, but rather a series of smaller, more basic questions derived from a larger question.  Simplicity is the best form of policy.  Start somewhere.  Plant your flag in the sand.  Let your initial question, and the subsequent chain of questions, be your guide.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[ActiveRecord: Validations]]></title>
     <link href="http://irmiller22.github.io/blog/2013/11/10/activerecord-validations/"/>
+    
     <updated>2013-11-10T22:20:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/11/10/activerecord-validations</id>
+    
     <content type="html"><![CDATA[<p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
 
 <p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
@@ -737,13 +768,17 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 <p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &mdash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[OmniAuth: An Introduction]]></title>
     <link href="http://irmiller22.github.io/blog/2013/11/09/omniauth-an-introduction/"/>
+    
     <updated>2013-11-09T14:52:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/11/09/omniauth-an-introduction</id>
+    
     <content type="html"><![CDATA[<p>OmniAuth is simply middleware for authenticating users in applications.  Middleware is a way to filter requests and responses  that are coming into your application.  Each strategy that is used in the OmniAuth middleware is a class, and each strategy has two primary phases: a request phase and a callback phase.</p>
 
 <p>Let me take a step back, and explain what middleware is.  Middleware is the interface that communicates between the application and the web server.  In a way, it is generally a software library that assists with, but is not directly involved, in the execution of a specific task.  Some examples include authentication, data logging, performance monitoring, caching, and the like.  In this particular case, OmniAuth is dealing with authentication.</p>
@@ -763,13 +798,17 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 <p>Let&rsquo;s walk through an example with Github.  In the request stage, a client sends a request to the app.  The client is redirected to the <code>/auth/Github</code> route, and it points to the OmniAuth Github strategy specified in the config/initializer directory within the Rails project structure.  In order to properly authenticate the user, an authentication request is fired off to Github through the provider strategy.  Once the user is properly authenticated, the callback method, specified through <code>/auth/github/callback</code>, creates a user information hash that can now be accessed through the app (SOURCE &ndash; <a href="https://speakerdeck.com/xfernandox/the-anatomy-of-omniauth">https://speakerdeck.com/xfernandox/the-anatomy-of-omniauth</a>).</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Explanation of NGinx and Passenger]]></title>
     <link href="http://irmiller22.github.io/blog/2013/11/04/explanation-of-nginx-and-passenger/"/>
+    
     <updated>2013-11-04T20:19:00-05:00</updated>
     <id>http://irmiller22.github.io/blog/2013/11/04/explanation-of-nginx-and-passenger</id>
+    
     <content type="html"><![CDATA[<p>NGinx is a open-source proxy server that primarily serves HTTP and HTTPS protocols.  Nginx was created to achieve three main goals: concurrency (process in which computations are executed simultaneously across several systems), high performance, and low memory usage.  It utilizes an event-driven approach to server requests, and allocates responses based upon server traffic and handling.  It has become a viable alternative to the Apache server model, which uses a process-driven methodology for handling large server requests.<br/>
 NGinx has emerged largely as a result of increased demand for online services and the rise of the web as a platform.  Unlike Apache, NGinx has a master process that delegates work to worker processes, and it is designed handle a large number of server connections with a small amount of memory.</p>
 
@@ -781,13 +820,17 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p>Passenger is an Rack application server software that is often used in conjunction with NGinx.  Similarly with mod_php for hosting PHP apps on Apache, Passenger simplifies the process of hosting Ruby apps on NGinx.  Passenger automates the process of starting/stopping a server, restarting after a server crash, and dynamically adjusts the number of processes on a server based on traffic.  It also allows the server to run more than 1 instance of the app, allowing greater use of server resources.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Abstraction: Path to Simplicity]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/30/a-new-addendum/"/>
+    
     <updated>2013-10-30T22:15:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/30/a-new-addendum</id>
+    
     <content type="html"><![CDATA[<p>Abstraction is a concept that I have been thinking quite a lot about lately.  It is a concept that has largely been foreign to me, and it is slowly dawning on me that abstraction lies all around us.</p>
 
 <p>The Webster Dictionary defines abstraction as a &ldquo;general idea or quality rather than an actual person, object, or event.&rdquo;  If we took the literal translation of the root abstractus (past participle of abstrahere), we would get &ldquo;to draw away; to detach or divert.&rdquo;  This term was first used by Oswald Herzog to describe the artistic attitudes and implementations of the Dadaists (in 1519, &lsquo;Der Abstrakte Expressionismus&rsquo;).  He wrote, &ldquo;it is pure creation.  It does not borrow objects from the real world; it creates its own objects &hellip; the abstract reveals the will of the artist; it becomes expression.&rdquo;  Abstraction, in the general sense of the word, is the process by which we generate semantic meaning with a concept.</p>
@@ -970,13 +1013,17 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p>Being able to effectively encapsulate your logic into separate logic categories is such a necessary skill-set to understand in order to become a proficient Ruby on Rails developer.  I&rsquo;m still in the process of learning how to whittle down my logic into singular methods and actions.  Ruby is a language that was built for abstraction.  It is meant to simplify logic in your code, and as Matz said once, &ldquo;I hope to see Ruby help every programmer in the world to be productive, and to enjoy programming, and to be happy.&rdquo;</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[CRUD Applications: Importance of MVC]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/27/mvc-basics/"/>
+    
     <updated>2013-10-27T23:03:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/27/mvc-basics</id>
+    
     <content type="html"><![CDATA[<p>This past weekend, we had an assignment to build a CRUD application from scratch (well, almost).  A CRUD application is short for the four basic applications of relational database management and storage: create, read, update, and delete.  The CRUD application allows interfacing between a database, a user interface, and HTTP protocols.  I thought that I&rsquo;d go ahead and describe the main components of our CRUD application that we built this weekend.  There are thee specific ones to take note of: the controllers, models, and views.</p>
 
 <p>Models are Ruby-specific classes that talk to the database, store, validate, and execute logic.  In other terms, they do all of the heavy lifting for our application.  They&rsquo;re basically the overworked accountant in the back room during tax season, churning out numbers while eating stale donuts at an absurd rate.</p>
@@ -1003,13 +1050,17 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p><img class="center" src="https://i.chzbgr.com/maxW500/5870736384/hB08BCDAD/"></p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[RSpec: A Misunderstood Complement to Ruby]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle/"/>
+    
     <updated>2013-10-20T21:37:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle</id>
+    
     <content type="html"><![CDATA[<p>For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis.  Because RSpec is the testing framework for the Ruby language, I viewed it as an obstacle to my learning development.  After studying more about RSpec in the past few days, I&rsquo;m starting to realize that I have been viewing its fundamental purpose incorrectly.  RSpec is a complement to the Ruby developer&rsquo;s toolkit &mdash; it prevents unneccesary work by testing the behaviors of a framework.  In short, it is the blueprint of any application, and represents a guided set of directions that leads you to a finished product.</p>
 
 <p>In this blog post, I&rsquo;ll discuss the basic premise of RSpec and also discuss a few ways to refactor RSpec code.</p>
@@ -1098,13 +1149,17 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[The Correct Usage of 'Self' in a Class]]></title>
+    
+    <title type="html"><![CDATA[The Correct Usage of 'self' in a Class]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/15/the-correct-times-to-use-self-in-a-class/"/>
+    
     <updated>2013-10-15T08:44:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/15/the-correct-times-to-use-self-in-a-class</id>
+    
     <content type="html"><![CDATA[<p>One of the more confusing aspect of dealing with classes is knowing when to use &lsquo;self&rsquo; appropriately.  In the context of a Class, &lsquo;self&rsquo; refers to the current class, and is in itself an instance of the class Class.  I know this sounds confusing, but I&rsquo;ll break it down for you momentarily.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1173,13 +1228,17 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p>It took me a while before I could distinguish between the different uses of self.  It&rsquo;s important to note the differences, because it can be come very problematic when you start to write your own programs or applications.  Self in the wrong place and lead to a lot of brain pain &mdash; I learned this the hard way.  Do yourself a favor and learn all of the little nuances of the self keyword.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[HAML: DRY Version of ERB?]]></title>
+    
+    <title type="html"><![CDATA[HAML: DRY version of ERB?]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/13/haml-dry-version-of-html/"/>
+    
     <updated>2013-10-13T22:42:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/13/haml-dry-version-of-html</id>
+    
     <content type="html"><![CDATA[<p>Embedded Ruby, or ERB for short, is a Ruby feature that allows a programmer to generate text from a template.  Its aim is to simplify flow control, and utilizes back-end web data to maintain repetitive front-end tasks, such as generating personalized web pages, emails, scripts, and any sort of text file.  In programming speak, ERB is Ruby&rsquo;s built-in template engine.</p>
 
 <p>HAML, an alternative to ERB, stands for HTML Abstraction Markup Language.  HAML was created with Ruby&rsquo;s key principles in mind: markup should be legible, implement DRY, and be well-indented.  ERB uses HTML, which is a verbose markup language, and has proved problematic in meeting Ruby&rsquo;s standards for a seamless experience, and has seemingly felt incompatible with Ruby&rsquo;s language due to the large differences in syntactical structure.  HAML attempts to bridge that divide by creating a more seamless experience.</p>
@@ -1258,13 +1317,17 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p>With that said, it&rsquo;s nice to know that there are other options out there that are trying to bring Ruby&rsquo;s straightforward syntax to markup languages.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Difference Between Each, Select, and Collect Methods]]></title>
+    
+    <title type="html"><![CDATA[Difference between Each, Select, and Collect Methods]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/07/each/"/>
+    
     <updated>2013-10-07T23:31:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/07/each</id>
+    
     <content type="html"><![CDATA[<p>Each, Collect, Select</p>
 
 <p>There are three methods that drive the process of data scraping and warehousing in the Ruby language.  These three methods are the following: Each, Collect, and Select.  These three methods are examplees of iterators; iterators are used to organize and store data into a collection.  A collection can be either an array or a hash.</p>
@@ -1310,13 +1373,17 @@ array.select { |x| x &gt; 2 }</code></p>
 
 <p>These three statements are already some of my most heavily used components within my Ruby syntax.  I&rsquo;m still learning each day more and more about what they are capable of.  I&rsquo;m excited to learn more about more specific applications of these methods.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Problem Solving and Iteration - Week 3]]></title>
     <link href="http://irmiller22.github.io/blog/2013/10/07/problem-solving-and-iteration/"/>
+    
     <updated>2013-10-07T08:48:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/10/07/problem-solving-and-iteration</id>
+    
     <content type="html"><![CDATA[<p>Last week, we dove right into database iteration and management.  We focused on the following: SQL, hash iteration, web scraping (via Nokogiri, Open-URI), and logic approaches.</p>
 
 <p>SQL and hash iteration are pretty straightforward as concepts, but they are difficult (for the time being) for me to effectively implement.  We had to implement these concepts in the web-scraping exercise we did last week, and I still have to go back over and do it again, just to make sure I get the concepts down pat.</p>
@@ -1365,13 +1432,17 @@ array.select { |x| x &gt; 2 }</code></p>
 
 <p>My objective for this week is to work on further solidifying my understanding of hashes, how to iterate through them effectively, and utimately get a web-scraping objective finalized.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Start of Week 2]]></title>
     <link href="http://irmiller22.github.io/blog/2013/09/30/start-of-week-2/"/>
+    
     <updated>2013-09-30T08:42:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/09/30/start-of-week-2</id>
+    
     <content type="html"><![CDATA[<p>Today is the start of Week 2 at Flatiron.  It&rsquo;s been quite a start to the semester.  We spent last week going over Github, Ruby, SQL, and a lot of logic exercises to understand how to think like a computer.  It&rsquo;s interesting because humans understand things organically and semantically, whereas a computer is very literal in its understanding.  For example, we as humans make assumptions or calculated decision-making to fill in details about another person or thing.  For example, if we see a dog on the street, we assume that it&rsquo;s a stray dog if it is dirty or has a disheveled appareance.  On the other hand, if it is nicely groomed, we may assume that it&rsquo;s simply lost.  Computers have to be given a very specific set of instructions or information regarding something.  In the case of the dog, we may have to do something like this: (dog = &ldquo;stray&rdquo;).</p>
 
 <p>If dog == &ldquo;stray&rdquo;</p>
@@ -1390,32 +1461,41 @@ array.select { |x| x &gt; 2 }</code></p>
 
 <p>The logic is simple, but when building programs that have more complex arguments and parameters, it can get a little confusing.  Most of my time during the first week was spent experimenting with different loop types and understanding what you can and can&rsquo;t do with methods, data types (arrays, hashes, strings, etc), and code organization.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Flatiron Progression: Day 3]]></title>
     <link href="http://irmiller22.github.io/blog/2013/09/25/flatiron-progression-day-3/"/>
+    
     <updated>2013-09-25T23:09:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/09/25/flatiron-progression-day-3</id>
+    
     <content type="html"><![CDATA[<p>Today was Day 3 of my program at Flatiron.  Over the past two days, I&rsquo;ve been immersed in a crash course for GitHub, HTML, CSS, and Ruby.  In the midst of all of this, I&rsquo;ve been getting quite familiar with my Terminal, and I&rsquo;ve learned a lot of useful shortcuts that I never knew about in the past.  I&rsquo;ve quickly realized the benefit of using Terminal as a file management system versus a GUI (graphical user interface), which is what most users typically interact with on a computer.  Coming from a Excel modeling background, the added bonus of knowing shortcuts does wonders for productivity in regards to development.  While being exposed to many different formats of code, I&rsquo;m also learning how to best manage my time.</p>
 
 <p>We have been discussing the importance of the programmer ethos over the past day and a half.  If you&rsquo;re interested in reading the essay that captures this methodology, look for &ldquo;Hackers and Painters,&rdquo; an essay by Paul Graham.  Graham&rsquo;s point is that hackers and painters are both alike in that they are makers.  There are a lot of misconceptions of what a software developer/hacker actually does, and ambiguous terms such as computer scientist don&rsquo;t contribute any clarity towards identifying that.  Like a painter, a hacker spends time learning more about his skillset, and better understanding the nuances of certain techniques, and how they can be applied towards achieving a certain goal or task.  Over time, ugly creations become less and less, and beautiful ideas tend to thrive through the process of iteration, debugging, and creative destruction.</p>
 
 <p>The big take-away that I took from Graham was that makers basically learn from examples.  Like a painter who copies a famous painting to understand the techniques applied, a hacker learns to program by closely following good program (syntax, logic, etc).  Skillsets improve via gradual refinement, and hackers improve through an iterative process just as a painter begins with a sketch and follows up by filling it in, piece by piece.  I&rsquo;ve taken that first big step.</p>
 ]]></content>
+    
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[First Post]]></title>
     <link href="http://irmiller22.github.io/blog/2013/09/24/first-post/"/>
+    
     <updated>2013-09-24T16:51:00-04:00</updated>
     <id>http://irmiller22.github.io/blog/2013/09/24/first-post</id>
+    
     <content type="html"><![CDATA[<p>Today was the second day of my developer-in-training at the Flatiron School.  Yesterday we spent the majority of the day discussing the nuances of Git and GitHub, which are variations of a VCS (version control system).  Ultimately Git helps simplify the collaboration process between developers by organizing the version control heirarchy.  This may not be as important when it&rsquo;s just one or two developers working together, but when you have a large number of developers (say, 15 or more), it definitely makes a difference.  We spent most of the day today setting up our developer environments.  This involved creating an Apple Developer account, installing software through the Terminal (such as Ruby, RVM, SQLite3, Homebrew, etc).</p>
 
 <p>This blog is what I will be using to keep track of my progress throughout the semester at Flatiron.  It has been relatively smooth sailing, but it will start to get more difficult as time passes.  We will start focusing on SQL tomorrow, and then move on to Ruby on Thursday.  I&rsquo;m very excited about my time here.  It will prove to be one of the most instrumental experiences that I have had, and I am excited about my opportunities that lie in wait.</p>
 
 <p>NYC has been a great place to live in so far.  I am currently in Williamsburg over in Brooklyn, and it is very accessible to Manhattan.  The L train is on my block, so it&rsquo;s roughly a 20 minute metro ride to the Bowling Green stop in Lower Manhattan.</p>
 ]]></content>
+    
   </entry>
   
 </feed>
