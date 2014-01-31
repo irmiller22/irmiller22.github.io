@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: RSpec, | My Octopress Blog]]></title>
+  <title><![CDATA[Category: RSpec, | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/rspec/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-01-31T12:32:19-05:00</updated>
+  <updated>2014-01-31T12:43:48-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Ian Miller]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
