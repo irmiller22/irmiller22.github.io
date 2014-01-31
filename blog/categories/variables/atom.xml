@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Variables | My Octopress Blog]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/variables/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-01-31T12:32:19-05:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JavaScript Basics: An Introduction]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/01/03/javascript-basics-an-introduction/"/>
+    <updated>2014-01-03T23:29:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/01/03/javascript-basics-an-introduction</id>
+    <content type="html"><![CDATA[<p>Variable Declaration and Constant</p>
+
+<p>```javascript Variables
+var x = 10,</p>
+
+<pre><code>    y = 30, 
+    myMath = x + y;
+</code></pre>
+
+<p>```
+myMath in this case is the sum of variables x and y, which would be equal to 40.</p>
+
+<p><code>javascript Constant
+//const is a keyword that will declare a constant
+const CONSTANT = 22;
+</code>
+To find out what data type a variable is, you use the <code>typeof</code> method, as shown below:
+<code>javascript Typeof method
+const CAR = 2;
+console.log(typeof CAR);
+//--&gt; number
+var string = "hello";
+console.log(typeof string);
+//--&gt; string
+</code></p>
+
+<p>Conditional Statements</p>
+
+<p>You can also use an if/else statement to execute a given statement if a certain condition is true.  For example, if you wanted to check and see if a variable was considered a type of string, you&rsquo;d do the following:</p>
+
+<p>```javascript Conditional
+var name = &ldquo;Ian&rdquo;;
+if(typeof(name) == &ldquo;string&rdquo;){</p>
+
+<pre><code>console.log("It is a string.");
+</code></pre>
+
+<p>}else{</p>
+
+<pre><code>console.log("It ain't a string.");
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Local vs. Global Scope</p>
+
+<p>```javascript Local vs. Global Scope
+var x = 5;
+var y = 10;</p>
+
+<p>function add(a,b){</p>
+
+<pre><code>var x = a + b;
+return x;
+</code></pre>
+
+<p>}</p>
+
+<p>function subtract(a,b){</p>
+
+<pre><code>var y = a - b;
+return y;
+</code></pre>
+
+<p>}
+<code>``
+The x and y variables that are outside of the add and subtract functions are called</code>global` variables.  They are declared outside of a function in the global scope, and are essentially accessible from anywhere inside of the program.</p>
+
+<p>Functions create a new scope.  The x variable inside the add function and the y variable inside of the subtract function are known as <code>local</code> variables.  They exist only in the context of the respective function, and are not accessible outside of the function.  Think of it as the Vegas motto; what happens here, stays here.</p>
+
+<p>Arrays in Javascript</p>
+
+<p>Making a list inside of our app would involve the following:
+<code>javascript List in JS
+var students = ["Ian Miller", "James Wood", "Saron Yitbarek", "John Cafferty"];
+</code></p>
+
+<p>Looping Through Arrays</p>
+
+<p>```javascript Looping Through Array
+function trackStudents(name, roster){</p>
+
+<pre><code>if (roster.length == 0){
+    list.push(name);
+} else{
+    for(var i=0; i &lt; roster.length; i++) {
+        if(list[i] == undefined){
+            list[i] = name;
+            return list;
+        } else if (i == list.length - 1) {
+            list.push(name);
+        }
+    }
+</code></pre>
+
+<p>  }
+  return roster;
+}
+```</p>
+
+<p>This is just a simple looping function that takes a roster, and adds a name to the roster array.  If the array does not have any elements in it, then it will push that element onto the end of the array, which will be the first element.  Otherwise, for each element in the array, if an array position is undefined, then it will set that element equal to the name value.  Also, if it is the last element in the array, it will also push the name value to the end of the array.  Finally, once the whole array has been iterated through, it will return the array.</p>
+
+<p>These are mostly for me to remember and repeat.  I&rsquo;m currently branching out into other languages at the moment, and will be focusing on JS, jQuery, and Ajax.</p>
+]]></content>
+  </entry>
+  
+</feed>

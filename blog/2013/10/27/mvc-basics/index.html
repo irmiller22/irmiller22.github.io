@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CRUD Applications: Importance of MVC - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="This past weekend, we had an assignment to build a CRUD application from scratch (well, almost). A CRUD application is short for the four basic &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://irmiller22.github.io/blog/2013/10/27/mvc-basics">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:irmiller22.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CRUD Applications: Importance of MVC</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T23:03:00-04:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This past weekend, we had an assignment to build a CRUD application from scratch (well, almost).  A CRUD application is short for the four basic applications of relational database management and storage: create, read, update, and delete.  The CRUD application allows interfacing between a database, a user interface, and HTTP protocols.  I thought that I&rsquo;d go ahead and describe the main components of our CRUD application that we built this weekend.  There are thee specific ones to take note of: the controllers, models, and views.</p>
+
+<p>Models are Ruby-specific classes that talk to the database, store, validate, and execute logic.  In other terms, they do all of the heavy lifting for our application.  They&rsquo;re basically the overworked accountant in the back room during tax season, churning out numbers while eating stale donuts at an absurd rate.</p>
+
+<p>Views are elements that the user sees and interface with.  In short, they will provide the user experience through HTML, CSS, Javascript, and other front-end aspects.  They&rsquo;re the responsible ladies and gentlemen specifically positioned near the front of the office to provide a sense of culture and value to the outside user looking in.</p>
+
+<p><img class="center" src="http://static2.fjcdn.com/thumbnails/comments/ah+alright+cheers.+yeah+doge+is+great+_56f6675509eadf36993a7e5b53c37f6d.jpg"></p>
+
+<p>Controllers deal with the back-end requests from users, data requests, data submissions, sessions, and so on.  Any time you enter data into a form on a website, such as a login and password, you are interacting with a controller after you have hit the submit button.  After the request is sent, the controller sends the response to the server, and the server then combines that data into a HTTP response that is sent back to the user.</p>
+
+<p><img class="center" src="http://i37.tinypic.com/2wrn985.gif" width="500"></p>
+
+<p>One term that I&rsquo;ve read about describes how you should structure your models and controllers: &ldquo;fat models, skinny controllers.&rdquo;  The idea is that your models are not just a simple form of abstration in your database layer, but they represent the entirety of the logic in your application.  It should be able to stand alone from the rest of the application.  By convention, it should not interact with other components of your application.  Each controller method also should represent one action.  The controllers simply just shuttle requests between your views and your models (or your user interface and the application logic).  Another primary reason why this is an important programming practice is that you have enabled 2 things: one, you&rsquo;ve made it easy to reuse your code due to its abstraction and simplicity, and two, you&rsquo;ve also made it simpler for testing your code.</p>
+
+<p><img class="center" src="http://www.mikebernat.com/images/cake/layercake.png" width="500"></p>
+
+<p>That&rsquo;s what I wanted to review in this blog post.  I&rsquo;ll also share some of my favorite, but terrible, puns with you.  Some of you might have already heard some of these.</p>
+
+<p>A truck transporting fruit in California overturned the other day.  It created quite a&hellip; jam.  That driver&rsquo;s career is also&hellip; toast.</p>
+
+<p>The other day, I couldn&rsquo;t quite remember how to throw a boomerang, but eventually it came back.</p>
+
+<p>Hello everyone (in Ruby 003 class on Monday, Oct 28), what is Avi&rsquo;s background?  Well, it&rsquo;s a white wall.</p>
+
+<p><img class="center" src="https://i.chzbgr.com/maxW500/5870736384/hB08BCDAD/"></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T23:03:00-04:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rspec/'>RSpec,</a>, <a class='category' href='/blog/categories/tips/'>Tips</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://irmiller22.github.io/blog/2013/10/27/mvc-basics/" data-via="" data-counturl="http://irmiller22.github.io/blog/2013/10/27/mvc-basics/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/20/rspec-a-misunderstood-obstacle/" title="Previous Post: RSpec: A Misunderstood Complement to Ruby">&laquo; RSpec: A Misunderstood Complement to Ruby</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/10/30/a-new-addendum/" title="Next Post: Abstraction: Path to Simplicity">Abstraction: Path to Simplicity &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/impetus-for-a-career-in-programming/">Impetus for a Career in Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/walkthrough-of-microhaus-app/">Microhaus App: Part I</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The Art of a Question - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question. Or rather, is it &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://irmiller22.github.io/blog/2013/11/17/the-art-of-a-question">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:irmiller22.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The Art of a Question</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T22:27:00-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
+
+<p>From time to time, I have found myself unable to ask the right questions.  It&rsquo;s as if there is a mental block in my head, unable to move forward beyond an obstacle, a metaphorical wrench stuck in the gears of my neocortex.  When that process unfolds, it is easy to doubt yourself and your ability to lead yourself out of the quagmire.  There is a reason why many individuals are daunted by the prospect of learning how to program.  It is a seemingly endless black hole that manifests itself as a negative feedback loop.  Despite the organized chaos that arises, most often overlook the key decision making component of programming: knowing where to start.</p>
+
+<p>Knowing where to start isn&rsquo;t even the be-all-end-all solution to asking the right question.  It is simply a starting place.  Just because a runner starts at mile 0.0 after a starter pistol has fired, it does not mean that failure is imminent.  It is a mindset.  A runner tackles a marathon one step at a time.  Step by step, two feet turns into 10.  10 feet turns into a mile.  A mile turns into 10 miles.  10 miles turn into 20.  It&rsquo;s about breaking down the obstacle into manageable parts, and moving on from segment to segment.  This works because of two reasons: one, it keeps the logical decision making process flowing, and two, it pushes doubt and negative reinforcement to the periphery of human consciousness.</p>
+
+<p>I read an article the other day discussing a concept called cognitive load.  According to George Miller, an eminent psychologist who taught at Princeton in the 1950&rsquo;s, our brain can realistically hold about seven pieces of information simultaneously at one point in time.  That number has since been revised to three or four.  This is a significant problem in the information age.  WIth historically recent advents such as the Internet, we are overly stimulated by the free flow of information, made possible largely by electronic devices.  Information enters and exits our cognitive consciousness that we don&rsquo;t grasp a basic level of understanding. We are unable to transfer it from our short-term to long-term memory stores, and consequently our ability to think critically and conceptually weakens.  Ergo, one step at a time.</p>
+
+<p>So it seems that there are valid reasons, backed by science, psychology, and other studies focused on the human brain, that call for the fragmentation of a complete problem into parts.  If someone were to ask the question, &ldquo;how does a route ultimately render a view in a Rails project?&rdquo;  This is my thinking process below.</p>
+
+<p>First off, there are multiple steps that between the route path and the view being rendered.  In MVC, there are typically eight steps in the chain of events.</p>
+
+<pre><code>First, a browser sends a request to the Rails router.  
+Second, a router sends the request to the respective controller.  
+Third, the controller asks the model to retrieve the respective data needed for the request from the database.  
+Fourth, the database sends that data back to the model.  
+Fifth, the model sends the retrieved data back to the controller.  
+Sixth, the data, encapsulated within the logic defined in the controller, is sent to the view.  Seventh, the view renders the data into the HTML page and is sent back to the controller.
+Eighth, and finally, the controller sends the view action back to the browser where it is rendered.
+</code></pre>
+
+<p>This is an oversimplified example, but the question went from a generic question about a route and respective view rendering to a multifaceted question made up of smaller implicit questions about the 8 steps of MVC progression.  Each step can also be broken down further to better understand the process.  Each little question is a foundation that can be built upon, and will ultimately to a deep understanding of how a simple Rails application works.</p>
+
+<p>So perhaps the best question is not simply a targeted question that seeks a one-dimensional answer, but rather a series of smaller, more basic questions derived from a larger question.  Simplicity is the best form of policy.  Start somewhere.  Plant your flag in the sand.  Let your initial question, and the subsequent chain of questions, be your guide.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T22:27:00-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://irmiller22.github.io/blog/2013/11/17/the-art-of-a-question/" data-via="" data-counturl="http://irmiller22.github.io/blog/2013/11/17/the-art-of-a-question/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/10/activerecord-validations/" title="Previous Post: ActiveRecord: Validations">&laquo; ActiveRecord: Validations</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/12/14/big-o-notation/" title="Next Post: Big O Notation">Big O Notation &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/22/impetus-for-a-career-in-programming/">Impetus for a Career in Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/walkthrough-of-microhaus-app/">Microhaus App: Part I</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

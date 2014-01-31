@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | My Octopress Blog]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-01-31T12:32:19-05:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
+    <updated>2013-12-27T11:08:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
+    <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
+
+<p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
+
+<p>I&rsquo;ll be using the example of a distributed solar generation product.  Whenever a consumer is experiencing unusually low solar energy production or energy generation patterns consistent with a malfunctioning module, it will send out a mailer notifying them of these issues.  In order to generate a mailer, you type in the following command:</p>
+
+<p><code>ruby Mailer Generation
+rails g mailer SolarMailer error_report
+</code></p>
+
+<p>The next step is to set up the default settings of the mailer.</p>
+
+<p>```ruby Mailer Settings
+class SolarMailer &lt; ActionMailer::Base</p>
+
+<pre><code>default from: "administrator@solartech.com"
+
+def error_report(panel, customer)
+    mail to: customer.email, subject: "Panel #{panel.location} #{panel.id} is experiencing some technical issues.""
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>After we have set up the default settings for the mailer, then we go to the Panel model in order to specify when the mailer should be sent out.</p>
+
+<p>```ruby Panel model
+class Panel &lt; ActiveRecord::Base</p>
+
+<pre><code>belongs_to :module
+before_save :check_power_yield
+
+def check_power_yield
+    if power_yield &lt;= 1200 kWh #base power generation
+        SolarMailer.error_report(self, self.customer).deliver
+    end
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>That&rsquo;s pretty much it for a basic mailer.  You can style the mailer using HTML/CSS, and you can also add front-end features via Javascript (AJAX, jQuery).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
+    <updated>2013-12-22T13:26:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/12/22/impetus-for-a-career-in-programming</id>
+    <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
+
+<p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
+
+<p>I’ve always had a pretty imaginative brain, always willing to go into wild tangents that test the limits of my creativity. I’m not sure if it’s a result of my brain’s capacity for randomness, or if it’s just my brain trying to make sense of the endless chatter being fired between the synapses of my neural pathways. Part of me is convinced that this is a result of my disability. When one of the five senses is limited (in this case, sound), another is enhanced. In my situation, I think my visual ability is much more nuanced than the average person. Perhaps that transfers over into my subconscious somehow, which would explain my visual acuity.</p>
+
+<p>As a result of my hearing disability, I always enjoyed playing video games, particularly strategy games. It was something that gave me a full sense of control, something that I could, with 100% certainty, influence in terms of direction. In other words, it was an escape from the more difficult aspects of childhood, particularly my teenage years in which social interaction skyrocketed, leaving me behind my peers in social conversation.</p>
+
+<p>From middle school until college, I was always interested in video games. As a result of video games, I started tinkering around with computers, my first experience coming when I figured out how to take control of my middle school’s computers using MS/DOS, and would perpetually confuse my fellow students by hijacking their mouse cursor and typing cryptic messages into their word processor application. I remember when I built my first website. It was a Geocities all-in-one basic site that focused on posting answers to my math homework. I don’t know if it was ever used at all by my classmates, but I remember the crappy blue background with the black and green Comic Sans font. Why did everyone use Comic Sans back then? What a colossal waste of a font. Anyways, the foundation of my technological curiosity had been firmly implanted by the time I was in middle school.</p>
+
+<p>I was proficient in HTML and CSS back then, and was just starting to use JavaScript. I got so frustrated using JavaScript, largely because I was learning it on my own, and there were not many resources readily available in which you could find reliable answers. This is why having a community in which you can ask programming questions is so important. I lost my desire to continue my immersion into programming after a few months. Up until that point, many subjects came very easily to me then, such as English, Math, video games. I think the idea of a challenge discouraged me, and I was simply looking for something that provided instant gratification. I now realize that was a setback in terms of my mindset. Since then, the same question always came up from time to time: “what if?”. Looking back on it now, giving up was probably the biggest mistake I ever made.</p>
+
+<p>Fast forward to my senior year of college. I was an Economics major, authoring a thesis that detailed solar energy subsidy programs and the long-term effects of that respective government’s approach. To summarize my thesis, among all countries with mature renewable energy policy programs, Germany did best in structuring a long-term approach while the United States bungled it. At that point, I was certain that I was going into a career in renewable energy finance or policy.</p>
+
+<p>My career in renewable energy started off well. I became an intern at a very well respected renewable energy policy group in Washington, DC, and eventually wrote a white paper that discussed the merits of tax equity syndication for solar power development. At the conclusion of my internshp, I went to work for a biomass power startup, and gave me a wide breadth of expertise in project development in India and Tanzania.</p>
+
+<p>In the spring of 2013, I decided to take an online course for Python on CourseRA just to play around with the idea of programming, not realizing that it would ultimately alter my career path 9 months later. Through Rice University’s Python class on CourseRA, we built a number of small games, such as Tic-Tac-Toe, Paddleboard, and a simple spaceship game that reminded me a little bit of a 2D version of Star Wars. I started to help out with web application development for my company, and the product was supposed to be a dashboard for energy analytics. First I helped write the business documentation for it, then started working with a programmer to build out the framework for the application itself. Over the course of 2 months of working with a programmer, I decided that programming was what I wanted to spend the rest of my life doing. The constant problem solving, discussions about best courses of action, and brainstorming was the most intellectually challenged and enriched that I had felt since high school and college. When you attain that desire for learning, you never really want to let it go. That desire siezes you like adrenaline does a bungee jumper jumping off a bridge: simply relentless.</p>
+
+<p>I started taking courses on CourseAcademy and TeamTreehouse for Ruby. I had heard that Ruby was the hottest full-stack language at that point, and it was relatively straightforward to learn. I also applied to several boot camps, convinced that it was just what I needed to jumpstart my future. I ultimately settled on the Flatiron School in NYC because of its community-driven approach to programming, as well as its mission to help individuals find a passion in programming, and also encourage the involvement of women in what has been traditionally a male-dominated profession.</p>
+
+<p>Fast forward five months later. I am two weeks out of boot camp at Flatiron School. Has it been worth it? The reasons may be different for everyone, but for me, it certainly has. I’d even go as far as to say that it’s been life changing. I’ve met the most wonderful group of individuals at Flatiron, and I’ve learned a lot from them. And I can now call myself a programmer. Not a skilled one yet, but that’s what I am working towards, step by step. But there are three important results that have been made possible by my experiences in the past year. I’ve discovered my passion. I’ve re-ignited my desire to learn. And I’ve finally learned the lesson that I should have learned long ago, even with a particularly limiting disability; there  is no limit.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord: Validations]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/11/10/activerecord-validations/"/>
+    <updated>2013-11-10T22:20:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/11/10/activerecord-validations</id>
+    <content type="html"><![CDATA[<p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
+
+<p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
+
+<p>You can also place constraints upon your validations.  For example, if you&rsquo;re using <code>validates_length_of</code> for usernames, you can specify a range that the length must fall between.  For example:</p>
+
+<p>```ruby Validation &ndash; Username Length
+class Account &lt; ActiveRecord::Base</p>
+
+<pre><code>validates_length_of :username, within: 5..20
+</code></pre>
+
+<p>end
+```</p>
+
+<p>If it exceeds the length, then you can provide an error message option that follows the validation.</p>
+
+<p>```ruby Validation &ndash; Username Length, Error
+class Account &lt; ActiveRecord::Base</p>
+
+<pre><code>validates_length_of :username, within: 5..20,               wrong_length: "should be %{count} characters            long"
+</code></pre>
+
+<p>end
+```</p>
+
+<p>An important aspect of validations is enforcing uniqueness among join models in the database.  We have used this recently (in our Flatiron-Kitchen-Ruby-003 assignment).  In order to enforce uniqueness, we have to define a scope constraint.  For example, if we had three classes, <code>Registration</code>, <code>Course</code> and <code>Student</code>, how could we make sure that a student isn&rsquo;t registered more than once for a particular class?  We would define the scope of the <code>Registration</code> class, as shown below:</p>
+
+<p>```ruby Registration &ndash; Scope
+class Registration &lt; ActiveRecord::Base</p>
+
+<pre><code>belongs_to :student
+belongs_to :course
+
+validates_uniqueness_of :student_id, scope: :course_id, message: "can only register once per course"
+</code></pre>
+
+<p>```</p>
+
+<p>Another one that you run into all the time:</p>
+
+<p>```ruby Email Validation
+class Email &lt; ActiveRecord::Base</p>
+
+<pre><code>validates_uniqueness_of :address, message: "already taken"
+</code></pre>
+
+<p>end
+```</p>
+
+<p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &mdash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Abstraction: Path to Simplicity]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/10/30/a-new-addendum/"/>
+    <updated>2013-10-30T22:15:00-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/10/30/a-new-addendum</id>
+    <content type="html"><![CDATA[<p>Abstraction is a concept that I have been thinking quite a lot about lately.  It is a concept that has largely been foreign to me, and it is slowly dawning on me that abstraction lies all around us.</p>
+
+<p>The Webster Dictionary defines abstraction as a &ldquo;general idea or quality rather than an actual person, object, or event.&rdquo;  If we took the literal translation of the root abstractus (past participle of abstrahere), we would get &ldquo;to draw away; to detach or divert.&rdquo;  This term was first used by Oswald Herzog to describe the artistic attitudes and implementations of the Dadaists (in 1519, &lsquo;Der Abstrakte Expressionismus&rsquo;).  He wrote, &ldquo;it is pure creation.  It does not borrow objects from the real world; it creates its own objects &hellip; the abstract reveals the will of the artist; it becomes expression.&rdquo;  Abstraction, in the general sense of the word, is the process by which we generate semantic meaning with a concept.</p>
+
+<p>In Ruby, abstraction is key to making your code achieve two things: more readable and reusable.  At this point, we&rsquo;ve learned to make our code more abstract via many concepts, such as MVC, ReST (Representational State Transfer), migrations, database abstraction via ActiveRecord, and routing.</p>
+
+<p><img class="center <a" src="href="http://betweengo.com/docs/intro_rails/img/request_cycle.png">http://betweengo.com/docs/intro_rails/img/request_cycle.png</a>"></p>
+
+<p>A major component of Ruby on Rails has really nailed down the abstract aspect of coding for me: ActiveRecord and its corresponding ActionPacks.  ActiveRecord serves as the &ldquo;Model&rdquo; component relational database for Rails.  It comes with a set of query methods used for creating, retrieving, updating, or destroying data in the database.  The model also is used for establishing association between classes.  For example, a king could have a &ldquo;has_many&rdquo; relationship with his subjects, while a subject has a &ldquo;belongs_to&rdquo; relationship with his king.</p>
+
+<p>```ruby Monarchy Association
+class King &lt; ActiveRecord::Base</p>
+
+<pre><code>has_many :subjects
+has_many :lords
+</code></pre>
+
+<p>end</p>
+
+<p>class Subject &lt; ActiveRecord::Base</p>
+
+<pre><code>belongs_to :king
+belongs_to :lord
+has_many :children
+</code></pre>
+
+<p>end
+```</p>
+
+<p>ActionController serves as the &ldquo;Controller&rdquo; engine of Rails.  By definition, a controller acts as the intermediary between the views and the models, and shuttles along HTTP responses, view renders, and redirects between the two.  The controller logic is encapsulated into each individual method, and each method should really have only one action in order to simplify the logic behind the controller.  The controller is designed to encapsulate the logic behind the app into specific CRUD methods, as shown below.</p>
+
+<p>```ruby Subjects Controller
+class SubjectsController &lt; ApplicationController</p>
+
+<pre><code>before_action :set_subject, only: [:show, :edit, :update, :destroy]
+</code></pre>
+
+<p>  def index</p>
+
+<pre><code>@subjects = Subject.all
+</code></pre>
+
+<p>  end</p>
+
+<p>  def create</p>
+
+<pre><code>Subject.create(retrieve_subject_params)
+redirect_to subjects_path
+</code></pre>
+
+<p>  end</p>
+
+<p>  def new</p>
+
+<pre><code>@subject = Subject.new
+@lords = Lord.all
+</code></pre>
+
+<p>  end</p>
+
+<p>  def edit</p>
+
+<pre><code>@subject
+</code></pre>
+
+<p>  end</p>
+
+<p>  def show</p>
+
+<pre><code>@subject
+</code></pre>
+
+<p>  end</p>
+
+<p>  def update</p>
+
+<pre><code>@subject.update(retrieve_subject_params)
+redirect_to subjects_path
+</code></pre>
+
+<p>  end</p>
+
+<p>  def destroy</p>
+
+<pre><code>@subject.destroy
+redirect_to subjects_path
+</code></pre>
+
+<p>  end</p>
+
+<p>  private
+  def set_subject</p>
+
+<pre><code>@subject = Subject.find(params[:id])
+</code></pre>
+
+<p>  end</p>
+
+<p>  def retrieve_subject_params</p>
+
+<pre><code>params.require(:subject).permit(:name, :region, :lord_id, :class)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>ActionDispatch serves as a routing engine.  It is responsible for recognizing a path as specified in the model logic and dispatching it according to that route&rsquo;s specific action.  A route action should do only one thing, while keeping in convention via the &ldquo;fat model, skinny controller&rdquo; paradigm.  ActionDispatch takes care of the majority of your routes through resource routing.  With Rails, we can declare our <code>index, show, new, edit, create, update, and destroy</code> routes with one single line of code.  For example, if we wanted to have a resource for our king, subject, and lord classes, you&rsquo;d simply do the following:</p>
+
+<p>```ruby Resources for King
+KingdomOfValyria::Application.routes.draw do
+  resources :kings
+  resources :subjects
+  resources :lords</p>
+
+<p>  root &lsquo;front#index&rsquo;
+end
+```</p>
+
+<p>ActionView is the Rails engine responsible for maintaining the HTML views that are rendered to the browser.  For each controller that&rsquo;s present in the app, there is a corresponding <code>app/views</code> directory that stores ERB templates used for HTML browser rendering.</p>
+
+<p>```ruby Subject View</p>
+
+<h1><%= @subject.name %> - Subject of King <%= @subject.king.name %></h1>
+
+
+<p><p>Lord: &lt;%= @subject.lord.name %></p>
+<p>Lives: &lt;%= link_to @subject.region, @subject.region %></a></p>
+&lt;% unless @subject.children.empty? %>
+  <h2>Children</h2>
+  <ol></p>
+
+<pre><code>&lt;% @subject.children.each do |child| %&gt;
+  &lt;li&gt;&lt;%= link_to child.name, child %&gt;&lt;/li&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<p>  </ol><br>
+&lt;% end %>
+&lt;%= link_to &ldquo;Back&rdquo;, subjects_path %>
+&lt;%= link_to &ldquo;Edit&rdquo;, edit_subject_path %>
+&lt;%= link_to &ldquo;Delete&rdquo;, @subject, method: :delete %>
+```</p>
+
+<p>Being able to effectively encapsulate your logic into separate logic categories is such a necessary skill-set to understand in order to become a proficient Ruby on Rails developer.  I&rsquo;m still in the process of learning how to whittle down my logic into singular methods and actions.  Ruby is a language that was built for abstraction.  It is meant to simplify logic in your code, and as Matz said once, &ldquo;I hope to see Ruby help every programmer in the world to be productive, and to enjoy programming, and to be happy.&rdquo;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec: A Misunderstood Complement to Ruby]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle/"/>
+    <updated>2013-10-20T21:37:00-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle</id>
+    <content type="html"><![CDATA[<p>For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis.  Because RSpec is the testing framework for the Ruby language, I viewed it as an obstacle to my learning development.  After studying more about RSpec in the past few days, I&rsquo;m starting to realize that I have been viewing its fundamental purpose incorrectly.  RSpec is a complement to the Ruby developer&rsquo;s toolkit &mdash; it prevents unneccesary work by testing the behaviors of a framework.  In short, it is the blueprint of any application, and represents a guided set of directions that leads you to a finished product.</p>
+
+<p>In this blog post, I&rsquo;ll discuss the basic premise of RSpec and also discuss a few ways to refactor RSpec code.</p>
+
+<p>``` ruby RSpec Basic Syntax <a href="https://speakerdeck.com/pat/rspec-introduction">https://speakerdeck.com/pat/rspec-introduction</a>
+describe &lsquo;basic RSpec syntax&rsquo; do</p>
+
+<pre><code>it 'describes how the code should behave' do
+    User.code.should be(clear)
+    User.code.should be(concise)
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>Here&rsquo;s a simple example.</p>
+
+<p>``` ruby Calculator
+describe Calculator do</p>
+
+<pre><code>describe '#multiply' do
+    it 'returns the product of its parameters' do
+        calc = Calculator.new
+        calc.multiply(4,5).should eq(20)
+    end
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>This example is to just show what RSpec was intended for in regards to test-driven development.  See how RSpec determines how the calculator should behave when the multiply method is called?  When given the parameters 4 and 5, the multiply method should return an integer value of 20.</p>
+
+<p>``` ruby Refactor a name spec
+describe Person do</p>
+
+<pre><code>it 'responds to own name' do
+    James = Person.new
+    James.should respond_to(:name)
+end
+</code></pre>
+
+<p>end</p>
+
+<p>describe Person do</p>
+
+<pre><code>it 'responds to own name' do
+    subject.should respond_to(:name)
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>&ldquo;Subject&rdquo; always refers to an instance of a class.  In this case, James is an instance of the Person class, and the step of initializing a Person instance with the name James has been refactored by using &ldquo;subject.&rdquo;</p>
+
+<p>``` ruby Using &lsquo;Expect&rsquo; instead of &lsquo;Should&rsquo;
+describe Person do</p>
+
+<pre><code>it 'responds to own name' do
+    expect(subject).to respond_to(:name)
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>This is a big change that I&rsquo;ve started to implement in my RSpec tests, largely because of issues that have to do with delegation.  There was a blog post (<a href="http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax">http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax</a>) that discussed the differences between &lsquo;expect&rsquo; and &lsquo;should.&rsquo;  My understanding of the Kernel library and the rspec-expectations are not very concrete yet, but it is partly a result of a library load.  If one library is loaded before the other, it can sometimes override syntax delegations for the same word.</p>
+
+<p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
+]]></content>
+  </entry>
+  
+</feed>

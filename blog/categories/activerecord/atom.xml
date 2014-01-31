@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ActiveRecord, | My Octopress Blog]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/activerecord/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-01-31T12:32:19-05:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord: Validations]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/11/10/activerecord-validations/"/>
+    <updated>2013-11-10T22:20:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/11/10/activerecord-validations</id>
+    <content type="html"><![CDATA[<p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
+
+<p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
+
+<p>You can also place constraints upon your validations.  For example, if you&rsquo;re using <code>validates_length_of</code> for usernames, you can specify a range that the length must fall between.  For example:</p>
+
+<p>```ruby Validation &ndash; Username Length
+class Account &lt; ActiveRecord::Base</p>
+
+<pre><code>validates_length_of :username, within: 5..20
+</code></pre>
+
+<p>end
+```</p>
+
+<p>If it exceeds the length, then you can provide an error message option that follows the validation.</p>
+
+<p>```ruby Validation &ndash; Username Length, Error
+class Account &lt; ActiveRecord::Base</p>
+
+<pre><code>validates_length_of :username, within: 5..20,               wrong_length: "should be %{count} characters            long"
+</code></pre>
+
+<p>end
+```</p>
+
+<p>An important aspect of validations is enforcing uniqueness among join models in the database.  We have used this recently (in our Flatiron-Kitchen-Ruby-003 assignment).  In order to enforce uniqueness, we have to define a scope constraint.  For example, if we had three classes, <code>Registration</code>, <code>Course</code> and <code>Student</code>, how could we make sure that a student isn&rsquo;t registered more than once for a particular class?  We would define the scope of the <code>Registration</code> class, as shown below:</p>
+
+<p>```ruby Registration &ndash; Scope
+class Registration &lt; ActiveRecord::Base</p>
+
+<pre><code>belongs_to :student
+belongs_to :course
+
+validates_uniqueness_of :student_id, scope: :course_id, message: "can only register once per course"
+</code></pre>
+
+<p>```</p>
+
+<p>Another one that you run into all the time:</p>
+
+<p>```ruby Email Validation
+class Email &lt; ActiveRecord::Base</p>
+
+<pre><code>validates_uniqueness_of :address, message: "already taken"
+</code></pre>
+
+<p>end
+```</p>
+
+<p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &mdash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
+]]></content>
+  </entry>
+  
+</feed>
