@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-01-31T16:41:15-05:00</updated>
+  <updated>2014-02-02T16:37:40-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,227 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Rails Link Shortener App]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/02/02/basic-rails-link-shortener-app/"/>
+    
+    <updated>2014-02-02T15:05:05-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/02/02/basic-rails-link-shortener-app</id>
+    
+    <content type="html"><![CDATA[<p>Over the last few days, there were primarily two things that I wanted to delve into conceptually and understand: MongoDB and the logic behind a link shortener. I decided to combine the two of these and create a simple Rails app in which you could shorten links.</p>
+
+<p>So, what is MongoDB? MongoDB is what&rsquo;s called a <code>NoSQL</code> database technology. A <code>NoSQL</code> database doesn&rsquo;t rely on a series of rows and columns within tables like a <code>SQL</code>, or relational, database does. <code>NoSQL</code> databases can store information in a variety of ways, but in the case of MongoDB, it stores it via a key-value store. For example, take a hash. If we were converting a relational database to a key-value store, we would set the table name as the key, and each of the corresponding columns as the values. For example, if we had a Users table, the key would be Users, and the values would be the attributes of each user in a hash format: <code>Users = { John Smith =&gt; {id: 1, first_name: John, last_name: Smith, email: john_smith@gmail.com, hometown: New York, New York }}</code>.</p>
+
+<p>I started out the app by generating a new Rails app via <code>rails g new link_shortener</code>. Once the app is generated, you can also use the Mongoid gem to generate the config file for the MongoDB database via <code>rails g mongoid:config</code>. Once you generate the config file, you can read through the file, available at <code>mongoid.yml</code> within the app, for an in-depth explanation of Mongoid&rsquo;s capabilities.</p>
+
+<p>Next step is to create the model. Since we have an app t hat is going to shorten URLs, we need to create a URL model, so that each URL can be represented within Ruby/Rails as an object.</p>
+
+<p>In Rails, querying the database is very much like that of ActiveRecord. The same model commands, such as <code>where, find, find_or_create_by, save</code> are very much in place. Look at the Mongoid documentation to find out more.</p>
+
+<p>Let&rsquo;s test it out.</p>
+
+<figure class='code'><figcaption><span>Url Model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">u</span> <span class="o">=</span> <span class="no">Url</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">u</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://irmiller22.github.io&quot;</span>
+</span><span class='line'><span class="c1">#=&gt; #&lt;Url _id: 52eeacee49524d08ce010000, url: &quot;http://irmiller22.github.io&quot;&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">u</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'><span class="no">Url</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:url</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://irmiller22.github.io&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="c1">#=&gt; #&lt;Mongoid::Criteria</span>
+</span><span class='line'>  <span class="ss">selector</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;http://irmiller22.github.io&quot;</span><span class="p">}</span>
+</span><span class='line'>  <span class="ss">options</span><span class="p">:</span>  <span class="p">{}</span>
+</span><span class='line'>  <span class="ss">class</span><span class="p">:</span>    <span class="no">Url</span>
+</span><span class='line'>  <span class="ss">embedded</span><span class="p">:</span> <span class="kp">false</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now that you&rsquo;ve set up a model to take care of persisting data to the database, we need a controller to eventually take the input, generate the right output, and getting the data to the appropriate routing destination. Let&rsquo;s generate the new controller: <code>rails g controller urls new</code>. Typically when you generate a controller, you generate all 7 of the RESTful actions, but in this case we&rsquo;re only interested in testing one action for the moment: new. This generates the following:</p>
+
+<figure class='code'><figcaption><span>UrlsController</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">UrlsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s2">&quot;urls/new&quot;</span>
+</span><span class='line'><span class="c1"># we will modify this to the following:</span>
+</span><span class='line'><span class="c1"># resources :urls, only: [:new, :show, :create]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now let&rsquo;s fill in the logic for each of the actions in the Url controller.</p>
+
+<figure class='code'><figcaption><span>UrlsController</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">UrlsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'>      <span class="vi">@short_url</span> <span class="o">=</span> <span class="no">Url</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>      <span class="vi">@short_url</span> <span class="o">=</span> <span class="no">Url</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">url_params</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="vi">@short_url</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>          <span class="n">flash</span><span class="o">[</span><span class="ss">:short_id</span><span class="o">]</span> <span class="o">=</span> <span class="vi">@short_url</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>          <span class="n">redirect_to</span> <span class="n">new_url_url</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>          <span class="n">render</span> <span class="ss">:action</span> <span class="o">=&gt;</span> <span class="s2">&quot;new&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>      <span class="vi">@short_url</span> <span class="o">=</span> <span class="no">Url</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="vi">@short_url</span><span class="o">.</span><span class="n">url</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">url_params</span>
+</span><span class='line'>      <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:url</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:url</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this simple case, I&rsquo;ll be resetting the link to the domain and the URL id, so it would look like this while running locally: <code>localhost:3000/f3e200091</code>. In my next refactor, I&rsquo;ll end up generating a random string, but this will do for now.</p>
+
+<p>Let&rsquo;s move on to the views:</p>
+
+<figure class='code'><figcaption><span>application.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;!</span><span class="no">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="no">LinkShortener</span><span class="o">&lt;</span><span class="sr">/title&gt;</span>
+</span><span class='line'><span class="sr">  &lt;%= stylesheet_link_tag    &quot;application&quot;, media: &quot;all&quot;, &quot;data-turbolinks-track&quot; =&gt; true %&gt;</span>
+</span><span class='line'><span class="sr">  &lt;%= javascript_include_tag &quot;application&quot;, &quot;data-turbolinks-track&quot; =&gt; true %&gt;</span>
+</span><span class='line'><span class="sr">  &lt;%= csrf_meta_tags %&gt;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">%= yield %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">&lt;% if flash[:short_id].present? %&gt;</span>
+</span><span class='line'><span class="sx"> &lt;p class=</span><span class="s1">&#39;shortened_link&#39;</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="no">The</span> <span class="n">shortened</span> <span class="no">URL</span> <span class="n">is</span> <span class="n">available</span> <span class="o">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span> <span class="n">url_url</span><span class="p">(</span><span class="n">flash</span><span class="o">[</span><span class="ss">:short_id</span><span class="o">]</span><span class="p">)</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">     (Right click and copy link to share it).</span>
+</span><span class='line'><span class="sx"> &lt;/p&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% end %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">&lt;/body&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>new.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @short_url do |f| %&gt;</span>
+</span><span class='line'><span class="sx"> </span>
+</span><span class='line'><span class="sx"> &lt;p&gt;</span>
+</span><span class='line'><span class="sx">     &lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:url</span><span class="p">,</span> <span class="s2">&quot;Your URL:&quot;</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">     &lt;%= f.text_field :url %&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr"> &lt;% if @short_url.errors[:url].any? %&gt;</span>
+</span><span class='line'><span class="sr">     &lt;p class=&quot;error_messages&quot;&gt;</span>
+</span><span class='line'><span class="sr">         The given URL &lt;%= @short_url.errors[:url].to_sentence %&gt;</span>
+</span><span class='line'><span class="sr">     &lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="sx">% end %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx"> &lt;p class=&quot;button&quot;&gt;</span>
+</span><span class='line'>      <span class="o">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Shorten my URL&quot;</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx"> &lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These two views are all you need to enable the link shortener. Fire up the rails server, and see your new link shortener in action!</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -1477,23 +1698,6 @@ array.select { |x| x &gt; 2 }</code></p>
 <p>We have been discussing the importance of the programmer ethos over the past day and a half.  If you&rsquo;re interested in reading the essay that captures this methodology, look for &ldquo;Hackers and Painters,&rdquo; an essay by Paul Graham.  Graham&rsquo;s point is that hackers and painters are both alike in that they are makers.  There are a lot of misconceptions of what a software developer/hacker actually does, and ambiguous terms such as computer scientist don&rsquo;t contribute any clarity towards identifying that.  Like a painter, a hacker spends time learning more about his skillset, and better understanding the nuances of certain techniques, and how they can be applied towards achieving a certain goal or task.  Over time, ugly creations become less and less, and beautiful ideas tend to thrive through the process of iteration, debugging, and creative destruction.</p>
 
 <p>The big take-away that I took from Graham was that makers basically learn from examples.  Like a painter who copies a famous painting to understand the techniques applied, a hacker learns to program by closely following good program (syntax, logic, etc).  Skillsets improve via gradual refinement, and hackers improve through an iterative process just as a painter begins with a sketch and follows up by filling it in, piece by piece.  I&rsquo;ve taken that first big step.</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[First Post]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/09/24/first-post/"/>
-    
-    <updated>2013-09-24T16:51:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/09/24/first-post</id>
-    
-    <content type="html"><![CDATA[<p>Today was the second day of my developer-in-training at the Flatiron School.  Yesterday we spent the majority of the day discussing the nuances of Git and GitHub, which are variations of a VCS (version control system).  Ultimately Git helps simplify the collaboration process between developers by organizing the version control heirarchy.  This may not be as important when it&rsquo;s just one or two developers working together, but when you have a large number of developers (say, 15 or more), it definitely makes a difference.  We spent most of the day today setting up our developer environments.  This involved creating an Apple Developer account, installing software through the Terminal (such as Ruby, RVM, SQLite3, Homebrew, etc).</p>
-
-<p>This blog is what I will be using to keep track of my progress throughout the semester at Flatiron.  It has been relatively smooth sailing, but it will start to get more difficult as time passes.  We will start focusing on SQL tomorrow, and then move on to Ruby on Thursday.  I&rsquo;m very excited about my time here.  It will prove to be one of the most instrumental experiences that I have had, and I am excited about my opportunities that lie in wait.</p>
-
-<p>NYC has been a great place to live in so far.  I am currently in Williamsburg over in Brooklyn, and it is very accessible to Manhattan.  The L train is on my block, so it&rsquo;s roughly a 20 minute metro ride to the Bowling Green stop in Lower Manhattan.</p>
 ]]></content>
     
   </entry>

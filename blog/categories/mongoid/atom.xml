@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mongoid | Archaic Positives]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/mongoid/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-02-02T16:37:40-05:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Link Shortener App]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/02/02/basic-rails-link-shortener-app/"/>
+    <updated>2014-02-02T15:05:05-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/02/02/basic-rails-link-shortener-app</id>
+    <content type="html"><![CDATA[<p>Over the last few days, there were primarily two things that I wanted to delve into conceptually and understand: MongoDB and the logic behind a link shortener. I decided to combine the two of these and create a simple Rails app in which you could shorten links.</p>
+
+<p>So, what is MongoDB? MongoDB is what&rsquo;s called a <code>NoSQL</code> database technology. A <code>NoSQL</code> database doesn&rsquo;t rely on a series of rows and columns within tables like a <code>SQL</code>, or relational, database does. <code>NoSQL</code> databases can store information in a variety of ways, but in the case of MongoDB, it stores it via a key-value store. For example, take a hash. If we were converting a relational database to a key-value store, we would set the table name as the key, and each of the corresponding columns as the values. For example, if we had a Users table, the key would be Users, and the values would be the attributes of each user in a hash format: <code>Users = { John Smith =&gt; {id: 1, first_name: John, last_name: Smith, email: john_smith@gmail.com, hometown: New York, New York }}</code>.</p>
+
+<p>I started out the app by generating a new Rails app via <code>rails g new link_shortener</code>. Once the app is generated, you can also use the Mongoid gem to generate the config file for the MongoDB database via <code>rails g mongoid:config</code>. Once you generate the config file, you can read through the file, available at <code>mongoid.yml</code> within the app, for an in-depth explanation of Mongoid&rsquo;s capabilities.</p>
+
+<p>Next step is to create the model. Since we have an app t hat is going to shorten URLs, we need to create a URL model, so that each URL can be represented within Ruby/Rails as an object.</p>
+
+<p>In Rails, querying the database is very much like that of ActiveRecord. The same model commands, such as <code>where, find, find_or_create_by, save</code> are very much in place. Look at the Mongoid documentation to find out more.</p>
+
+<p>Let&rsquo;s test it out.</p>
+
+<p>```ruby Url Model
+u = Url.new
+u.url = &ldquo;<a href="http://irmiller22.github.io">http://irmiller22.github.io</a>&rdquo;</p>
+
+<h1>=> #<Url _id: 52eeacee49524d08ce010000, url: "http://irmiller22.github.io"></h1>
+
+<p>u.save
+Url.where(:url => &ldquo;<a href="http://irmiller22.github.io">http://irmiller22.github.io</a>&rdquo;)</p>
+
+<h1>=> #&lt;Mongoid::Criteria</h1>
+
+<p>  selector: {&ldquo;url&rdquo;=>&ldquo;<a href="http://irmiller22.github.io">http://irmiller22.github.io</a>&rdquo;}
+  options:  {}
+  class:    Url
+  embedded: false>
+```</p>
+
+<p>Now that you&rsquo;ve set up a model to take care of persisting data to the database, we need a controller to eventually take the input, generate the right output, and getting the data to the appropriate routing destination. Let&rsquo;s generate the new controller: <code>rails g controller urls new</code>. Typically when you generate a controller, you generate all 7 of the RESTful actions, but in this case we&rsquo;re only interested in testing one action for the moment: new. This generates the following:</p>
+
+<p><code>ruby UrlsController
+class UrlsController &lt; ApplicationController
+  def new
+  end
+end
+</code></p>
+
+<p>```ruby routes.rb
+get &ldquo;urls/new&rdquo;</p>
+
+<h1>we will modify this to the following:</h1>
+
+<h1>resources :urls, only: [:new, :show, :create]</h1>
+
+<p>```</p>
+
+<p>Now let&rsquo;s fill in the logic for each of the actions in the Url controller.</p>
+
+<p>```ruby UrlsController
+class UrlsController &lt; ApplicationController
+  def new</p>
+
+<pre><code>@short_url = Url.new
+</code></pre>
+
+<p>  end</p>
+
+<p>  def create</p>
+
+<pre><code>@short_url = Url.new(url_params)
+if @short_url.save
+    flash[:short_id] = @short_url.id
+    redirect_to new_url_url
+else
+    render :action =&gt; "new"
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  def show</p>
+
+<pre><code>@short_url = Url.find(params[:id])
+redirect_to @short_url.url
+</code></pre>
+
+<p>  end</p>
+
+<p>  private</p>
+
+<p>  def url_params</p>
+
+<pre><code>params.require(:url).permit(:url)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>In this simple case, I&rsquo;ll be resetting the link to the domain and the URL id, so it would look like this while running locally: <code>localhost:3000/f3e200091</code>. In my next refactor, I&rsquo;ll end up generating a random string, but this will do for now.</p>
+
+<p>Let&rsquo;s move on to the views:</p>
+
+<p>```ruby application.html.erb
+&lt;!DOCTYPE html>
+<html>
+<head>
+  <title>LinkShortener</title>
+  &lt;%= stylesheet_link_tag    &ldquo;application&rdquo;, media: &ldquo;all&rdquo;, &ldquo;data-turbolinks-track&rdquo; => true %>
+  &lt;%= javascript_include_tag &ldquo;application&rdquo;, &ldquo;data-turbolinks-track&rdquo; => true %>
+  &lt;%= csrf_meta_tags %>
+</head>
+<body></p>
+
+<p>&lt;%= yield %></p>
+
+<p>&lt;% if flash[:short_id].present? %></p>
+
+<pre><code>&lt;p class='shortened_link'&gt;
+    The shortened URL is available &lt;%= link_to "here", url_url(flash[:short_id]) %&gt;
+    (Right click and copy link to share it).
+&lt;/p&gt;
+</code></pre>
+
+<p>&lt;% end %></p>
+
+<p></body>
+</html>
+```</p>
+
+<p>```ruby new.html.erb
+&lt;%= form_for @short_url do |f| %></p>
+
+<pre><code>&lt;p&gt;
+    &lt;%= f.label :url, "Your URL:" %&gt;
+    &lt;%= f.text_field :url %&gt;
+&lt;/p&gt;
+
+&lt;% if @short_url.errors[:url].any? %&gt;
+    &lt;p class="error_messages"&gt;
+        The given URL &lt;%= @short_url.errors[:url].to_sentence %&gt;
+    &lt;/p&gt;
+&lt;% end %&gt;
+
+&lt;p class="button"&gt;
+    &lt;%= f.submit "Shorten my URL" %&gt;
+&lt;/p&gt;
+</code></pre>
+
+<p>&lt;% end %>
+```</p>
+
+<p>These two views are all you need to enable the link shortener. Fire up the rails server, and see your new link shortener in action!</p>
+]]></content>
+  </entry>
+  
+</feed>
