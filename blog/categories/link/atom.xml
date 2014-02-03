@@ -4,7 +4,7 @@
   <title><![CDATA[Category: link | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/link/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-02-02T16:37:40-05:00</updated>
+  <updated>2014-02-02T22:46:59-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -20,7 +20,7 @@
     <id>http://irmiller22.github.io/blog/2014/02/02/basic-rails-link-shortener-app</id>
     <content type="html"><![CDATA[<p>Over the last few days, there were primarily two things that I wanted to delve into conceptually and understand: MongoDB and the logic behind a link shortener. I decided to combine the two of these and create a simple Rails app in which you could shorten links.</p>
 
-<p>So, what is MongoDB? MongoDB is what&rsquo;s called a <code>NoSQL</code> database technology. A <code>NoSQL</code> database doesn&rsquo;t rely on a series of rows and columns within tables like a <code>SQL</code>, or relational, database does. <code>NoSQL</code> databases can store information in a variety of ways, but in the case of MongoDB, it stores it via a key-value store. For example, take a hash. If we were converting a relational database to a key-value store, we would set the table name as the key, and each of the corresponding columns as the values. For example, if we had a Users table, the key would be Users, and the values would be the attributes of each user in a hash format: <code>Users = { John Smith =&gt; {id: 1, first_name: John, last_name: Smith, email: john_smith@gmail.com, hometown: New York, New York }}</code>.</p>
+<p>So, what is MongoDB? MongoDB is what&rsquo;s called a <code>NoSQL</code> database technology. A <code>NoSQL</code> database doesn&rsquo;t rely on a series of rows and columns within tables like a <code>SQL</code>, or relational, database does. <code>NoSQL</code> databases can store information in a variety of ways, but in the case of MongoDB, it stores it via a document database. Each respective document that you enter into the Mongo database is very similar to a JSON object in that they have a key-value store. However, the primary difference is that you do not access the documents via the key (think of accessing elements in a hash), but rather you query the database for these document elements.</p>
 
 <p>I started out the app by generating a new Rails app via <code>rails g new link_shortener</code>. Once the app is generated, you can also use the Mongoid gem to generate the config file for the MongoDB database via <code>rails g mongoid:config</code>. Once you generate the config file, you can read through the file, available at <code>mongoid.yml</code> within the app, for an in-depth explanation of Mongoid&rsquo;s capabilities.</p>
 
@@ -162,6 +162,11 @@ end
 ```</p>
 
 <p>These two views are all you need to enable the link shortener. Fire up the rails server, and see your new link shortener in action!</p>
+
+<br />
+
+
+<p>EDIT: I incorrectly asserted that a MongoDB document element is similar to that of a key-value pair, and the appropriate revisions have been made. Many thanks to Myles Recny for catching that error.</p>
 ]]></content>
   </entry>
   
