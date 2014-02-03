@@ -4,7 +4,7 @@
   <title><![CDATA[Category: link | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/link/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-02-02T22:46:59-05:00</updated>
+  <updated>2014-02-03T10:48:26-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -41,11 +41,15 @@ Url.where(:url => &ldquo;<a href="http://irmiller22.github.io">http://irmiller22
 
 <h1>=> #&lt;Mongoid::Criteria</h1>
 
-<p>  selector: {&ldquo;url&rdquo;=>&ldquo;<a href="http://irmiller22.github.io">http://irmiller22.github.io</a>&rdquo;}
-  options:  {}
-  class:    Url
-  embedded: false>
-```</p>
+<h1>=>  selector: {&ldquo;url&rdquo;=>&ldquo;<a href="http://irmiller22.github.io">http://irmiller22.github.io</a>&rdquo;}</h1>
+
+<h1>=>  options:  {}</h1>
+
+<h1>=>  class:    Url</h1>
+
+<h1>=>  embedded: false></h1>
+
+<p>```</p>
 
 <p>Now that you&rsquo;ve set up a model to take care of persisting data to the database, we need a controller to eventually take the input, generate the right output, and getting the data to the appropriate routing destination. Let&rsquo;s generate the new controller: <code>rails g controller urls new</code>. Typically when you generate a controller, you generate all 7 of the RESTful actions, but in this case we&rsquo;re only interested in testing one action for the moment: new. This generates the following:</p>
 
