@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-02-03T10:48:26-05:00</updated>
+  <updated>2014-02-19T10:56:40-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -102,14 +102,14 @@ var students = ["Ian Miller", "James Wood", "Saron Yitbarek", "John Cafferty"];
 function trackStudents(name, roster){</p>
 
 <pre><code>if (roster.length == 0){
-    list.push(name);
+    roster.push(name);
 } else{
     for(var i=0; i &lt; roster.length; i++) {
-        if(list[i] == undefined){
-            list[i] = name;
-            return list;
-        } else if (i == list.length - 1) {
-            list.push(name);
+        if(roster[i] == undefined){
+            roster[i] = name;
+            return roster;
+        } else if (i == roster.length - 1) {
+            roster.push(name);
         }
     }
 </code></pre>

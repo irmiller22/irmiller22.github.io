@@ -214,14 +214,14 @@ var x = 10, y = 30, myMath = x + y; myMath in this case is the sum of variables 
 <span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">trackStudents</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">roster</span><span class="p">){</span>
 </span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
 </span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
-</span><span class='line'>              <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-</span><span class='line'>              <span class="k">return</span> <span class="nx">list</span><span class="p">;</span>
-</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>              <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span><span class='line'>              <span class="k">return</span> <span class="nx">roster</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
 </span><span class='line'>          <span class="p">}</span>
 </span><span class='line'>      <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
@@ -298,6 +298,10 @@ var x = 10, y = 30, myMath = x + y; myMath in this case is the sum of variables 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/19/questions-about-cucumber/">Questions and Thoughts About Cucumber for Myself</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/02/basic-rails-link-shortener-app/">Rails Link Shortener App</a>
       </li>
     
@@ -311,10 +315,6 @@ var x = 10, y = 30, myMath = x + y; myMath in this case is the sum of variables 
     
       <li class="post">
         <a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/22/impetus-for-a-career-in-programming/">Impetus for a Career in Programming</a>
       </li>
     
   </ul>

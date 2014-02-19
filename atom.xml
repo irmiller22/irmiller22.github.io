@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-02-03T10:48:26-05:00</updated>
+  <updated>2014-02-19T10:56:40-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Questions and Thoughts About Cucumber for Myself]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/02/19/questions-about-cucumber/"/>
+    
+    <updated>2014-02-19T09:58:47-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/02/19/questions-about-cucumber</id>
+    
+    <content type="html"><![CDATA[<p>Questions:</p>
+
+<ul>
+<li>Why does a <code>ActionController::RoutingError</code> pop up even though all of the scenario steps are passing? This has been a recurring issue.</li>
+<li>This was breaking because of &lsquo;visit admin_partner_path(@user)&rsquo; that was in the final step of <code>/step_definitions/admin_user_change_password.rb</code></li>
+<li>How explicit must I be when testing a feature? What&rsquo;s the balance between being too explicit in my feature testing, and not covering everything that should be tested?</li>
+</ul>
+
+
+<p>Tips regarding Cucumber:</p>
+
+<ul>
+<li>Backgrounds should only be used when you have shared context, but should be used sparingly</li>
+<li>Want to frame our scenarios with user-driven language, not task-specific language</li>
+<li>Given is used to identify your starting point; if you&rsquo;re testing a password feature, then you should be on the &lsquo;Edit&rsquo; page for the User</li>
+<li>When is used to specify an Action of some kind; never use an assertion in a When clause</li>
+<li>Then is where you make assertions for the test</li>
+</ul>
+
+
+<p>Warden:</p>
+
+<ul>
+<li>Warden test helpers for Cucumber will automatically log you in for a test without actually walking through the login steps</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>features/support/warden.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Warden</span><span class="o">.</span><span class="n">test_mode!</span>
+</span><span class='line'><span class="no">World</span> <span class="ss">Warden</span><span class="p">:</span><span class="ss">:Test</span><span class="o">::</span><span class="no">Helpers</span>
+</span><span class='line'><span class="no">After</span> <span class="p">{</span> <span class="no">Warden</span><span class="o">.</span><span class="n">test_reset!</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Only time, from this point forward, that you should visit and fill-in a login form is if you&rsquo;re explicitly testing the login feature</li>
+<li>If you need to be logged in as a Partner, use the <code>Given I am logged in as a Partner</code> step. Same for other AdminUser roles as well.</li>
+<li>FactoryGirl helpers in cucumber will enable you to implicitly imply FactoryGirl object</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>features/support/env.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">World</span><span class="p">(</span><span class="ss">FactoryGirl</span><span class="p">:</span><span class="ss">:Syntax:Methods</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -441,14 +500,14 @@
 <span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">trackStudents</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">roster</span><span class="p">){</span>
 </span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
 </span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
-</span><span class='line'>              <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-</span><span class='line'>              <span class="k">return</span> <span class="nx">list</span><span class="p">;</span>
-</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>              <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span><span class='line'>              <span class="k">return</span> <span class="nx">roster</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
 </span><span class='line'>          <span class="p">}</span>
 </span><span class='line'>      <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
@@ -1686,23 +1745,6 @@ array.select { |x| x &gt; 2 }</code></p>
 <p>That&rsquo;s a basic if-else statement to illustrate the dog example.  Basically, if the dog is a stray, the computer understands this as: &ldquo;the human should not intervene specifically with the dog.&rdquo;  However, if the dog is not (!=) a stray: &ldquo;the human should intervene specifically with the dog.&rdquo;</p>
 
 <p>The logic is simple, but when building programs that have more complex arguments and parameters, it can get a little confusing.  Most of my time during the first week was spent experimenting with different loop types and understanding what you can and can&rsquo;t do with methods, data types (arrays, hashes, strings, etc), and code organization.</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[Flatiron Progression: Day 3]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/09/25/flatiron-progression-day-3/"/>
-    
-    <updated>2013-09-25T23:09:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/09/25/flatiron-progression-day-3</id>
-    
-    <content type="html"><![CDATA[<p>Today was Day 3 of my program at Flatiron.  Over the past two days, I&rsquo;ve been immersed in a crash course for GitHub, HTML, CSS, and Ruby.  In the midst of all of this, I&rsquo;ve been getting quite familiar with my Terminal, and I&rsquo;ve learned a lot of useful shortcuts that I never knew about in the past.  I&rsquo;ve quickly realized the benefit of using Terminal as a file management system versus a GUI (graphical user interface), which is what most users typically interact with on a computer.  Coming from a Excel modeling background, the added bonus of knowing shortcuts does wonders for productivity in regards to development.  While being exposed to many different formats of code, I&rsquo;m also learning how to best manage my time.</p>
-
-<p>We have been discussing the importance of the programmer ethos over the past day and a half.  If you&rsquo;re interested in reading the essay that captures this methodology, look for &ldquo;Hackers and Painters,&rdquo; an essay by Paul Graham.  Graham&rsquo;s point is that hackers and painters are both alike in that they are makers.  There are a lot of misconceptions of what a software developer/hacker actually does, and ambiguous terms such as computer scientist don&rsquo;t contribute any clarity towards identifying that.  Like a painter, a hacker spends time learning more about his skillset, and better understanding the nuances of certain techniques, and how they can be applied towards achieving a certain goal or task.  Over time, ugly creations become less and less, and beautiful ideas tend to thrive through the process of iteration, debugging, and creative destruction.</p>
-
-<p>The big take-away that I took from Graham was that makers basically learn from examples.  Like a painter who copies a famous painting to understand the techniques applied, a hacker learns to program by closely following good program (syntax, logic, etc).  Skillsets improve via gradual refinement, and hackers improve through an iterative process just as a painter begins with a sketch and follows up by filling it in, piece by piece.  I&rsquo;ve taken that first big step.</p>
 ]]></content>
     
   </entry>

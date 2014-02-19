@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Questions and Thoughts About Cucumber for Myself - Archaic Positives</title>
+  <meta name="author" content="Ian Miller">
+
+  
+  <meta name="description" content="Questions: Why does a ActionController::RoutingError pop up even though all of the scenario steps are passing? This has been a recurring issue.
+This &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://irmiller22.github.io/blog/2014/02/19/questions-about-cucumber">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Archaic Positives" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Archaic Positives</a></div>
+
+
+	<br><div class="header-subtitle">Adventurer, Traveler, Rubyist</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:irmiller22.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Questions and Thoughts About Cucumber for Myself</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-19T09:58:47-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Questions:</p>
+
+<ul>
+<li>Why does a <code>ActionController::RoutingError</code> pop up even though all of the scenario steps are passing? This has been a recurring issue.</li>
+<li>This was breaking because of &lsquo;visit admin_partner_path(@user)&rsquo; that was in the final step of <code>/step_definitions/admin_user_change_password.rb</code></li>
+<li>How explicit must I be when testing a feature? What&rsquo;s the balance between being too explicit in my feature testing, and not covering everything that should be tested?</li>
+</ul>
+
+
+<p>Tips regarding Cucumber:</p>
+
+<ul>
+<li>Backgrounds should only be used when you have shared context, but should be used sparingly</li>
+<li>Want to frame our scenarios with user-driven language, not task-specific language</li>
+<li>Given is used to identify your starting point; if you&rsquo;re testing a password feature, then you should be on the &lsquo;Edit&rsquo; page for the User</li>
+<li>When is used to specify an Action of some kind; never use an assertion in a When clause</li>
+<li>Then is where you make assertions for the test</li>
+</ul>
+
+
+<p>Warden:</p>
+
+<ul>
+<li>Warden test helpers for Cucumber will automatically log you in for a test without actually walking through the login steps</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>features/support/warden.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Warden</span><span class="o">.</span><span class="n">test_mode!</span>
+</span><span class='line'><span class="no">World</span> <span class="ss">Warden</span><span class="p">:</span><span class="ss">:Test</span><span class="o">::</span><span class="no">Helpers</span>
+</span><span class='line'><span class="no">After</span> <span class="p">{</span> <span class="no">Warden</span><span class="o">.</span><span class="n">test_reset!</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Only time, from this point forward, that you should visit and fill-in a login form is if you&rsquo;re explicitly testing the login feature</li>
+<li>If you need to be logged in as a Partner, use the <code>Given I am logged in as a Partner</code> step. Same for other AdminUser roles as well.</li>
+<li>FactoryGirl helpers in cucumber will enable you to implicitly imply FactoryGirl object</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>features/support/env.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">World</span><span class="p">(</span><span class="ss">FactoryGirl</span><span class="p">:</span><span class="ss">:Syntax:Methods</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ian Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-19T09:58:47-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/routing/'>routing</a>, <a class='category' href='/blog/categories/warden/'>warden</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://irmiller22.github.io/blog/2014/02/19/questions-about-cucumber/" data-via="irmiller22" data-counturl="http://irmiller22.github.io/blog/2014/02/19/questions-about-cucumber/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/02/basic-rails-link-shortener-app/" title="Previous Post: Rails Link Shortener App">&laquo; Rails Link Shortener App</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/19/questions-about-cucumber/">Questions and Thoughts About Cucumber for Myself</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/02/basic-rails-link-shortener-app/">Rails Link Shortener App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/irmiller22">@irmiller22</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'irmiller22',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  Ian Miller <br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
