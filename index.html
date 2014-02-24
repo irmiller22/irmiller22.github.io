@@ -9,8 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="Questions: Why does a ActionController::RoutingError pop up even though all of the scenario steps are passing? This has been a recurring issue.
-This &hellip;">
+  <meta name="description" content="For the past 2 weeks, I have been getting more involved in Cucumber feature testing as a result of my day-to-day job. When I first started, I found &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,194 @@ This &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray Into Cucumber Feature Testing</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-23T14:45:33-05:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For the past 2 weeks, I have been getting more involved in Cucumber feature testing as a result of my day-to-day job. When I first started, I found the prospect of Rails feature testing daunting, because it seemed like a cumbersome task to implement on top of building actual application features.</p>
+
+<p>We had built out some features for a client project that I&rsquo;m currently working on, and we had decided to implement testing for features via Cucumber, rather than solely relying on RSpec testing. There was a reason for taking this approach: when designing a feature, we didn&rsquo;t want to overtest our feature to the point where we were overemphasizing testing of what could be a very basic feature. Cucumber allows for all-around integration testing without being overly verbose and cumbersome.</p>
+
+<p>The first feature test I wrote was for a &ldquo;Forgotten Password&rdquo; feature. I had to test a User that had forgotten his/her password, clicked on the &ldquo;Forgot Password?&rdquo; option at the login screen, and expect to recieve an email with instructions to reset the password. So you would set up the feature test as follows:</p>
+
+<p><code>Feature: Partner Password Reset
+  As a Partner who forgot the password
+  I need to be able to reset the password
+  So that I can log in</code></p>
+
+<p>The feature description describes the storyline in very simple, straightforward terms. You need three things when describing a feature: who, what, and why. As in English literature, those three questions are essential to building up any kind of story. Then I would describe the first scenario:</p>
+
+<p>`Scenario: Send Reset Password Email</p>
+
+<pre><code>Given I am a Partner who has forgotten the password
+When I am at the 'Forgot your password?' page
+And I type in my admin email address
+Then it should send me a 'Reset password instructions' email
+And it should come from the default administrator email address`
+</code></pre>
+
+<p>The scenario describes step-by-step how the feature is  going to be tested, what the conditions are, and how the expectations should be met. You describe scenarios with three major keywords: <code>Given</code>, <code>When</code>, and <code>Then</code>. <code>Given</code> implies an implicit condition that is required for the scenario. <code>When</code> specifies an action or verb that should take place. <code>Then</code> explicitly states the result that should occur as a result of the action that took place under the <code>When</code> clause.</p>
+
+<p>Once you run the cucumber command in Terminal, the Terminal will generate a list of steps, or tests, that correspond to the scenario that you have written out. The following is a such output of the reset password scenario discussed earlier.</p>
+
+<figure class='code'><figcaption><span>Reset Password Scenario Steps</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^I am a Partner who has forgotten the password$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending </span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I am at the &#39;Forgot your password\?&#39; page$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I type in my admin email address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should send me a &#39;Reset password instructions&#39; email$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should come from the default NYTM address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should result in a &#39;not found&#39; error message$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once the Cucumber test steps are generated and incorporated into a step definition script, then you can start filling in the test code as it corresponds to your application. In this situation, I need to generate a user object (via FactoryGirl-Rails gem that has been included in the Gemfile), manipulate the user interface via Capybara methods. The finalized step definitions are shown below.</p>
+
+<figure class='code'><figcaption><span>Reset Password Scenario Steps</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^I am a Partner who has forgotten the password$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:admin_user</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I am at the &#39;Forgot your password\?&#39; page$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">visit</span> <span class="n">new_admin_user_password_path</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I type in my admin email address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">fill_in</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span>
+</span><span class='line'>  <span class="n">click_on</span> <span class="s1">&#39;Reset My Password&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should send me a &#39;Reset password instructions&#39; email$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@email</span> <span class="o">=</span> <span class="ss">ActionMailer</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">deliveries</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="vi">@email</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="vi">@user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="vi">@email</span><span class="o">.</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Reset password instructions&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should come from the default mailing address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="vi">@email</span><span class="o">.</span><span class="n">from</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;original@mailing.com&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^I am not a Partner$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="ss">:admin_user</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I type in a non\-admin email address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">fill_in</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span>
+</span><span class='line'>  <span class="n">click_on</span> <span class="s1">&#39;Reset My Password&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should result in a &#39;not found&#39; error message$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_css</span><span class="p">(</span><span class="s1">&#39;.inline-errors&#39;</span><span class="p">,</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">&quot;not found&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hopefully this gives you a general idea of how Cucumber feature tests are implemented. Each scenario that you generate must be short, succinct, and straightforward in regards to the feature that you&rsquo;re testing. It took me a while to figure out best practices for implementing such tests, but I was able to get the hang of it over the course of two weeks. Just keep practicing, and see if the feature story makes sense to you.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1271,96 +1458,6 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/10/activerecord-validations/">ActiveRecord: Validations</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-10T22:20:00-05:00" pubdate data-updated="true">Nov 10<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
-
-<p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
-
-<p>You can also place constraints upon your validations.  For example, if you&rsquo;re using <code>validates_length_of</code> for usernames, you can specify a range that the length must fall between.  For example:</p>
-
-<figure class='code'><figcaption><span>Validation - Username Length</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class='line'>  <span class="n">validates_length_of</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">within</span><span class="p">:</span> <span class="mi">5</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If it exceeds the length, then you can provide an error message option that follows the validation.</p>
-
-<figure class='code'><figcaption><span>Validation - Username Length, Error</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class='line'>  <span class="n">validates_length_of</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">within</span><span class="p">:</span> <span class="mi">5</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span><span class="p">,</span>                 <span class="n">wrong_length</span><span class="p">:</span> <span class="s2">&quot;should be %{count} characters            long&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>An important aspect of validations is enforcing uniqueness among join models in the database.  We have used this recently (in our Flatiron-Kitchen-Ruby-003 assignment).  In order to enforce uniqueness, we have to define a scope constraint.  For example, if we had three classes, <code>Registration</code>, <code>Course</code> and <code>Student</code>, how could we make sure that a student isn&rsquo;t registered more than once for a particular class?  We would define the scope of the <code>Registration</code> class, as shown below:</p>
-
-<figure class='code'><figcaption><span>Registration - Scope</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Registration</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:student</span>
-</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:course</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">validates_uniqueness_of</span> <span class="ss">:student_id</span><span class="p">,</span> <span class="ss">scope</span><span class="p">:</span> <span class="ss">:course_id</span><span class="p">,</span> <span class="ss">message</span><span class="p">:</span> <span class="s2">&quot;can only register once per course&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Another one that you run into all the time:</p>
-
-<figure class='code'><figcaption><span>Email Validation</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Email</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class='line'>  <span class="n">validates_uniqueness_of</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">message</span><span class="p">:</span> <span class="s2">&quot;already taken&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &mdash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1376,6 +1473,10 @@ Eighth, and finally, the controller sends the view action back to the browser wh
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/19/questions-about-cucumber/">Questions and Thoughts About Cucumber for Myself</a>
       </li>
     
@@ -1389,10 +1490,6 @@ Eighth, and finally, the controller sends the view action back to the browser wh
     
       <li class="post">
         <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a>
       </li>
     
   </ul>

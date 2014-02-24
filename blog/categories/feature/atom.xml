@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Testing | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/testing/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Feature | Archaic Positives]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/feature/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
   <updated>2014-02-23T20:56:10-05:00</updated>
   <id>http://irmiller22.github.io/</id>
@@ -93,7 +93,7 @@ end</p>
 end</p>
 
 <p>Then(/^it should come from the default mailing address$/) do
-  expect(@email.from.first).to eq(&lsquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#111;&#114;&#x69;&#x67;&#x69;&#x6e;&#x61;&#108;&#x40;&#109;&#97;&#x69;&#x6c;&#x69;&#110;&#x67;&#x2e;&#99;&#x6f;&#109;">&#111;&#x72;&#x69;&#x67;&#105;&#110;&#97;&#108;&#x40;&#x6d;&#x61;&#x69;&#108;&#105;&#x6e;&#x67;&#46;&#99;&#111;&#x6d;</a>&rsquo;)
+  expect(@email.from.first).to eq(&lsquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x6f;&#114;&#105;&#x67;&#105;&#x6e;&#97;&#108;&#x40;&#109;&#97;&#x69;&#108;&#105;&#x6e;&#x67;&#x2e;&#x63;&#111;&#x6d;">&#111;&#114;&#x69;&#103;&#x69;&#x6e;&#x61;&#108;&#x40;&#x6d;&#97;&#105;&#x6c;&#105;&#x6e;&#x67;&#x2e;&#x63;&#111;&#109;</a>&rsquo;)
 end</p>
 
 <p>Given(/^I am not a Partner$/) do
@@ -111,85 +111,6 @@ end
 ```</p>
 
 <p>Hopefully this gives you a general idea of how Cucumber feature tests are implemented. Each scenario that you generate must be short, succinct, and straightforward in regards to the feature that you&rsquo;re testing. It took me a while to figure out best practices for implementing such tests, but I was able to get the hang of it over the course of two weeks. Just keep practicing, and see if the feature story makes sense to you.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RSpec: A Misunderstood Complement to Ruby]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle/"/>
-    <updated>2013-10-20T21:37:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle</id>
-    <content type="html"><![CDATA[<p>For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis.  Because RSpec is the testing framework for the Ruby language, I viewed it as an obstacle to my learning development.  After studying more about RSpec in the past few days, I&rsquo;m starting to realize that I have been viewing its fundamental purpose incorrectly.  RSpec is a complement to the Ruby developer&rsquo;s toolkit &mdash; it prevents unneccesary work by testing the behaviors of a framework.  In short, it is the blueprint of any application, and represents a guided set of directions that leads you to a finished product.</p>
-
-<p>In this blog post, I&rsquo;ll discuss the basic premise of RSpec and also discuss a few ways to refactor RSpec code.</p>
-
-<p>``` ruby RSpec Basic Syntax <a href="https://speakerdeck.com/pat/rspec-introduction">https://speakerdeck.com/pat/rspec-introduction</a>
-describe &lsquo;basic RSpec syntax&rsquo; do</p>
-
-<pre><code>it 'describes how the code should behave' do
-    User.code.should be(clear)
-    User.code.should be(concise)
-end
-</code></pre>
-
-<p>end
-```</p>
-
-<p>Here&rsquo;s a simple example.</p>
-
-<p>``` ruby Calculator
-describe Calculator do</p>
-
-<pre><code>describe '#multiply' do
-    it 'returns the product of its parameters' do
-        calc = Calculator.new
-        calc.multiply(4,5).should eq(20)
-    end
-end
-</code></pre>
-
-<p>end
-```</p>
-
-<p>This example is to just show what RSpec was intended for in regards to test-driven development.  See how RSpec determines how the calculator should behave when the multiply method is called?  When given the parameters 4 and 5, the multiply method should return an integer value of 20.</p>
-
-<p>``` ruby Refactor a name spec
-describe Person do</p>
-
-<pre><code>it 'responds to own name' do
-    James = Person.new
-    James.should respond_to(:name)
-end
-</code></pre>
-
-<p>end</p>
-
-<p>describe Person do</p>
-
-<pre><code>it 'responds to own name' do
-    subject.should respond_to(:name)
-end
-</code></pre>
-
-<p>end
-```</p>
-
-<p>&ldquo;Subject&rdquo; always refers to an instance of a class.  In this case, James is an instance of the Person class, and the step of initializing a Person instance with the name James has been refactored by using &ldquo;subject.&rdquo;</p>
-
-<p>``` ruby Using &lsquo;Expect&rsquo; instead of &lsquo;Should&rsquo;
-describe Person do</p>
-
-<pre><code>it 'responds to own name' do
-    expect(subject).to respond_to(:name)
-end
-</code></pre>
-
-<p>end
-```</p>
-
-<p>This is a big change that I&rsquo;ve started to implement in my RSpec tests, largely because of issues that have to do with delegation.  There was a blog post (<a href="http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax">http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax</a>) that discussed the differences between &lsquo;expect&rsquo; and &lsquo;should.&rsquo;  My understanding of the Kernel library and the rspec-expectations are not very concrete yet, but it is partly a result of a library load.  If one library is loaded before the other, it can sometimes override syntax delegations for the same word.</p>
-
-<p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
 ]]></content>
   </entry>
   

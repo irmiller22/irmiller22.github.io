@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="OmniAuth is simply middleware for authenticating users in applications. Middleware is a way to filter requests and responses that are coming into &hellip;">
+  <meta name="description" content="Validations are necessary to prevent invalid data from being persisted into the database. They are necessary to allow for efficient data entry and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,96 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/10/activerecord-validations/">ActiveRecord: Validations</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-10T22:20:00-05:00" pubdate data-updated="true">Nov 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
+
+<p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
+
+<p>You can also place constraints upon your validations.  For example, if you&rsquo;re using <code>validates_length_of</code> for usernames, you can specify a range that the length must fall between.  For example:</p>
+
+<figure class='code'><figcaption><span>Validation - Username Length</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">validates_length_of</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">within</span><span class="p">:</span> <span class="mi">5</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If it exceeds the length, then you can provide an error message option that follows the validation.</p>
+
+<figure class='code'><figcaption><span>Validation - Username Length, Error</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">validates_length_of</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">within</span><span class="p">:</span> <span class="mi">5</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span><span class="p">,</span>                 <span class="n">wrong_length</span><span class="p">:</span> <span class="s2">&quot;should be %{count} characters            long&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An important aspect of validations is enforcing uniqueness among join models in the database.  We have used this recently (in our Flatiron-Kitchen-Ruby-003 assignment).  In order to enforce uniqueness, we have to define a scope constraint.  For example, if we had three classes, <code>Registration</code>, <code>Course</code> and <code>Student</code>, how could we make sure that a student isn&rsquo;t registered more than once for a particular class?  We would define the scope of the <code>Registration</code> class, as shown below:</p>
+
+<figure class='code'><figcaption><span>Registration - Scope</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Registration</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:student</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:course</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">validates_uniqueness_of</span> <span class="ss">:student_id</span><span class="p">,</span> <span class="ss">scope</span><span class="p">:</span> <span class="ss">:course_id</span><span class="p">,</span> <span class="ss">message</span><span class="p">:</span> <span class="s2">&quot;can only register once per course&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Another one that you run into all the time:</p>
+
+<figure class='code'><figcaption><span>Email Validation</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Email</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">validates_uniqueness_of</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">message</span><span class="p">:</span> <span class="s2">&quot;already taken&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &mdash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -956,60 +1046,6 @@ array.select { |x| x &gt; 2 }</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/30/start-of-week-2/">Start of Week 2</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-30T08:42:00-04:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today is the start of Week 2 at Flatiron.  It&rsquo;s been quite a start to the semester.  We spent last week going over Github, Ruby, SQL, and a lot of logic exercises to understand how to think like a computer.  It&rsquo;s interesting because humans understand things organically and semantically, whereas a computer is very literal in its understanding.  For example, we as humans make assumptions or calculated decision-making to fill in details about another person or thing.  For example, if we see a dog on the street, we assume that it&rsquo;s a stray dog if it is dirty or has a disheveled appareance.  On the other hand, if it is nicely groomed, we may assume that it&rsquo;s simply lost.  Computers have to be given a very specific set of instructions or information regarding something.  In the case of the dog, we may have to do something like this: (dog = &ldquo;stray&rdquo;).</p>
-
-<p>If dog == &ldquo;stray&rdquo;</p>
-
-<pre><code>human.do_not_intervene(dog)
-</code></pre>
-
-<p>Elsif dog != &ldquo;stray&rdquo;</p>
-
-<pre><code>human.intervene(dog)
-</code></pre>
-
-<p>End</p>
-
-<p>That&rsquo;s a basic if-else statement to illustrate the dog example.  Basically, if the dog is a stray, the computer understands this as: &ldquo;the human should not intervene specifically with the dog.&rdquo;  However, if the dog is not (!=) a stray: &ldquo;the human should intervene specifically with the dog.&rdquo;</p>
-
-<p>The logic is simple, but when building programs that have more complex arguments and parameters, it can get a little confusing.  Most of my time during the first week was spent experimenting with different loop types and understanding what you can and can&rsquo;t do with methods, data types (arrays, hashes, strings, etc), and code organization.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1027,6 +1063,10 @@ array.select { |x| x &gt; 2 }</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/19/questions-about-cucumber/">Questions and Thoughts About Cucumber for Myself</a>
       </li>
     
@@ -1040,10 +1080,6 @@ array.select { |x| x &gt; 2 }</code></p>
     
       <li class="post">
         <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a>
       </li>
     
   </ul>

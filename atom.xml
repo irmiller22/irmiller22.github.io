@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-02-19T10:56:40-05:00</updated>
+  <updated>2014-02-23T20:56:10-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,169 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Foray into Cucumber Feature Testing]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/02/23/foray-into-cucumber-feature-testing/"/>
+    
+    <updated>2014-02-23T14:45:33-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/02/23/foray-into-cucumber-feature-testing</id>
+    
+    <content type="html"><![CDATA[<p>For the past 2 weeks, I have been getting more involved in Cucumber feature testing as a result of my day-to-day job. When I first started, I found the prospect of Rails feature testing daunting, because it seemed like a cumbersome task to implement on top of building actual application features.</p>
+
+<p>We had built out some features for a client project that I&rsquo;m currently working on, and we had decided to implement testing for features via Cucumber, rather than solely relying on RSpec testing. There was a reason for taking this approach: when designing a feature, we didn&rsquo;t want to overtest our feature to the point where we were overemphasizing testing of what could be a very basic feature. Cucumber allows for all-around integration testing without being overly verbose and cumbersome.</p>
+
+<p>The first feature test I wrote was for a &ldquo;Forgotten Password&rdquo; feature. I had to test a User that had forgotten his/her password, clicked on the &ldquo;Forgot Password?&rdquo; option at the login screen, and expect to recieve an email with instructions to reset the password. So you would set up the feature test as follows:</p>
+
+<p><code>Feature: Partner Password Reset
+  As a Partner who forgot the password
+  I need to be able to reset the password
+  So that I can log in</code></p>
+
+<p>The feature description describes the storyline in very simple, straightforward terms. You need three things when describing a feature: who, what, and why. As in English literature, those three questions are essential to building up any kind of story. Then I would describe the first scenario:</p>
+
+<p>`Scenario: Send Reset Password Email</p>
+
+<pre><code>Given I am a Partner who has forgotten the password
+When I am at the 'Forgot your password?' page
+And I type in my admin email address
+Then it should send me a 'Reset password instructions' email
+And it should come from the default administrator email address`
+</code></pre>
+
+<p>The scenario describes step-by-step how the feature is  going to be tested, what the conditions are, and how the expectations should be met. You describe scenarios with three major keywords: <code>Given</code>, <code>When</code>, and <code>Then</code>. <code>Given</code> implies an implicit condition that is required for the scenario. <code>When</code> specifies an action or verb that should take place. <code>Then</code> explicitly states the result that should occur as a result of the action that took place under the <code>When</code> clause.</p>
+
+<p>Once you run the cucumber command in Terminal, the Terminal will generate a list of steps, or tests, that correspond to the scenario that you have written out. The following is a such output of the reset password scenario discussed earlier.</p>
+
+<figure class='code'><figcaption><span>Reset Password Scenario Steps</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^I am a Partner who has forgotten the password$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending </span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I am at the &#39;Forgot your password\?&#39; page$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I type in my admin email address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should send me a &#39;Reset password instructions&#39; email$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should come from the default NYTM address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should result in a &#39;not found&#39; error message$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1">#pending</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once the Cucumber test steps are generated and incorporated into a step definition script, then you can start filling in the test code as it corresponds to your application. In this situation, I need to generate a user object (via FactoryGirl-Rails gem that has been included in the Gemfile), manipulate the user interface via Capybara methods. The finalized step definitions are shown below.</p>
+
+<figure class='code'><figcaption><span>Reset Password Scenario Steps</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^I am a Partner who has forgotten the password$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:admin_user</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I am at the &#39;Forgot your password\?&#39; page$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">visit</span> <span class="n">new_admin_user_password_path</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I type in my admin email address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">fill_in</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span>
+</span><span class='line'>  <span class="n">click_on</span> <span class="s1">&#39;Reset My Password&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should send me a &#39;Reset password instructions&#39; email$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@email</span> <span class="o">=</span> <span class="ss">ActionMailer</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">deliveries</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="vi">@email</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="vi">@user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="vi">@email</span><span class="o">.</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Reset password instructions&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should come from the default mailing address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="vi">@email</span><span class="o">.</span><span class="n">from</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;original@mailing.com&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^I am not a Partner$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@user</span> <span class="o">=</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="ss">:admin_user</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I type in a non\-admin email address$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">fill_in</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span>
+</span><span class='line'>  <span class="n">click_on</span> <span class="s1">&#39;Reset My Password&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Then</span><span class="p">(</span><span class="sr">/^it should result in a &#39;not found&#39; error message$/</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_css</span><span class="p">(</span><span class="s1">&#39;.inline-errors&#39;</span><span class="p">,</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">&quot;not found&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hopefully this gives you a general idea of how Cucumber feature tests are implemented. Each scenario that you generate must be short, succinct, and straightforward in regards to the feature that you&rsquo;re testing. It took me a while to figure out best practices for implementing such tests, but I was able to get the hang of it over the course of two weeks. Just keep practicing, and see if the feature story makes sense to you.</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -1716,35 +1879,6 @@ array.select { |x| x &gt; 2 }</code></p>
 <p>How do you access the value for &lsquo;dog&rsquo;?  By simply typing in hash[:dog].  This will return the string &lsquo;canine&rsquo;.  How do you add a new element to the hash?  By simply typing in the key you want into the key field, and setting it equal to its value.  For example, hash[:elephant] = &lsquo;mammal&rsquo; will insert :elephant => &lsquo;mammal&rsquo; into the hash.  Finally, the default return value of a hash is nil.</p>
 
 <p>My objective for this week is to work on further solidifying my understanding of hashes, how to iterate through them effectively, and utimately get a web-scraping objective finalized.</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[Start of Week 2]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/09/30/start-of-week-2/"/>
-    
-    <updated>2013-09-30T08:42:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/09/30/start-of-week-2</id>
-    
-    <content type="html"><![CDATA[<p>Today is the start of Week 2 at Flatiron.  It&rsquo;s been quite a start to the semester.  We spent last week going over Github, Ruby, SQL, and a lot of logic exercises to understand how to think like a computer.  It&rsquo;s interesting because humans understand things organically and semantically, whereas a computer is very literal in its understanding.  For example, we as humans make assumptions or calculated decision-making to fill in details about another person or thing.  For example, if we see a dog on the street, we assume that it&rsquo;s a stray dog if it is dirty or has a disheveled appareance.  On the other hand, if it is nicely groomed, we may assume that it&rsquo;s simply lost.  Computers have to be given a very specific set of instructions or information regarding something.  In the case of the dog, we may have to do something like this: (dog = &ldquo;stray&rdquo;).</p>
-
-<p>If dog == &ldquo;stray&rdquo;</p>
-
-<pre><code>human.do_not_intervene(dog)
-</code></pre>
-
-<p>Elsif dog != &ldquo;stray&rdquo;</p>
-
-<pre><code>human.intervene(dog)
-</code></pre>
-
-<p>End</p>
-
-<p>That&rsquo;s a basic if-else statement to illustrate the dog example.  Basically, if the dog is a stray, the computer understands this as: &ldquo;the human should not intervene specifically with the dog.&rdquo;  However, if the dog is not (!=) a stray: &ldquo;the human should intervene specifically with the dog.&rdquo;</p>
-
-<p>The logic is simple, but when building programs that have more complex arguments and parameters, it can get a little confusing.  Most of my time during the first week was spent experimenting with different loop types and understanding what you can and can&rsquo;t do with methods, data types (arrays, hashes, strings, etc), and code organization.</p>
 ]]></content>
     
   </entry>
