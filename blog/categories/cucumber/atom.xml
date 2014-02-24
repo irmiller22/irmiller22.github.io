@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cucumber | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/cucumber/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-02-23T20:56:10-05:00</updated>
+  <updated>2014-02-23T20:57:56-05:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -24,21 +24,23 @@
 
 <p>The first feature test I wrote was for a &ldquo;Forgotten Password&rdquo; feature. I had to test a User that had forgotten his/her password, clicked on the &ldquo;Forgot Password?&rdquo; option at the login screen, and expect to recieve an email with instructions to reset the password. So you would set up the feature test as follows:</p>
 
-<p><code>Feature: Partner Password Reset
+<p><code>ruby Feature Story
+Feature: Partner Password Reset
   As a Partner who forgot the password
   I need to be able to reset the password
-  So that I can log in</code></p>
+  So that I can log in
+</code></p>
 
 <p>The feature description describes the storyline in very simple, straightforward terms. You need three things when describing a feature: who, what, and why. As in English literature, those three questions are essential to building up any kind of story. Then I would describe the first scenario:</p>
 
-<p>`Scenario: Send Reset Password Email</p>
-
-<pre><code>Given I am a Partner who has forgotten the password
-When I am at the 'Forgot your password?' page
-And I type in my admin email address
-Then it should send me a 'Reset password instructions' email
-And it should come from the default administrator email address`
-</code></pre>
+<p><code>ruby Feature Scenario
+Scenario: Send Reset Password Email
+  Given I am a Partner who has forgotten the password
+  When I am at the 'Forgot your password?' page
+  And I type in my admin email address
+  Then it should send me a 'Reset password instructions' email
+  And it should come from the default administrator email address
+</code></p>
 
 <p>The scenario describes step-by-step how the feature is  going to be tested, what the conditions are, and how the expectations should be met. You describe scenarios with three major keywords: <code>Given</code>, <code>When</code>, and <code>Then</code>. <code>Given</code> implies an implicit condition that is required for the scenario. <code>When</code> specifies an action or verb that should take place. <code>Then</code> explicitly states the result that should occur as a result of the action that took place under the <code>When</code> clause.</p>
 
@@ -93,7 +95,7 @@ end</p>
 end</p>
 
 <p>Then(/^it should come from the default mailing address$/) do
-  expect(@email.from.first).to eq(&lsquo;<a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#111;&#114;&#x69;&#x67;&#105;&#x6e;&#97;&#108;&#x40;&#x6d;&#x61;&#x69;&#108;&#x69;&#110;&#103;&#46;&#x63;&#111;&#109;">&#x6f;&#x72;&#x69;&#103;&#x69;&#110;&#97;&#108;&#64;&#x6d;&#97;&#105;&#x6c;&#105;&#x6e;&#103;&#x2e;&#x63;&#111;&#109;</a>&rsquo;)
+  expect(@email.from.first).to eq(&lsquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#x6f;&#114;&#105;&#x67;&#x69;&#x6e;&#x61;&#x6c;&#64;&#x6d;&#x61;&#x69;&#x6c;&#105;&#x6e;&#x67;&#x2e;&#99;&#x6f;&#109;">&#111;&#x72;&#105;&#103;&#105;&#x6e;&#97;&#108;&#64;&#109;&#97;&#x69;&#108;&#105;&#110;&#x67;&#x2e;&#x63;&#x6f;&#x6d;</a>&rsquo;)
 end</p>
 
 <p>Given(/^I am not a Partner$/) do

@@ -100,21 +100,33 @@
 
 <p>The first feature test I wrote was for a &ldquo;Forgotten Password&rdquo; feature. I had to test a User that had forgotten his/her password, clicked on the &ldquo;Forgot Password?&rdquo; option at the login screen, and expect to recieve an email with instructions to reset the password. So you would set up the feature test as follows:</p>
 
-<p><code>Feature: Partner Password Reset
-  As a Partner who forgot the password
-  I need to be able to reset the password
-  So that I can log in</code></p>
+<figure class='code'><figcaption><span>Feature Story</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Feature</span><span class="p">:</span> <span class="no">Partner</span> <span class="no">Password</span> <span class="no">Reset</span>
+</span><span class='line'>  <span class="no">As</span> <span class="n">a</span> <span class="no">Partner</span> <span class="n">who</span> <span class="n">forgot</span> <span class="n">the</span> <span class="n">password</span>
+</span><span class='line'>  <span class="n">I</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">reset</span> <span class="n">the</span> <span class="n">password</span>
+</span><span class='line'>  <span class="no">So</span> <span class="n">that</span> <span class="n">I</span> <span class="n">can</span> <span class="n">log</span> <span class="k">in</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>The feature description describes the storyline in very simple, straightforward terms. You need three things when describing a feature: who, what, and why. As in English literature, those three questions are essential to building up any kind of story. Then I would describe the first scenario:</p>
 
-<p>`Scenario: Send Reset Password Email</p>
+<figure class='code'><figcaption><span>Feature Scenario</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Scenario</span><span class="p">:</span> <span class="no">Send</span> <span class="no">Reset</span> <span class="no">Password</span> <span class="no">Email</span>
+</span><span class='line'>  <span class="no">Given</span> <span class="n">I</span> <span class="n">am</span> <span class="n">a</span> <span class="no">Partner</span> <span class="n">who</span> <span class="n">has</span> <span class="n">forgotten</span> <span class="n">the</span> <span class="n">password</span>
+</span><span class='line'>  <span class="no">When</span> <span class="n">I</span> <span class="n">am</span> <span class="n">at</span> <span class="n">the</span> <span class="s1">&#39;Forgot your password?&#39;</span> <span class="n">page</span>
+</span><span class='line'>  <span class="no">And</span> <span class="n">I</span> <span class="n">type</span> <span class="k">in</span> <span class="n">my</span> <span class="n">admin</span> <span class="n">email</span> <span class="n">address</span>
+</span><span class='line'>  <span class="no">Then</span> <span class="n">it</span> <span class="n">should</span> <span class="nb">send</span> <span class="n">me</span> <span class="n">a</span> <span class="s1">&#39;Reset password instructions&#39;</span> <span class="n">email</span>
+</span><span class='line'>  <span class="no">And</span> <span class="n">it</span> <span class="n">should</span> <span class="n">come</span> <span class="n">from</span> <span class="n">the</span> <span class="n">default</span> <span class="n">administrator</span> <span class="n">email</span> <span class="n">address</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>Given I am a Partner who has forgotten the password
-When I am at the 'Forgot your password?' page
-And I type in my admin email address
-Then it should send me a 'Reset password instructions' email
-And it should come from the default administrator email address`
-</code></pre>
 
 <p>The scenario describes step-by-step how the feature is  going to be tested, what the conditions are, and how the expectations should be met. You describe scenarios with three major keywords: <code>Given</code>, <code>When</code>, and <code>Then</code>. <code>Given</code> implies an implicit condition that is required for the scenario. <code>When</code> specifies an action or verb that should take place. <code>Then</code> explicitly states the result that should occur as a result of the action that took place under the <code>When</code> clause.</p>
 
