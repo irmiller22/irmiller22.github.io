@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="For the past 2 weeks, I have been getting more involved in Cucumber feature testing as a result of my day-to-day job. When I first started, I found &hellip;">
+  <meta name="description" content="I&rsquo;ve been testing controllers pretty often over the last few weeks, and wanted to write a few reminders to my future self. I&rsquo;ve been &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing via RSpec</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:01:37-05:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve been testing controllers pretty often over the last few weeks, and wanted to write a few reminders to my future self. I&rsquo;ve been testing an app at work with RSpec, and have gleaned a few best practices to integrate into my unit tests for controllers.</p>
+
+<p>First off, the purpose of controller testing is to test the controller actions directly and see what they do. For example, if we are testing a redirect, we want to make sure that the controller action is redirecting to the right path. It&rsquo;s important to follow the AAA pattern: Arrange, Act, and Assert. You set up the test by arranging a <code>before(:each)</code> statement, and setting up the data needed to execute a test via let blocks. Then you act upon the arranged data by manipulating it to the test&rsquo;s specifications. Then you assert that the arranged data should result in some specific action or result. Arrange, act, and assert.</p>
+
+<p>Another tip to keep in mind. Avoid before(:all) statements whenever possible, because you hardly will ever need it, and it sort of goes against Sandi Metz&rsquo;s Single Responsibility Principle (SRP). If you ever actually do need it, you are most likely dealing with a very extraordinary circumstance. The before(:all) block can affect test-data stability due to unwanted side effects.</p>
+
+<p>For BDD/Rspec language, prefer to use active language instead of passive language. Of course the system should do something. Let&rsquo;s write tests where the language asserts definitively that it does or does not do something, thereby documenting not what our system should do but what it does do. It&rsquo;s important to be as clear and succinct in our language about what our expectations are.</p>
+
+<p>Finally, a small but important distinction between <code>let()</code> and <code>let!()</code>. An object defined in a <code>let()</code> statement is lazily evaluated, meaning that it won&rsquo;t instantiate that object until it has been called in a RSpec test. However, an object defined in a <code>let!()</code> statement is forcefully evaluated, and the object will be instantiated once the statement has been invoked.</p>
+
+<p>Hopefully these thoughts and insights will prove useful to someone, as they will for me in the near future.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1409,67 +1457,6 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/17/the-art-of-a-question/">The Art of a Question</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-17T22:27:00-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
-
-<p>From time to time, I have found myself unable to ask the right questions.  It&rsquo;s as if there is a mental block in my head, unable to move forward beyond an obstacle, a metaphorical wrench stuck in the gears of my neocortex.  When that process unfolds, it is easy to doubt yourself and your ability to lead yourself out of the quagmire.  There is a reason why many individuals are daunted by the prospect of learning how to program.  It is a seemingly endless black hole that manifests itself as a negative feedback loop.  Despite the organized chaos that arises, most often overlook the key decision making component of programming: knowing where to start.</p>
-
-<p>Knowing where to start isn&rsquo;t even the be-all-end-all solution to asking the right question.  It is simply a starting place.  Just because a runner starts at mile 0.0 after a starter pistol has fired, it does not mean that failure is imminent.  It is a mindset.  A runner tackles a marathon one step at a time.  Step by step, two feet turns into 10.  10 feet turns into a mile.  A mile turns into 10 miles.  10 miles turn into 20.  It&rsquo;s about breaking down the obstacle into manageable parts, and moving on from segment to segment.  This works because of two reasons: one, it keeps the logical decision making process flowing, and two, it pushes doubt and negative reinforcement to the periphery of human consciousness.</p>
-
-<p>I read an article the other day discussing a concept called cognitive load.  According to George Miller, an eminent psychologist who taught at Princeton in the 1950&rsquo;s, our brain can realistically hold about seven pieces of information simultaneously at one point in time.  That number has since been revised to three or four.  This is a significant problem in the information age.  WIth historically recent advents such as the Internet, we are overly stimulated by the free flow of information, made possible largely by electronic devices.  Information enters and exits our cognitive consciousness that we don&rsquo;t grasp a basic level of understanding. We are unable to transfer it from our short-term to long-term memory stores, and consequently our ability to think critically and conceptually weakens.  Ergo, one step at a time.</p>
-
-<p>So it seems that there are valid reasons, backed by science, psychology, and other studies focused on the human brain, that call for the fragmentation of a complete problem into parts.  If someone were to ask the question, &ldquo;how does a route ultimately render a view in a Rails project?&rdquo;  This is my thinking process below.</p>
-
-<p>First off, there are multiple steps that between the route path and the view being rendered.  In MVC, there are typically eight steps in the chain of events.</p>
-
-<pre><code>First, a browser sends a request to the Rails router.  
-Second, a router sends the request to the respective controller.  
-Third, the controller asks the model to retrieve the respective data needed for the request from the database.  
-Fourth, the database sends that data back to the model.  
-Fifth, the model sends the retrieved data back to the controller.  
-Sixth, the data, encapsulated within the logic defined in the controller, is sent to the view.  Seventh, the view renders the data into the HTML page and is sent back to the controller.
-Eighth, and finally, the controller sends the view action back to the browser where it is rendered.
-</code></pre>
-
-<p>This is an oversimplified example, but the question went from a generic question about a route and respective view rendering to a multifaceted question made up of smaller implicit questions about the 8 steps of MVC progression.  Each step can also be broken down further to better understand the process.  Each little question is a foundation that can be built upon, and will ultimately to a deep understanding of how a simple Rails application works.</p>
-
-<p>So perhaps the best question is not simply a targeted question that seeks a one-dimensional answer, but rather a series of smaller, more basic questions derived from a larger question.  Simplicity is the best form of policy.  Start somewhere.  Plant your flag in the sand.  Let your initial question, and the subsequent chain of questions, be your guide.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1485,6 +1472,10 @@ Eighth, and finally, the controller sends the view action back to the browser wh
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
       </li>
     
@@ -1498,10 +1489,6 @@ Eighth, and finally, the controller sends the view action back to the browser wh
     
       <li class="post">
         <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
       </li>
     
   </ul>

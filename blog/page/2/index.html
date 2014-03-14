@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="Validations are necessary to prevent invalid data from being persisted into the database. They are necessary to allow for efficient data entry and &hellip;">
+  <meta name="description" content="For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question. Or rather, is it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/17/the-art-of-a-question/">The Art of a Question</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T22:27:00-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
+
+<p>From time to time, I have found myself unable to ask the right questions.  It&rsquo;s as if there is a mental block in my head, unable to move forward beyond an obstacle, a metaphorical wrench stuck in the gears of my neocortex.  When that process unfolds, it is easy to doubt yourself and your ability to lead yourself out of the quagmire.  There is a reason why many individuals are daunted by the prospect of learning how to program.  It is a seemingly endless black hole that manifests itself as a negative feedback loop.  Despite the organized chaos that arises, most often overlook the key decision making component of programming: knowing where to start.</p>
+
+<p>Knowing where to start isn&rsquo;t even the be-all-end-all solution to asking the right question.  It is simply a starting place.  Just because a runner starts at mile 0.0 after a starter pistol has fired, it does not mean that failure is imminent.  It is a mindset.  A runner tackles a marathon one step at a time.  Step by step, two feet turns into 10.  10 feet turns into a mile.  A mile turns into 10 miles.  10 miles turn into 20.  It&rsquo;s about breaking down the obstacle into manageable parts, and moving on from segment to segment.  This works because of two reasons: one, it keeps the logical decision making process flowing, and two, it pushes doubt and negative reinforcement to the periphery of human consciousness.</p>
+
+<p>I read an article the other day discussing a concept called cognitive load.  According to George Miller, an eminent psychologist who taught at Princeton in the 1950&rsquo;s, our brain can realistically hold about seven pieces of information simultaneously at one point in time.  That number has since been revised to three or four.  This is a significant problem in the information age.  WIth historically recent advents such as the Internet, we are overly stimulated by the free flow of information, made possible largely by electronic devices.  Information enters and exits our cognitive consciousness that we don&rsquo;t grasp a basic level of understanding. We are unable to transfer it from our short-term to long-term memory stores, and consequently our ability to think critically and conceptually weakens.  Ergo, one step at a time.</p>
+
+<p>So it seems that there are valid reasons, backed by science, psychology, and other studies focused on the human brain, that call for the fragmentation of a complete problem into parts.  If someone were to ask the question, &ldquo;how does a route ultimately render a view in a Rails project?&rdquo;  This is my thinking process below.</p>
+
+<p>First off, there are multiple steps that between the route path and the view being rendered.  In MVC, there are typically eight steps in the chain of events.</p>
+
+<pre><code>First, a browser sends a request to the Rails router.  
+Second, a router sends the request to the respective controller.  
+Third, the controller asks the model to retrieve the respective data needed for the request from the database.  
+Fourth, the database sends that data back to the model.  
+Fifth, the model sends the retrieved data back to the controller.  
+Sixth, the data, encapsulated within the logic defined in the controller, is sent to the view.  Seventh, the view renders the data into the HTML page and is sent back to the controller.
+Eighth, and finally, the controller sends the view action back to the browser where it is rendered.
+</code></pre>
+
+<p>This is an oversimplified example, but the question went from a generic question about a route and respective view rendering to a multifaceted question made up of smaller implicit questions about the 8 steps of MVC progression.  Each step can also be broken down further to better understand the process.  Each little question is a foundation that can be built upon, and will ultimately to a deep understanding of how a simple Rails application works.</p>
+
+<p>So perhaps the best question is not simply a targeted question that seeks a one-dimensional answer, but rather a series of smaller, more basic questions derived from a larger question.  Simplicity is the best form of policy.  Start somewhere.  Plant your flag in the sand.  Let your initial question, and the subsequent chain of questions, be your guide.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -962,90 +1023,6 @@ array.select { |x| x &gt; 2 }</code></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/07/problem-solving-and-iteration/">Problem Solving and Iteration - Week 3</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-07T08:48:00-04:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last week, we dove right into database iteration and management.  We focused on the following: SQL, hash iteration, web scraping (via Nokogiri, Open-URI), and logic approaches.</p>
-
-<p>SQL and hash iteration are pretty straightforward as concepts, but they are difficult (for the time being) for me to effectively implement.  We had to implement these concepts in the web-scraping exercise we did last week, and I still have to go back over and do it again, just to make sure I get the concepts down pat.</p>
-
-<p>So, to explain: SQL is a database tool that can be used to integrate data from hashes and arrays into organized tables.  You can also use SQL to join tables together where they share common information (usually something like an ID or user ID &mdash; keys that can tie two charts together).  the exercise that we did last week focused on Reddit.  We used Open-URI to open a connection to Reddit&rsquo;s front page, and Nokogiri pulled down the HTML data into a readable, concise format.  We then used Nokogiri&rsquo;s syntax to sort out the data that we needed for the exercise (Top 100 posts: name of post, URL of post origin, upvotes, downvotes).</p>
-
-<p>In order to create SQL tables, you use the following command:</p>
-
-<pre><code>            CREATE TABLE users 
-                    (
-                    var1 TYPE,
-                    var2 TYPE,
-                    var3, TYPE
-                    ); 
-</code></pre>
-
-<p>This just creates the tables with the variables var1, var2, var3, and they are of data type TYPE (which can be INTEGER, TEXT, DATE, etc).</p>
-
-<p>To insert values into the table, you use the following command:</p>
-
-<pre><code>            INSERT INTO users VALUES (var1, var2, var3)
-                    ("John", 25, 2010),
-                    ("James", 21, 2011),
-                    ("Steve", 19, 2010);
-</code></pre>
-
-<p>To follow up with that, there are JOINS statements: INNER JOIN, LEFT OUTER JOIN, RIGHT OUTER JOIN, AND FULL OUTER JOIN.</p>
-
-<pre><code>    INNER JOIN - Produce only records for which there is a match from table A and table B
-
-    LEFT OUTER JOIN - Produces complete set of records for table A, along with matching records from table B if they exist; otherwise the value is NULL.
-
-    RIGHT OUTER JOIN - Produces complete set of records for table B, along with matching records from A if they exist; otherwise the value is NULL.
-
-    FULL OUTER JOIN - Produces complete set of records from both tables; when there isn't a match, the value is NULL.
-</code></pre>
-
-<p>Moving on to Hashes.  Hashes are one of the most fundamental concepts in the Ruby language, and enable a wide array of possibilities if they are properly utilized.  In other languages, the hash structure is referred to as a dictionary.  It has a key-value pair, so for each respective key, there is a value, just as in a dictionary, there is a definition for each word.</p>
-
-<p>The way to visualize a hash is via the following:</p>
-
-<pre><code>                hash = { :dog =&gt; 'canine', :cat =&gt; 'feline'}
-</code></pre>
-
-<p>How do you access the value for &lsquo;dog&rsquo;?  By simply typing in hash[:dog].  This will return the string &lsquo;canine&rsquo;.  How do you add a new element to the hash?  By simply typing in the key you want into the key field, and setting it equal to its value.  For example, hash[:elephant] = &lsquo;mammal&rsquo; will insert :elephant => &lsquo;mammal&rsquo; into the hash.  Finally, the default return value of a hash is nil.</p>
-
-<p>My objective for this week is to work on further solidifying my understanding of hashes, how to iterate through them effectively, and utimately get a web-scraping objective finalized.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1063,6 +1040,10 @@ array.select { |x| x &gt; 2 }</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
       </li>
     
@@ -1076,10 +1057,6 @@ array.select { |x| x &gt; 2 }</code></p>
     
       <li class="post">
         <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
       </li>
     
   </ul>

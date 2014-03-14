@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="Today is the start of Week 2 at Flatiron. It&rsquo;s been quite a start to the semester. We spent last week going over Github, Ruby, SQL, and a lot &hellip;">
+  <meta name="description" content="Last week, we dove right into database iteration and management. We focused on the following: SQL, hash iteration, web scraping (via Nokogiri, Open- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,90 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/07/problem-solving-and-iteration/">Problem Solving and Iteration - Week 3</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-07T08:48:00-04:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last week, we dove right into database iteration and management.  We focused on the following: SQL, hash iteration, web scraping (via Nokogiri, Open-URI), and logic approaches.</p>
+
+<p>SQL and hash iteration are pretty straightforward as concepts, but they are difficult (for the time being) for me to effectively implement.  We had to implement these concepts in the web-scraping exercise we did last week, and I still have to go back over and do it again, just to make sure I get the concepts down pat.</p>
+
+<p>So, to explain: SQL is a database tool that can be used to integrate data from hashes and arrays into organized tables.  You can also use SQL to join tables together where they share common information (usually something like an ID or user ID &mdash; keys that can tie two charts together).  the exercise that we did last week focused on Reddit.  We used Open-URI to open a connection to Reddit&rsquo;s front page, and Nokogiri pulled down the HTML data into a readable, concise format.  We then used Nokogiri&rsquo;s syntax to sort out the data that we needed for the exercise (Top 100 posts: name of post, URL of post origin, upvotes, downvotes).</p>
+
+<p>In order to create SQL tables, you use the following command:</p>
+
+<pre><code>            CREATE TABLE users 
+                    (
+                    var1 TYPE,
+                    var2 TYPE,
+                    var3, TYPE
+                    ); 
+</code></pre>
+
+<p>This just creates the tables with the variables var1, var2, var3, and they are of data type TYPE (which can be INTEGER, TEXT, DATE, etc).</p>
+
+<p>To insert values into the table, you use the following command:</p>
+
+<pre><code>            INSERT INTO users VALUES (var1, var2, var3)
+                    ("John", 25, 2010),
+                    ("James", 21, 2011),
+                    ("Steve", 19, 2010);
+</code></pre>
+
+<p>To follow up with that, there are JOINS statements: INNER JOIN, LEFT OUTER JOIN, RIGHT OUTER JOIN, AND FULL OUTER JOIN.</p>
+
+<pre><code>    INNER JOIN - Produce only records for which there is a match from table A and table B
+
+    LEFT OUTER JOIN - Produces complete set of records for table A, along with matching records from table B if they exist; otherwise the value is NULL.
+
+    RIGHT OUTER JOIN - Produces complete set of records for table B, along with matching records from A if they exist; otherwise the value is NULL.
+
+    FULL OUTER JOIN - Produces complete set of records from both tables; when there isn't a match, the value is NULL.
+</code></pre>
+
+<p>Moving on to Hashes.  Hashes are one of the most fundamental concepts in the Ruby language, and enable a wide array of possibilities if they are properly utilized.  In other languages, the hash structure is referred to as a dictionary.  It has a key-value pair, so for each respective key, there is a value, just as in a dictionary, there is a definition for each word.</p>
+
+<p>The way to visualize a hash is via the following:</p>
+
+<pre><code>                hash = { :dog =&gt; 'canine', :cat =&gt; 'feline'}
+</code></pre>
+
+<p>How do you access the value for &lsquo;dog&rsquo;?  By simply typing in hash[:dog].  This will return the string &lsquo;canine&rsquo;.  How do you add a new element to the hash?  By simply typing in the key you want into the key field, and setting it equal to its value.  For example, hash[:elephant] = &lsquo;mammal&rsquo; will insert :elephant => &lsquo;mammal&rsquo; into the hash.  Finally, the default return value of a hash is nil.</p>
+
+<p>My objective for this week is to work on further solidifying my understanding of hashes, how to iterate through them effectively, and utimately get a web-scraping objective finalized.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -220,6 +304,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
       </li>
     
@@ -233,10 +321,6 @@
     
       <li class="post">
         <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a>
       </li>
     
   </ul>
