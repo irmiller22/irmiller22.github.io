@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question. Or rather, is it &hellip;">
+  <meta name="description" content="Big O Notation is simply a measure of an algorithm&rsquo;s performance. It focuses on two primary components: speed and size. It also presents a best &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,158 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/14/big-o-notation/">Big O Notation</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-14T12:32:00-05:00" pubdate data-updated="true">Dec 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Big O Notation is simply a measure of an algorithm&rsquo;s performance.  It focuses on two primary components: speed and size.  It also presents a best-case scenario of an algorithm as well as a worst-case scenario.</p>
+
+<p>There are four primary scenarios that the majority of individuals will deal with in Big O Notation: O(1), O(n), O(n<sup>2</sup>), and O(log n).</p>
+
+<p>The O(1) case simply refers to an algorithm in which the performance result is the same no matter the size of the input.  For example, a change in the value of a pre-existing array element will not change the time it takes to execute the algorithm.</p>
+
+<figure class='code'><figcaption><span>O(1)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">is_1?</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The O(n) case is an algorithm that iterates over a range of elements, and the performance result increases for each additional element in the collection.  If it took 1 second to iterate through each element and I had a total of 10 elements in my collection, it would take 10 seconds (10/1).  If I had 500 elements in my collection, it would take 50 seconds (500/10).</p>
+
+<p>The example below is a worst case scenario.  Since 10 is the last element in array, the each method won&rsquo;t break until it has run through and compared every value in the method.  If the comparator value were 1, then it would result in the best case scenario of O(1).  With every each statement that is used for comparison, it is always assumed that the worst case scenario is O(n), or the total size of the array.</p>
+
+<figure class='code'><figcaption><span>O(n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">comparison?</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">break</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">10</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The O(n<sup>2</sup>) case refers to a function whose performance increases in proportion to the square of the input size.  When an additional element is added to a collection, then the performance result will increase by the square of n.  This is particularly common in cases where you are iterating with nested loops.  You can take this even further: a nested loop with deeper iterations will result in a higher power value for n.  A loop with 2 nested loops inside of it will result in O(n<sup>3</sup>).  A well known example of this is the bubble sort.</p>
+
+<figure class='code'><figcaption><span>O(n^2)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">array</span><span class="o">.</span><span class="n">each_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">element</span><span class="o">|</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>              <span class="n">array</span><span class="o">[</span><span class="n">element</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span><span class="o">]</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The O(log n) case is an algorithm that selects the middle element of the collection, and compares it against a specific value.  If the value is higher than the middle element, it will perform the same operation against the upper half of the collection.  If the value is lower than the middle element, it&rsquo;ll perform the same operation against the lower half.  It keeps splitting each respective collection until it finds the element it&rsquo;s looking for, or until all possibilities have been exhausted.  An example of this is the merge sort.</p>
+
+<figure class='code'><figcaption><span>O(log n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">array</span> <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="n">left</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">right</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">merge</span><span class="p">(</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">right</span><span class="p">))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sorted_array</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">until</span> <span class="n">left</span><span class="o">.</span><span class="n">empty?</span> <span class="o">||</span> <span class="n">right</span><span class="o">.</span><span class="n">empty?</span>
+</span><span class='line'>      <span class="n">sorted_array</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">left</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">?</span> <span class="n">left</span><span class="o">.</span><span class="n">shift</span> <span class="p">:</span> <span class="n">right</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">sorted_array</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">left</span><span class="p">)</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">sorted_array</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -942,87 +1094,6 @@ NGinx has emerged largely as a result of increased demand for online services an
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/07/each/">Difference Between Each, Select, and Collect Methods</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-07T23:31:00-04:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Each, Collect, Select</p>
-
-<p>There are three methods that drive the process of data scraping and warehousing in the Ruby language.  These three methods are the following: Each, Collect, and Select.  These three methods are examplees of iterators; iterators are used to organize and store data into a collection.  A collection can be either an array or a hash.</p>
-
-<p>For simplicity, I will refer to an array throughout the rest of the discussion.  I`ll follow up with a concise post on hashes.</p>
-
-<p>The Each method iterates through and returns all of the elements of an array or a hash.    It simply runs each element of the array through the Each code block (the function/modifier that lies between the do and end), and returns that modified value to the console.  For example:</p>
-
-<p><code>array = [2,4,6,8,10]
-array.each { |x| puts x * 10 }</code></p>
-
-<p>This would result in the following being output to the screen:</p>
-
-<p><code>20,
-40,
-60,
-80,
-100</code></p>
-
-<p>The Each method is great for simple data modification tasks, particularly if you need to obtain the result of that modification.  The major drawback is that it doesn`t provide a means to store the results of the block into an array unless you push those elements into the array.  This is where the Collect method comes in.</p>
-
-<p>The Collect method does the same thing as the Each method, except that it goes one step further and returns the results of the block in the form of an array.  For instance, look at the following example.</p>
-
-<p><code>array = [2,4,6,8,10]
-array.collect { |x| x * 10 }</code></p>
-
-<p>This would result in the following output to the screen:</p>
-
-<p><code>[20,40,60,80,100]</code></p>
-
-<p>The array &ldquo;array&rdquo; has been multiplied by the modifier inside of the block, and the collect method has returned an array with the modified values.  The returned array can then be stored in a variable, which has significant benefits in Ruby.  This can be used for many applications, such as arithmetic, problem solving, variable manipulation, and data parsing.</p>
-
-<p>The Select method is a modified version of the Each method, and basically &ldquo;selects&rdquo; objects that meet the predefined condition within the block.  For example, if I wanted to filter out elements from an array that do not meet a conditional statement of some kind, I could do the following:</p>
-
-<p><code>array = [1,2,3,4,5]
-array.select { |x| x &gt; 2 }</code></p>
-
-<p>It would return the following to my screen:</p>
-
-<p><code>[3,4,5]</code></p>
-
-<p>It basically will return any element of the array that, when inserted into the conditional statement inside of the block, results in a true statement.</p>
-
-<p>These three statements are already some of my most heavily used components within my Ruby syntax.  I&rsquo;m still learning each day more and more about what they are capable of.  I&rsquo;m excited to learn more about more specific applications of these methods.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1040,6 +1111,10 @@ array.select { |x| x &gt; 2 }</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/19/rails-caching/">Rails Caching</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
       </li>
     
@@ -1053,10 +1128,6 @@ array.select { |x| x &gt; 2 }</code></p>
     
       <li class="post">
         <a href="/blog/2014/02/02/basic-rails-link-shortener-app/">Rails Link Shortener App</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
       </li>
     
   </ul>

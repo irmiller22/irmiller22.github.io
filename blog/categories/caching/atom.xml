@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: caching | Archaic Positives]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/caching/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-03-19T10:49:09-04:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Caching]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/03/19/rails-caching/"/>
+    <updated>2014-03-19T09:27:04-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/03/19/rails-caching</id>
+    <content type="html"><![CDATA[<h1>Caching in Rails</h1>
+
+<h2>What is Caching?</h2>
+
+<p>It is a tool that allows you to avoid extensive database querying on a page by storing elements of a page in memory and retrieving that memory store each time that page is visited. It enables faster page loading on refresh, and saves resources.</p>
+
+<h2>Cache Types in Rails</h2>
+
+<h3>Page Caching</h3>
+
+<p>This is a Rails mechanism that allows a request for a generated page to be fulfilled by the webserver. This has limited uses, and can&rsquo;t be used with pages that have <code>before</code> filters (such as pages that require authentication). It also requires that cache expiration be set explicitly. Since Rails 4, the page caching feature has been removed into a separate gem called <code>actionpack-page</code>.</p>
+
+<h3>Action Caching</h3>
+
+<p>Action caching is used where page caching can&rsquo;t be utilized &mdash; such as with pages that require authentication. It is very similar to page caching, except that the incoming request hits the Rails stack so that <code>before</code> filters can be executed before the cache is served. Since Rails 4, the action caching feature has been removed into a separate gem called <code>actionpack-action</code>.</p>
+
+<h3>Fragment Caching</h3>
+
+<p>Fragment caching allows a fragment of view logic to be wrapped inside of a cache block and served out of the cache store when the next page request comes calling. Basically, the cache block is wrapped around logic inside of your view, and that cached view logic will be served to the page view until it expires. Then the cache process will start over again.</p>
+
+<h2>Cache Setup</h2>
+
+<h3>Configuration Settings</h3>
+
+<p>You can set up your app&rsquo;s default cache store by calling <code>config.cache_store=</code> inside <code>config/application.rb</code> or inside of your environment files in <code>config/environments/*.rb</code>.</p>
+
+<h3>Cache::Store</h3>
+
+<p>This is the foundation for interacting with the Rails cache. The class in Rails is provided via <code>ActiveSupport::Cache::Store</code>. There are four primary methods: <code>read</code>, <code>write</code>, <code>delete</code>, <code>exist?</code>, and <code>fetch</code>. The <code>fetch</code> method takes a block and will return an existing cache, or it will evaluate the block and write the result to the cache if a cache doesn&rsquo;t exist previously.</p>
+
+<p>There are four options that can be passed in to the <code>config.cache_store=</code> configuration. They are:
+&ndash; <code>:namespace</code> &ndash; Option is used to create a namespace within the cache store (useful when cache is shared with other applications). Default is the application name and Rails environment.
+&ndash; <code>:compress</code> &ndash; Used to indicate that compression should be used in the cache (useful for transferring large caches)
+&ndash; <code>:compress_threshold</code> &ndash; Used int conjunction with <code>:compress</code> to indicate a threshold under which caches should not be compressed (default is 16 kilobytes)
+&ndash; <code>:expires_in</code> &ndash; Sets an expiration time in seconds
+&ndash; <code>:race_condition_ttl</code> &ndash; Used in conjunction with <code>:expires_in</code> option to prevent race conditions when a cache expires (basically prevents multiple processes from regenerating cache entries simultaneously)</p>
+
+<h3>Cache::MemoryStore</h3>
+
+<p>This stores cache entries in memory. This has a size limit specified by the <code>:size</code> option (default size is 32 megabytes). When the cache exceeds the size limit, a cleanup will occur. This is not ideal for large app deployments, and typically works best for small, low traffic sites.</p>
+
+<p>This has to be specified in configurations via:
+&ndash; <code>config.cache_store = :memory_store, { size: 128.megabytes }</code></p>
+
+<h2>Heroku Cache Configuration Setup</h2>
+
+<p>In order to enable caching with Heroku, it works best with <code>Memcachier</code>, which is a Heroku add-on. <code>Memcachier</code> essentially manages and scales clusters of memcache servers for Heroku apps. See the link below for setup instructions.</p>
+
+<ul>
+<li><a href="" title="https://devcenter.heroku.com/articles/rack-cache-memcached-rails31#configure-rails-cache-store">Link to Heroku Memcachier Setup</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

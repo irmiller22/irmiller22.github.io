@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-03-13T22:51:42-04:00</updated>
+  <updated>2014-03-19T10:49:09-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Rails Caching]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/03/19/rails-caching/"/>
+    
+    <updated>2014-03-19T09:27:04-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/03/19/rails-caching</id>
+    
+    <content type="html"><![CDATA[<h1>Caching in Rails</h1>
+
+<h2>What is Caching?</h2>
+
+<p>It is a tool that allows you to avoid extensive database querying on a page by storing elements of a page in memory and retrieving that memory store each time that page is visited. It enables faster page loading on refresh, and saves resources.</p>
+
+<h2>Cache Types in Rails</h2>
+
+<h3>Page Caching</h3>
+
+<p>This is a Rails mechanism that allows a request for a generated page to be fulfilled by the webserver. This has limited uses, and can&rsquo;t be used with pages that have <code>before</code> filters (such as pages that require authentication). It also requires that cache expiration be set explicitly. Since Rails 4, the page caching feature has been removed into a separate gem called <code>actionpack-page</code>.</p>
+
+<h3>Action Caching</h3>
+
+<p>Action caching is used where page caching can&rsquo;t be utilized &mdash; such as with pages that require authentication. It is very similar to page caching, except that the incoming request hits the Rails stack so that <code>before</code> filters can be executed before the cache is served. Since Rails 4, the action caching feature has been removed into a separate gem called <code>actionpack-action</code>.</p>
+
+<h3>Fragment Caching</h3>
+
+<p>Fragment caching allows a fragment of view logic to be wrapped inside of a cache block and served out of the cache store when the next page request comes calling. Basically, the cache block is wrapped around logic inside of your view, and that cached view logic will be served to the page view until it expires. Then the cache process will start over again.</p>
+
+<h2>Cache Setup</h2>
+
+<h3>Configuration Settings</h3>
+
+<p>You can set up your app&rsquo;s default cache store by calling <code>config.cache_store=</code> inside <code>config/application.rb</code> or inside of your environment files in <code>config/environments/*.rb</code>.</p>
+
+<h3>Cache::Store</h3>
+
+<p>This is the foundation for interacting with the Rails cache. The class in Rails is provided via <code>ActiveSupport::Cache::Store</code>. There are four primary methods: <code>read</code>, <code>write</code>, <code>delete</code>, <code>exist?</code>, and <code>fetch</code>. The <code>fetch</code> method takes a block and will return an existing cache, or it will evaluate the block and write the result to the cache if a cache doesn&rsquo;t exist previously.</p>
+
+<p>There are four options that can be passed in to the <code>config.cache_store=</code> configuration. They are:
+&ndash; <code>:namespace</code> &ndash; Option is used to create a namespace within the cache store (useful when cache is shared with other applications). Default is the application name and Rails environment.
+&ndash; <code>:compress</code> &ndash; Used to indicate that compression should be used in the cache (useful for transferring large caches)
+&ndash; <code>:compress_threshold</code> &ndash; Used int conjunction with <code>:compress</code> to indicate a threshold under which caches should not be compressed (default is 16 kilobytes)
+&ndash; <code>:expires_in</code> &ndash; Sets an expiration time in seconds
+&ndash; <code>:race_condition_ttl</code> &ndash; Used in conjunction with <code>:expires_in</code> option to prevent race conditions when a cache expires (basically prevents multiple processes from regenerating cache entries simultaneously)</p>
+
+<h3>Cache::MemoryStore</h3>
+
+<p>This stores cache entries in memory. This has a size limit specified by the <code>:size</code> option (default size is 32 megabytes). When the cache exceeds the size limit, a cleanup will occur. This is not ideal for large app deployments, and typically works best for small, low traffic sites.</p>
+
+<p>This has to be specified in configurations via:
+&ndash; <code>config.cache_store = :memory_store, { size: 128.megabytes }</code></p>
+
+<h2>Heroku Cache Configuration Setup</h2>
+
+<p>In order to enable caching with Heroku, it works best with <code>Memcachier</code>, which is a Heroku add-on. <code>Memcachier</code> essentially manages and scales clusters of memcache servers for Heroku apps. See the link below for setup instructions.</p>
+
+<ul>
+<li><a href="" title="https://devcenter.heroku.com/articles/rack-cache-memcached-rails31#configure-rails-cache-store">Link to Heroku Memcachier Setup</a></li>
+</ul>
+
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -1799,62 +1863,6 @@ NGinx has emerged largely as a result of increased demand for online services an
 <p>I would love to use HAML, but it doesn&rsquo;t seem intuitive to use it when it is not widely utilized in the Ruby community.  I looked up some simple statistics on Stackoverflow.  There were 210,574 tags for HTML discussions alone, and that didn&rsquo;t include more specific HTML queries (HTML5, HTML parsing, XHTML, etc).  HAML had a whopping 1,831 tags for discussions.  I&rsquo;m not a statistician, but I believe that there&rsquo;s statistical significance in that HAML is not widely accepted, and isn&rsquo;t quite a complete alternative to HTML.</p>
 
 <p>With that said, it&rsquo;s nice to know that there are other options out there that are trying to bring Ruby&rsquo;s straightforward syntax to markup languages.</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[Difference between Each, Select, and Collect Methods]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/10/07/each/"/>
-    
-    <updated>2013-10-07T23:31:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/10/07/each</id>
-    
-    <content type="html"><![CDATA[<p>Each, Collect, Select</p>
-
-<p>There are three methods that drive the process of data scraping and warehousing in the Ruby language.  These three methods are the following: Each, Collect, and Select.  These three methods are examplees of iterators; iterators are used to organize and store data into a collection.  A collection can be either an array or a hash.</p>
-
-<p>For simplicity, I will refer to an array throughout the rest of the discussion.  I`ll follow up with a concise post on hashes.</p>
-
-<p>The Each method iterates through and returns all of the elements of an array or a hash.    It simply runs each element of the array through the Each code block (the function/modifier that lies between the do and end), and returns that modified value to the console.  For example:</p>
-
-<p><code>array = [2,4,6,8,10]
-array.each { |x| puts x * 10 }</code></p>
-
-<p>This would result in the following being output to the screen:</p>
-
-<p><code>20,
-40,
-60,
-80,
-100</code></p>
-
-<p>The Each method is great for simple data modification tasks, particularly if you need to obtain the result of that modification.  The major drawback is that it doesn`t provide a means to store the results of the block into an array unless you push those elements into the array.  This is where the Collect method comes in.</p>
-
-<p>The Collect method does the same thing as the Each method, except that it goes one step further and returns the results of the block in the form of an array.  For instance, look at the following example.</p>
-
-<p><code>array = [2,4,6,8,10]
-array.collect { |x| x * 10 }</code></p>
-
-<p>This would result in the following output to the screen:</p>
-
-<p><code>[20,40,60,80,100]</code></p>
-
-<p>The array &ldquo;array&rdquo; has been multiplied by the modifier inside of the block, and the collect method has returned an array with the modified values.  The returned array can then be stored in a variable, which has significant benefits in Ruby.  This can be used for many applications, such as arithmetic, problem solving, variable manipulation, and data parsing.</p>
-
-<p>The Select method is a modified version of the Each method, and basically &ldquo;selects&rdquo; objects that meet the predefined condition within the block.  For example, if I wanted to filter out elements from an array that do not meet a conditional statement of some kind, I could do the following:</p>
-
-<p><code>array = [1,2,3,4,5]
-array.select { |x| x &gt; 2 }</code></p>
-
-<p>It would return the following to my screen:</p>
-
-<p><code>[3,4,5]</code></p>
-
-<p>It basically will return any element of the array that, when inserted into the conditional statement inside of the block, results in a true statement.</p>
-
-<p>These three statements are already some of my most heavily used components within my Ruby syntax.  I&rsquo;m still learning each day more and more about what they are capable of.  I&rsquo;m excited to learn more about more specific applications of these methods.</p>
 ]]></content>
     
   </entry>

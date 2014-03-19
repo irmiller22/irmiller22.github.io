@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Explanation of NGinx and Passenger - Archaic Positives</title>
+  <title>Rails Caching - Archaic Positives</title>
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="NGinx is a open-source proxy server that primarily serves HTTP and HTTPS protocols. Nginx was created to achieve three main goals: concurrency ( &hellip;">
+  <meta name="description" content="Caching in Rails What is Caching? It is a tool that allows you to avoid extensive database querying on a page by storing elements of a page in memory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://irmiller22.github.io/blog/2013/11/04/explanation-of-nginx-and-passenger">
+  <link rel="canonical" href="http://irmiller22.github.io/blog/2014/03/19/rails-caching">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Archaic Positives" type="application/atom+xml">
@@ -70,7 +70,7 @@
   <header>
   
     
-      <h1 class="entry-title">Explanation of NGinx and Passenger</h1>
+      <h1 class="entry-title">Rails Caching</h1>
     
   
     
@@ -87,23 +87,65 @@
   
 
 
-<time datetime="2013-11-04T20:19:00-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+<time datetime="2014-03-19T09:27:04-04:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>NGinx is a open-source proxy server that primarily serves HTTP and HTTPS protocols.  Nginx was created to achieve three main goals: concurrency (process in which computations are executed simultaneously across several systems), high performance, and low memory usage.  It utilizes an event-driven approach to server requests, and allocates responses based upon server traffic and handling.  It has become a viable alternative to the Apache server model, which uses a process-driven methodology for handling large server requests.<br/>
-NGinx has emerged largely as a result of increased demand for online services and the rise of the web as a platform.  Unlike Apache, NGinx has a master process that delegates work to worker processes, and it is designed handle a large number of server connections with a small amount of memory.</p>
+<div class="entry-content"><h1>Caching in Rails</h1>
 
-<p>A number of companies, according to Wired, have run into scalability issues with Apache, and have transitioned to NGinx.  Facebook, Dropbox, and Wordpress are sites that utilize the NGinx server platform.</p>
+<h2>What is Caching?</h2>
 
-<p><img class="center" src="http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png"></p>
+<p>It is a tool that allows you to avoid extensive database querying on a page by storing elements of a page in memory and retrieving that memory store each time that page is visited. It enables faster page loading on refresh, and saves resources.</p>
 
-<p>NGinx does not have a module load feature like Apache does, but that is where Passenger steps in, as it automates the module loading process.</p>
+<h2>Cache Types in Rails</h2>
 
-<p>Passenger is an Rack application server software that is often used in conjunction with NGinx.  Similarly with mod_php for hosting PHP apps on Apache, Passenger simplifies the process of hosting Ruby apps on NGinx.  Passenger automates the process of starting/stopping a server, restarting after a server crash, and dynamically adjusts the number of processes on a server based on traffic.  It also allows the server to run more than 1 instance of the app, allowing greater use of server resources.</p>
+<h3>Page Caching</h3>
+
+<p>This is a Rails mechanism that allows a request for a generated page to be fulfilled by the webserver. This has limited uses, and can&rsquo;t be used with pages that have <code>before</code> filters (such as pages that require authentication). It also requires that cache expiration be set explicitly. Since Rails 4, the page caching feature has been removed into a separate gem called <code>actionpack-page</code>.</p>
+
+<h3>Action Caching</h3>
+
+<p>Action caching is used where page caching can&rsquo;t be utilized &mdash; such as with pages that require authentication. It is very similar to page caching, except that the incoming request hits the Rails stack so that <code>before</code> filters can be executed before the cache is served. Since Rails 4, the action caching feature has been removed into a separate gem called <code>actionpack-action</code>.</p>
+
+<h3>Fragment Caching</h3>
+
+<p>Fragment caching allows a fragment of view logic to be wrapped inside of a cache block and served out of the cache store when the next page request comes calling. Basically, the cache block is wrapped around logic inside of your view, and that cached view logic will be served to the page view until it expires. Then the cache process will start over again.</p>
+
+<h2>Cache Setup</h2>
+
+<h3>Configuration Settings</h3>
+
+<p>You can set up your app&rsquo;s default cache store by calling <code>config.cache_store=</code> inside <code>config/application.rb</code> or inside of your environment files in <code>config/environments/*.rb</code>.</p>
+
+<h3>Cache::Store</h3>
+
+<p>This is the foundation for interacting with the Rails cache. The class in Rails is provided via <code>ActiveSupport::Cache::Store</code>. There are four primary methods: <code>read</code>, <code>write</code>, <code>delete</code>, <code>exist?</code>, and <code>fetch</code>. The <code>fetch</code> method takes a block and will return an existing cache, or it will evaluate the block and write the result to the cache if a cache doesn&rsquo;t exist previously.</p>
+
+<p>There are four options that can be passed in to the <code>config.cache_store=</code> configuration. They are:
+&ndash; <code>:namespace</code> &ndash; Option is used to create a namespace within the cache store (useful when cache is shared with other applications). Default is the application name and Rails environment.
+&ndash; <code>:compress</code> &ndash; Used to indicate that compression should be used in the cache (useful for transferring large caches)
+&ndash; <code>:compress_threshold</code> &ndash; Used int conjunction with <code>:compress</code> to indicate a threshold under which caches should not be compressed (default is 16 kilobytes)
+&ndash; <code>:expires_in</code> &ndash; Sets an expiration time in seconds
+&ndash; <code>:race_condition_ttl</code> &ndash; Used in conjunction with <code>:expires_in</code> option to prevent race conditions when a cache expires (basically prevents multiple processes from regenerating cache entries simultaneously)</p>
+
+<h3>Cache::MemoryStore</h3>
+
+<p>This stores cache entries in memory. This has a size limit specified by the <code>:size</code> option (default size is 32 megabytes). When the cache exceeds the size limit, a cleanup will occur. This is not ideal for large app deployments, and typically works best for small, low traffic sites.</p>
+
+<p>This has to be specified in configurations via:
+&ndash; <code>config.cache_store = :memory_store, { size: 128.megabytes }</code></p>
+
+<h2>Heroku Cache Configuration Setup</h2>
+
+<p>In order to enable caching with Heroku, it works best with <code>Memcachier</code>, which is a Heroku add-on. <code>Memcachier</code> essentially manages and scales clusters of memcache servers for Heroku apps. See the link below for setup instructions.</p>
+
+<ul>
+<li><a href="" title="https://devcenter.heroku.com/articles/rack-cache-memcached-rails31#configure-rails-cache-store">Link to Heroku Memcachier Setup</a></li>
+</ul>
+
 </div>
 
 
@@ -126,12 +168,12 @@ NGinx has emerged largely as a result of increased demand for online services an
   
 
 
-<time datetime="2013-11-04T20:19:00-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+<time datetime="2014-03-19T09:27:04-04:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/apache/'>Apache</a>, <a class='category' href='/blog/categories/nginx/'>NGinx</a>, <a class='category' href='/blog/categories/passenger/'>Passenger</a>
+    <a class='category' href='/blog/categories/caching/'>caching</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
   
 </span>
 
@@ -140,7 +182,7 @@ NGinx has emerged largely as a result of increased demand for online services an
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://irmiller22.github.io/blog/2013/11/04/explanation-of-nginx-and-passenger/" data-via="irmiller22" data-counturl="http://irmiller22.github.io/blog/2013/11/04/explanation-of-nginx-and-passenger/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://irmiller22.github.io/blog/2014/03/19/rails-caching/" data-via="irmiller22" data-counturl="http://irmiller22.github.io/blog/2014/03/19/rails-caching/" >Tweet</a>
   
   
   
@@ -151,10 +193,8 @@ NGinx has emerged largely as a result of increased demand for online services an
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/10/30/a-new-addendum/" title="Previous Post: Abstraction: Path to Simplicity">&laquo; Abstraction: Path to Simplicity</a>
+        <a class="basic-alignment left" href="/blog/2014/02/27/controller-testing-via-rspec/" title="Previous Post: Controller Testing Via RSpec">&laquo; Controller Testing Via RSpec</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/11/09/omniauth-an-introduction/" title="Next Post: OmniAuth: An Introduction">OmniAuth: An Introduction &raquo;</a>
       
     </p>
   </footer>

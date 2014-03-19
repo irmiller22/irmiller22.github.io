@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="Last week, we dove right into database iteration and management. We focused on the following: SQL, hash iteration, web scraping (via Nokogiri, Open- &hellip;">
+  <meta name="description" content="Each, Collect, Select There are three methods that drive the process of data scraping and warehousing in the Ruby language. These three methods are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/07/each/">Difference Between Each, Select, and Collect Methods</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-07T23:31:00-04:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Each, Collect, Select</p>
+
+<p>There are three methods that drive the process of data scraping and warehousing in the Ruby language.  These three methods are the following: Each, Collect, and Select.  These three methods are examplees of iterators; iterators are used to organize and store data into a collection.  A collection can be either an array or a hash.</p>
+
+<p>For simplicity, I will refer to an array throughout the rest of the discussion.  I`ll follow up with a concise post on hashes.</p>
+
+<p>The Each method iterates through and returns all of the elements of an array or a hash.    It simply runs each element of the array through the Each code block (the function/modifier that lies between the do and end), and returns that modified value to the console.  For example:</p>
+
+<p><code>array = [2,4,6,8,10]
+array.each { |x| puts x * 10 }</code></p>
+
+<p>This would result in the following being output to the screen:</p>
+
+<p><code>20,
+40,
+60,
+80,
+100</code></p>
+
+<p>The Each method is great for simple data modification tasks, particularly if you need to obtain the result of that modification.  The major drawback is that it doesn`t provide a means to store the results of the block into an array unless you push those elements into the array.  This is where the Collect method comes in.</p>
+
+<p>The Collect method does the same thing as the Each method, except that it goes one step further and returns the results of the block in the form of an array.  For instance, look at the following example.</p>
+
+<p><code>array = [2,4,6,8,10]
+array.collect { |x| x * 10 }</code></p>
+
+<p>This would result in the following output to the screen:</p>
+
+<p><code>[20,40,60,80,100]</code></p>
+
+<p>The array &ldquo;array&rdquo; has been multiplied by the modifier inside of the block, and the collect method has returned an array with the modified values.  The returned array can then be stored in a variable, which has significant benefits in Ruby.  This can be used for many applications, such as arithmetic, problem solving, variable manipulation, and data parsing.</p>
+
+<p>The Select method is a modified version of the Each method, and basically &ldquo;selects&rdquo; objects that meet the predefined condition within the block.  For example, if I wanted to filter out elements from an array that do not meet a conditional statement of some kind, I could do the following:</p>
+
+<p><code>array = [1,2,3,4,5]
+array.select { |x| x &gt; 2 }</code></p>
+
+<p>It would return the following to my screen:</p>
+
+<p><code>[3,4,5]</code></p>
+
+<p>It basically will return any element of the array that, when inserted into the conditional statement inside of the block, results in a true statement.</p>
+
+<p>These three statements are already some of my most heavily used components within my Ruby syntax.  I&rsquo;m still learning each day more and more about what they are capable of.  I&rsquo;m excited to learn more about more specific applications of these methods.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -304,6 +385,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/19/rails-caching/">Rails Caching</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
       </li>
     
@@ -317,10 +402,6 @@
     
       <li class="post">
         <a href="/blog/2014/02/02/basic-rails-link-shortener-app/">Rails Link Shortener App</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a>
       </li>
     
   </ul>
