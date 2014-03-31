@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: authorization | Archaic Positives]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/authorization/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-03-31T11:01:50-04:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Simple Authorizations with Devise]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/03/28/simple-authorizations-with-devise/"/>
+    <updated>2014-03-28T14:42:30-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/03/28/simple-authorizations-with-devise</id>
+    <content type="html"><![CDATA[<p>We are in the process of building an application that requires several levels of permissions for a User model. Because we do not quite fully understand the scope of what permissions will entail in future iterations of the application, we wanted to leave open the opportunity to expand the permissions scheme further. We made the decision to use CanCan and integrate with Devise. CanCan is an authorization library that defines permissions for different resources. In addition, Devise is a large authentication gem that&rsquo;s used for Rails, and has modules that allow for a large degree of customization.</p>
+
+<p>We added in the CanCan gem, and, while building out our login features, quickly ran into problems associated with the strong params component of Rails. For whatever reason, Rails was not able to properly create a new object because the authorization level integer (via bitmask attribute) was not able to pass through strong params. I quickly found out that we were not properly overriding the Devise params method that whitelists each of the attributes.</p>
+
+<p>As a result, we decided to do away with CanCan and integrate our own permissions/authorization layer for our app.</p>
+
+<p>Here&rsquo;s how it is set up currently in our User model:</p>
+
+<p>```ruby User Model
+ROLES = {
+   10 => &lsquo;super_teacher&rsquo;,
+   7 => &lsquo;teacher&rsquo;,
+   5 => &lsquo;student&rsquo;,
+   0 => &lsquo;user&rsquo; #default role set on creation
+  }</p>
+
+<p>  def self.roles</p>
+
+<pre><code>ROLES
+</code></pre>
+
+<p>  end</p>
+
+<p>  def super_teacher?</p>
+
+<pre><code>self.role == 10
+</code></pre>
+
+<p>  end</p>
+
+<p>  def teacher?</p>
+
+<pre><code>self.role == 7
+</code></pre>
+
+<p>  end</p>
+
+<p>  def student?</p>
+
+<pre><code>self.role == 5
+</code></pre>
+
+<p>  end</p>
+
+<p>  def user?</p>
+
+<pre><code>self.role == 0
+</code></pre>
+
+<p>  end
+```</p>
+
+<p>We&rsquo;ve also set up our Registrations controller to override the default that&rsquo;s provided by Devise:</p>
+
+<p>```ruby Registrations Controller
+class RegistrationsController &lt; Devise::RegistrationsController</p>
+
+<p>  def new</p>
+
+<pre><code>super
+</code></pre>
+
+<p>  end</p>
+
+<p>  def create</p>
+
+<pre><code>user = User.create!(resource_params)
+sign_in(user)
+redirect_to root_path
+</code></pre>
+
+<p>  end</p>
+
+<p>  def update</p>
+
+<pre><code>super
+</code></pre>
+
+<p>  end</p>
+
+<p>  def resource_params</p>
+
+<pre><code>params.require(:user).permit(:role, :email, :password)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>As a result, we can scope the view throughout our app by referencing the <code>role</code> attribute of each User. The app is very young at this point, but already a major piece of our app has been implemented. Looking forward to seeing where this will be going.</p>
+]]></content>
+  </entry>
+  
+</feed>

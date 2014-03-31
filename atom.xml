@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-03-19T10:49:09-04:00</updated>
+  <updated>2014-03-31T11:01:50-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Simple Authorizations with Devise]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/03/28/simple-authorizations-with-devise/"/>
+    
+    <updated>2014-03-28T14:42:30-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/03/28/simple-authorizations-with-devise</id>
+    
+    <content type="html"><![CDATA[<p>We are in the process of building an application that requires several levels of permissions for a User model. Because we do not quite fully understand the scope of what permissions will entail in future iterations of the application, we wanted to leave open the opportunity to expand the permissions scheme further. We made the decision to use CanCan and integrate with Devise. CanCan is an authorization library that defines permissions for different resources. In addition, Devise is a large authentication gem that&rsquo;s used for Rails, and has modules that allow for a large degree of customization.</p>
+
+<p>We added in the CanCan gem, and, while building out our login features, quickly ran into problems associated with the strong params component of Rails. For whatever reason, Rails was not able to properly create a new object because the authorization level integer (via bitmask attribute) was not able to pass through strong params. I quickly found out that we were not properly overriding the Devise params method that whitelists each of the attributes.</p>
+
+<p>As a result, we decided to do away with CanCan and integrate our own permissions/authorization layer for our app.</p>
+
+<p>Here&rsquo;s how it is set up currently in our User model:</p>
+
+<figure class='code'><figcaption><span>User Model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ROLES</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>   <span class="mi">10</span> <span class="o">=&gt;</span> <span class="s1">&#39;super_teacher&#39;</span><span class="p">,</span>
+</span><span class='line'>   <span class="mi">7</span> <span class="o">=&gt;</span> <span class="s1">&#39;teacher&#39;</span><span class="p">,</span>
+</span><span class='line'>   <span class="mi">5</span> <span class="o">=&gt;</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span>
+</span><span class='line'>   <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;user&#39;</span> <span class="c1">#default role set on creation</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">roles</span>
+</span><span class='line'>    <span class="no">ROLES</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">super_teacher?</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="mi">10</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">teacher?</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="mi">7</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">student?</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">user?</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&rsquo;ve also set up our Registrations controller to override the default that&rsquo;s provided by Devise:</p>
+
+<figure class='code'><figcaption><span>Registrations Controller</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">RegistrationsController</span> <span class="o">&lt;</span> <span class="ss">Devise</span><span class="p">:</span><span class="ss">:RegistrationsController</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'>    <span class="k">super</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="n">resource_params</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">redirect_to</span> <span class="n">root_path</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>    <span class="k">super</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">resource_params</span>
+</span><span class='line'>    <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:role</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As a result, we can scope the view throughout our app by referencing the <code>role</code> attribute of each User. The app is very young at this point, but already a major piece of our app has been implemented. Looking forward to seeing where this will be going.</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -1774,95 +1895,6 @@ NGinx has emerged largely as a result of increased demand for online services an
 <p>Fido is an instance of the class Dog.  That is an importance distinction to make.  Now, if I call the fake_bark method on Fido without self prefixed, then only Fido will give out that weak attempt of a bark.  Every other dog in the world will be silent, because instances of every other dog hasn&rsquo;t been created in the Dog class.</p>
 
 <p>It took me a while before I could distinguish between the different uses of self.  It&rsquo;s important to note the differences, because it can be come very problematic when you start to write your own programs or applications.  Self in the wrong place and lead to a lot of brain pain &mdash; I learned this the hard way.  Do yourself a favor and learn all of the little nuances of the self keyword.</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[HAML: DRY version of ERB?]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/10/13/haml-dry-version-of-html/"/>
-    
-    <updated>2013-10-13T22:42:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/10/13/haml-dry-version-of-html</id>
-    
-    <content type="html"><![CDATA[<p>Embedded Ruby, or ERB for short, is a Ruby feature that allows a programmer to generate text from a template.  Its aim is to simplify flow control, and utilizes back-end web data to maintain repetitive front-end tasks, such as generating personalized web pages, emails, scripts, and any sort of text file.  In programming speak, ERB is Ruby&rsquo;s built-in template engine.</p>
-
-<p>HAML, an alternative to ERB, stands for HTML Abstraction Markup Language.  HAML was created with Ruby&rsquo;s key principles in mind: markup should be legible, implement DRY, and be well-indented.  ERB uses HTML, which is a verbose markup language, and has proved problematic in meeting Ruby&rsquo;s standards for a seamless experience, and has seemingly felt incompatible with Ruby&rsquo;s language due to the large differences in syntactical structure.  HAML attempts to bridge that divide by creating a more seamless experience.</p>
-
-<p>Let&rsquo;s use an example to compare HAML and ERB.</p>
-
-<p><strong>ERB</strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;div class='dogs' id='sadie&lt;%= dogs.sadie %&gt;'&gt;
-</span><span class='line'>  &lt;%= dogs.body %&gt;
-</span><span class='line'>&lt;/div&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>HAML</strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>.dogs{:sadie =&gt; "dogs#{dogs.sadie}"}= dogs.body</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Look at the example above.  If you&rsquo;ve used Nokogiri before, then the HAML example may remind you of something.  If you&rsquo;ve ever used Nokogiri or an XML/HTML parsing gem before, you&rsquo;ll notice that the syntax is very similar to that of CSS queries for selectors.  Additionally, white space is used to denote indentation, as is the case with the &ldquo;dogs.body&rdquo; component in the ERB example.  Interpolation is very abundant in HAML as well, and there is no need to close tags in HAML.  Already, HAML has reduced verbosity significantly with just a simple example.</p>
-
-<p>Let&rsquo;s move on to a more complex example.</p>
-
-<p><strong>ERB</strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;div class="cat"&gt;
-</span><span class='line'>  &lt;div class="name"&gt;&lt;%= name %&gt;&lt;/div&gt;
-</span><span class='line'>  &lt;% img_tag img %&gt;
-</span><span class='line'>  &lt;div class="kittens"&gt;
-</span><span class='line'>      &lt;% kittens.each |kitten| %&gt;
-</span><span class='line'>          &lt;div class="kitten"&gt;
-</span><span class='line'>              &lt;div class="name"&gt;&lt;% kitten.name %&gt;&lt;/div&gt;
-</span><span class='line'>          &lt;/div&gt;
-</span><span class='line'>      &lt;% end %&gt;
-</span><span class='line'>  &lt;/div&gt;
-</span><span class='line'>&lt;/div&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That was frustrating typing out all of the tags.  Now let&rsquo;s compare that to the HAML version.</p>
-
-<p><strong>HAML</strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>.cat
-</span><span class='line'>  .name= name
-</span><span class='line'>  = img_tag img
-</span><span class='line'>  .kittens
-</span><span class='line'>      - kittens.each |kitten|
-</span><span class='line'>          .kitten
-</span><span class='line'>              .name= kitten.name</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&rsquo;s amazing how much HAML simplifies the markup template.  I think that I&rsquo;ve displayed the benefits to using HAML.  However, there are two sides to this story.  Because browsers are designed to only understand HTML, there are those that believe abstracting away the key elements of the HTML language via HAML (or other alternatives) makes the front-end component a little more difficult.  There are also compatibility issues with CSS, particularly when it comes to web templates.  WIth that said, it is important to understand ERB simply because it is a universal language, and HAML is not.</p>
-
-<p>I would love to use HAML, but it doesn&rsquo;t seem intuitive to use it when it is not widely utilized in the Ruby community.  I looked up some simple statistics on Stackoverflow.  There were 210,574 tags for HTML discussions alone, and that didn&rsquo;t include more specific HTML queries (HTML5, HTML parsing, XHTML, etc).  HAML had a whopping 1,831 tags for discussions.  I&rsquo;m not a statistician, but I believe that there&rsquo;s statistical significance in that HAML is not widely accepted, and isn&rsquo;t quite a complete alternative to HTML.</p>
-
-<p>With that said, it&rsquo;s nice to know that there are other options out there that are trying to bring Ruby&rsquo;s straightforward syntax to markup languages.</p>
 ]]></content>
     
   </entry>

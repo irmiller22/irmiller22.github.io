@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Scenario | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/scenario/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-03-19T10:49:09-04:00</updated>
+  <updated>2014-03-31T11:01:50-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -95,7 +95,7 @@ end</p>
 end</p>
 
 <p>Then(/^it should come from the default mailing address$/) do
-  expect(@email.from.first).to eq(&lsquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x6f;&#x72;&#x69;&#103;&#x69;&#x6e;&#97;&#x6c;&#64;&#x6d;&#97;&#x69;&#x6c;&#105;&#110;&#x67;&#x2e;&#x63;&#x6f;&#x6d;">&#111;&#x72;&#x69;&#x67;&#x69;&#x6e;&#97;&#108;&#64;&#109;&#x61;&#x69;&#x6c;&#105;&#x6e;&#103;&#46;&#99;&#x6f;&#109;</a>&rsquo;)
+  expect(@email.from.first).to eq(&lsquo;<a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#111;&#114;&#105;&#103;&#105;&#110;&#97;&#108;&#64;&#x6d;&#97;&#105;&#108;&#105;&#x6e;&#x67;&#46;&#x63;&#111;&#x6d;">&#x6f;&#x72;&#105;&#103;&#105;&#110;&#97;&#x6c;&#x40;&#x6d;&#97;&#105;&#x6c;&#105;&#110;&#x67;&#46;&#99;&#x6f;&#x6d;</a>&rsquo;)
 end</p>
 
 <p>Given(/^I am not a Partner$/) do
