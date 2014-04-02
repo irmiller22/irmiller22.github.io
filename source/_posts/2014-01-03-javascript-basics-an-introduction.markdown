@@ -74,14 +74,14 @@ Looping Through Arrays
 ```javascript Looping Through Array
 function trackStudents(name, roster){
 	if (roster.length == 0){
-		list.push(name);
+		roster.push(name);
 	} else{
 		for(var i=0; i < roster.length; i++) {
-			if(list[i] == undefined){
-				list[i] = name;
-				return list;
-			} else if (i == list.length - 1) {
-				list.push(name);
+			if(roster[i] == undefined){
+				roster[i] = name;
+				return roster;
+			} else if (i == roster.length - 1) {
+				roster.push(name);
 			}
 		}
   }
