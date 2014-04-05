@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="Embedded Ruby, or ERB for short, is a Ruby feature that allows a programmer to generate text from a template. Its aim is to simplify flow control, &hellip;">
+  <meta name="description" content="One of the more confusing aspect of dealing with classes is knowing when to use &lsquo;self&rsquo; appropriately. In the context of a Class, &lsquo; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,110 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/15/the-correct-times-to-use-self-in-a-class/">The Correct Usage of &#8216;Self&#8217; in a Class</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-15T08:44:00-04:00" pubdate data-updated="true">Oct 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of the more confusing aspect of dealing with classes is knowing when to use &lsquo;self&rsquo; appropriately.  In the context of a Class, &lsquo;self&rsquo; refers to the current class, and is in itself an instance of the class Class.  I know this sounds confusing, but I&rsquo;ll break it down for you momentarily.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Dog
+</span><span class='line'>  attr_accessor :name, :breed
+</span><span class='line'>
+</span><span class='line'>  def self.fake_bark
+</span><span class='line'>    "Awooooo!"
+</span><span class='line'>  end  
+</span><span class='line'> 
+</span><span class='line'>  def self.real_bark
+</span><span class='line'>    " Woof!"
+</span><span class='line'>  end  
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this example, self is referring to the class &lsquo;Dog&rsquo;.  Basically, if the class Dog were to encompass all dogs alive in the world, any time that I used Dog.fake_bark, every single dog would give out a fake bark that sounds like &ldquo;Awoooo!&rdquo;  That&rsquo;s a husky or wolf attempting a feeble howl.  If I were to use Dog.real_bark, then every single dog in the world would give out a resounding &ldquo;Woof!&rdquo;</p>
+
+<p>Now let&rsquo;s look at the following example.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Dog
+</span><span class='line'>  attr_accessor :name, :breed
+</span><span class='line'>
+</span><span class='line'>  def fake_bark
+</span><span class='line'>    "Awooooo!"
+</span><span class='line'>  end  
+</span><span class='line'> 
+</span><span class='line'>  def real_bark
+</span><span class='line'>    " Woof!"
+</span><span class='line'>  end  
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When self is not included in the method, that just means that it is a method that refers to an instance of the class &lsquo;Dog&rsquo;.  So if I were to create a new dog named Fido that is a labrador, then I would do the following:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>fido = Dog.new
+</span><span class='line'>fido.name = "Fido"
+</span><span class='line'>fido.breed = "Labrador"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fido is an instance of the class Dog.  That is an importance distinction to make.  Now, if I call the fake_bark method on Fido without self prefixed, then only Fido will give out that weak attempt of a bark.  Every other dog in the world will be silent, because instances of every other dog hasn&rsquo;t been created in the Dog class.</p>
+
+<p>It took me a while before I could distinguish between the different uses of self.  It&rsquo;s important to note the differences, because it can be come very problematic when you start to write your own programs or applications.  Self in the wrong place and lead to a lot of brain pain &mdash; I learned this the hard way.  Do yourself a favor and learn all of the little nuances of the self keyword.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -499,6 +603,10 @@ array.select { |x| x &gt; 2 }</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/28/simple-authorizations-with-devise/">Simple Authorizations with Devise</a>
       </li>
     
@@ -512,10 +620,6 @@ array.select { |x| x &gt; 2 }</code></p>
     
       <li class="post">
         <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/19/questions-about-cucumber/">Questions and Thoughts About Cucumber for Myself</a>
       </li>
     
   </ul>

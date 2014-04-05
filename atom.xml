@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-04-01T23:59:12-04:00</updated>
+  <updated>2014-04-05T10:53:03-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[Strong Params in Rails]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails/"/>
+    
+    <updated>2014-04-01T23:10:39-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails</id>
+    
+    <content type="html"><![CDATA[<p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
+
+<p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
+
+<p>Typically, we have a private method inside of the controller that delegates the <code>whitelisting</code> that should take place.</p>
+
+<p>For example:</p>
+
+<figure class='code'><figcaption><span>UsersController</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">resource_params</span>
+</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>require</code> statement inside the <code>resource_params</code> method performs the parameter validation for the user parameter. If the user parameter exists, then it will go on and validate each of the attributes. If the user parameter does not exist, then it will throw an <code>ActionController::ParameterMissing</code> error and return a 400 status code response.</p>
+
+<p>Additionally, the <code>permit</code> method will strip out any attributes that do not belong inside of the params. For example, if we tried to include a <code>:admin</code> attribute inside of the <code>permit</code> method, it will not be passed into the params.</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -1816,85 +1852,6 @@ NGinx has emerged largely as a result of increased demand for online services an
 <p>This is a big change that I&rsquo;ve started to implement in my RSpec tests, largely because of issues that have to do with delegation.  There was a blog post (<a href="http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax">http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax</a>) that discussed the differences between &lsquo;expect&rsquo; and &lsquo;should.&rsquo;  My understanding of the Kernel library and the rspec-expectations are not very concrete yet, but it is partly a result of a library load.  If one library is loaded before the other, it can sometimes override syntax delegations for the same word.</p>
 
 <p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[The Correct Usage of 'self' in a Class]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/10/15/the-correct-times-to-use-self-in-a-class/"/>
-    
-    <updated>2013-10-15T08:44:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/10/15/the-correct-times-to-use-self-in-a-class</id>
-    
-    <content type="html"><![CDATA[<p>One of the more confusing aspect of dealing with classes is knowing when to use &lsquo;self&rsquo; appropriately.  In the context of a Class, &lsquo;self&rsquo; refers to the current class, and is in itself an instance of the class Class.  I know this sounds confusing, but I&rsquo;ll break it down for you momentarily.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>class Dog
-</span><span class='line'>  attr_accessor :name, :breed
-</span><span class='line'>
-</span><span class='line'>  def self.fake_bark
-</span><span class='line'>    "Awooooo!"
-</span><span class='line'>  end  
-</span><span class='line'> 
-</span><span class='line'>  def self.real_bark
-</span><span class='line'>    " Woof!"
-</span><span class='line'>  end  
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In this example, self is referring to the class &lsquo;Dog&rsquo;.  Basically, if the class Dog were to encompass all dogs alive in the world, any time that I used Dog.fake_bark, every single dog would give out a fake bark that sounds like &ldquo;Awoooo!&rdquo;  That&rsquo;s a husky or wolf attempting a feeble howl.  If I were to use Dog.real_bark, then every single dog in the world would give out a resounding &ldquo;Woof!&rdquo;</p>
-
-<p>Now let&rsquo;s look at the following example.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>class Dog
-</span><span class='line'>  attr_accessor :name, :breed
-</span><span class='line'>
-</span><span class='line'>  def fake_bark
-</span><span class='line'>    "Awooooo!"
-</span><span class='line'>  end  
-</span><span class='line'> 
-</span><span class='line'>  def real_bark
-</span><span class='line'>    " Woof!"
-</span><span class='line'>  end  
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When self is not included in the method, that just means that it is a method that refers to an instance of the class &lsquo;Dog&rsquo;.  So if I were to create a new dog named Fido that is a labrador, then I would do the following:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>fido = Dog.new
-</span><span class='line'>fido.name = "Fido"
-</span><span class='line'>fido.breed = "Labrador"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Fido is an instance of the class Dog.  That is an importance distinction to make.  Now, if I call the fake_bark method on Fido without self prefixed, then only Fido will give out that weak attempt of a bark.  Every other dog in the world will be silent, because instances of every other dog hasn&rsquo;t been created in the Dog class.</p>
-
-<p>It took me a while before I could distinguish between the different uses of self.  It&rsquo;s important to note the differences, because it can be come very problematic when you start to write your own programs or applications.  Self in the wrong place and lead to a lot of brain pain &mdash; I learned this the hard way.  Do yourself a favor and learn all of the little nuances of the self keyword.</p>
 ]]></content>
     
   </entry>
