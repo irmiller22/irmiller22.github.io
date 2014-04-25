@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="One of the more confusing aspect of dealing with classes is knowing when to use &lsquo;self&rsquo; appropriately. In the context of a Class, &lsquo; &hellip;">
+  <meta name="description" content="For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis. Because RSpec is the testing framework &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,130 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/20/rspec-a-misunderstood-obstacle/">RSpec: A Misunderstood Complement to Ruby</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-20T21:37:00-04:00" pubdate data-updated="true">Oct 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis.  Because RSpec is the testing framework for the Ruby language, I viewed it as an obstacle to my learning development.  After studying more about RSpec in the past few days, I&rsquo;m starting to realize that I have been viewing its fundamental purpose incorrectly.  RSpec is a complement to the Ruby developer&rsquo;s toolkit &mdash; it prevents unneccesary work by testing the behaviors of a framework.  In short, it is the blueprint of any application, and represents a guided set of directions that leads you to a finished product.</p>
+
+<p>In this blog post, I&rsquo;ll discuss the basic premise of RSpec and also discuss a few ways to refactor RSpec code.</p>
+
+<figure class='code'><figcaption><span>RSpec Basic Syntax</span><a href='https://speakerdeck.com/pat/rspec-introduction'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;basic RSpec syntax&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;describes how the code should behave&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">User</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">should</span> <span class="n">be</span><span class="p">(</span><span class="n">clear</span><span class="p">)</span>
+</span><span class='line'>      <span class="no">User</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">should</span> <span class="n">be</span><span class="p">(</span><span class="n">concise</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s a simple example.</p>
+
+<figure class='code'><figcaption><span>Calculator</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Calculator</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;#multiply&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s1">&#39;returns the product of its parameters&#39;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">calc</span> <span class="o">=</span> <span class="no">Calculator</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>          <span class="n">calc</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="n">eq</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This example is to just show what RSpec was intended for in regards to test-driven development.  See how RSpec determines how the calculator should behave when the multiply method is called?  When given the parameters 4 and 5, the multiply method should return an integer value of 20.</p>
+
+<figure class='code'><figcaption><span>Refactor a name spec</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">James</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="no">James</span><span class="o">.</span><span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">subject</span><span class="o">.</span><span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&ldquo;Subject&rdquo; always refers to an instance of a class.  In this case, James is an instance of the Person class, and the step of initializing a Person instance with the name James has been refactored by using &ldquo;subject.&rdquo;</p>
+
+<figure class='code'><figcaption><span>Using &#8216;Expect&#8217; instead of &#8216;Should&#8217;</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a big change that I&rsquo;ve started to implement in my RSpec tests, largely because of issues that have to do with delegation.  There was a blog post (<a href="http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax">http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax</a>) that discussed the differences between &lsquo;expect&rsquo; and &lsquo;should.&rsquo;  My understanding of the Kernel library and the rspec-expectations are not very concrete yet, but it is partly a result of a library load.  If one library is loaded before the other, it can sometimes override syntax delegations for the same word.</p>
+
+<p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -603,6 +727,10 @@ array.select { |x| x &gt; 2 }</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
       </li>
     
@@ -616,10 +744,6 @@ array.select { |x| x &gt; 2 }</code></p>
     
       <li class="post">
         <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/23/foray-into-cucumber-feature-testing/">Foray into Cucumber Feature Testing</a>
       </li>
     
   </ul>

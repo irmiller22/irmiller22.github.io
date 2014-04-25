@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-04-05T10:53:03-04:00</updated>
+  <updated>2014-04-25T18:00:21-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -12,6 +12,389 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    
+    <title type="html"><![CDATA[RSpec Testing for a JSON API]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
+    
+    <updated>2014-04-18T10:31:45-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/04/18/rspec-testing-for-a-json-api</id>
+    
+    <content type="html"><![CDATA[<p>I am in the process of building out a JSON API for a registry application, that, when pinged by Salesforce, will fire off emails to prospective Flatiron students that notify them of their acceptance into the Flatiron School program. One thing that I noticed is that there aren&rsquo;t many resources out there for setting up a testing environment and eventually building out a JSON API via Ruby on Rails. Hopefully this resource will shed a little more light on how to accomplish that.</p>
+
+<p>The first step is to integrate a Rails serializer in order to encapsulate the JSON serialization of objects. We first install the <code>active_model_serializers</code> gem into the Gemfile, and then bundle. Now, for each model that we want to serialize for JSON serialization, we need to create a serializer: <code>rails g serializer student</code>.</p>
+
+<p>Inside of the serializer file that has just been generated, we need to add in student attributes that will be defined and visible in the JSON API.</p>
+
+<figure class='code'><figcaption><span>app/serializers/student_serializer.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">StudentSerializer</span> <span class="o">&lt;</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Serializer</span>
+</span><span class='line'>  <span class="n">attributes</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="ss">:email</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For example, this is how the JSON data will be represented on the API tree, based upon the order of attributes in the <code>student_serializer.rb</code> file above:</p>
+
+<figure class='code'><figcaption><span>JSON data for student</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="ss">students</span><span class="p">:</span>
+</span><span class='line'>    <span class="o">[</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>        <span class="nb">id</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">first_name</span><span class="p">:</span> <span class="s2">&quot;Doctor&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">last_name</span><span class="p">:</span> <span class="s2">&quot;Who&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;doctor_who@whoville.com&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#111;&#99;&#116;&#x6f;&#114;&#95;&#119;&#104;&#x6f;&#x40;&#x77;&#x68;&#x6f;&#118;&#x69;&#x6c;&#x6c;&#101;&#46;&#x63;&#x6f;&#x6d;">&#100;&#111;&#99;&#116;&#111;&#114;&#95;&#x77;&#x68;&#111;&#x40;&#x77;&#x68;&#x6f;&#118;&#x69;&#x6c;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+
+<p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
+
+<p>Next, I set up the routes for the <code>students</code> resource. My <code>config/routes.rb</code> file looks like this currently:</p>
+
+<figure class='code'><figcaption><span>config/routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:api</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">namespace</span> <span class="ss">:v1</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">resources</span> <span class="ss">:students</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:create</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is the basic setup for the API itself. At this point in the API development, we&rsquo;re only concerned with the <code>index</code>, <code>show</code>, and <code>create</code> actions for the API Students Controller. Now, we&rsquo;ll go ahead and set up the RSpec tests for the controller.</p>
+
+<figure class='code'><figcaption><span>spec/controllers/api/v1/students_controller_spec.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="ss">API</span><span class="p">:</span><span class="ss">:V1</span><span class="o">::</span><span class="no">StudentsController</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;GET &#39;index&#39; &quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns a successful 200 response&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">pending</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns all the students&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">pending</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This describe block refers to the index action of the controller. In this block, we are testing for two expectations: for the JSON response for the index action to return a 200 status code, and for the JSON response to return the correct number of students that exist in the test database.</p>
+
+<figure class='code'><figcaption><span>spec/controllers/api/v1/students_controller_spec.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="ss">API</span><span class="p">:</span><span class="ss">:V1</span><span class="o">::</span><span class="no">StudentsController</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;GET &#39;index&#39; &quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns a successful 200 response&quot;</span> <span class="k">do</span>
+</span><span class='line'>       <span class="n">get</span> <span class="ss">:index</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:json</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_success</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns all the students&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create_list</span><span class="p">(</span><span class="ss">:student</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:index</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:json</span>
+</span><span class='line'>      <span class="n">parsed_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">parsed_response</span><span class="o">[</span><span class="s1">&#39;students&#39;</span><span class="o">].</span><span class="n">length</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In order to get these tests passing, we first need to submit a get request for the <code>index</code> action in a JSON format. We first expect the response to be successful, or more specifically, to result in a 200 status code.</p>
+
+<p>We also need to test whether or not it returns all of the existing students in the test database. I&rsquo;ve used the FactoryGirl gem to mock out the student list <code>create_list(:student, 5)</code>. I&rsquo;ve also set up the <code>parsed_response</code> variable, which will translate the response body in JSON format into a more readable format. Then I&rsquo;ve set the expectation that the <strong>length</strong> of the <code>parsed_response[students]</code> should be equal to 5, as specified in the <code>FactoryGirl.create_list(:student, 5)</code> line.</p>
+
+<figure class='code'><figcaption><span>spec/controllers/api/v1/students_controller_spec.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;GET &#39;show&#39; &quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns a successful 200 response&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">pending</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns data of an single student&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">pending</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns an error if the student does not exist&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">pending</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This block refers to the show action. I am testing for three specific expectations: a successful JSON response to return a 200 status code, a successful response to return the correct student JSON object, and for the JSON response to return an error message for a student JSON object that doesn&rsquo;t exist.</p>
+
+<figure class='code'><figcaption><span>spec/controllers/api/v1/students_controller_spec.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;GET &#39;show&#39; &quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:student</span><span class="p">)</span> <span class="p">{</span> <span class="n">create</span><span class="p">(</span><span class="ss">:student</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns a successful 200 response&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:student</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">student</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:json</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_success</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns data of an single student&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:student</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">student</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:json</span>
+</span><span class='line'>      <span class="n">parsed_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">parsed_response</span><span class="o">[</span><span class="s1">&#39;student&#39;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to_not</span> <span class="n">be_nil</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;returns an error if the student does not exist&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">get</span> <span class="ss">:student</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">10</span> <span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:json</span>
+</span><span class='line'>      <span class="n">parsed_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">parsed_response</span><span class="o">[</span><span class="s1">&#39;error&#39;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Student does not exist&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_not_found</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&rsquo;ve built out a student mock using FactoryGirl, and will be using this to test whether or not the <code>show</code> method returns the correct student from the test database based on the student&rsquo;s ID. For each test, we are submitting a get request for the student we mocked out earlier, and we should expect a 200 response for the first test, and for <code>parsed_response['student']</code> to essentially be a valid student object returned from the test database. For the third test, we are asking to return a student with an ID of 10, which doesn&rsquo;t exist in our database. We should expect an error messaged from <code>parsed_response['error']</code>, and we should also expect the response to return a message saying that the object was not found.</p>
+
+<figure class='code'><figcaption><span>spec/controllers/api/v1/students_controller_spec.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;POST &#39;create&#39; &quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">context</span> <span class="s2">&quot;correct email format&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;returns a successful json string with success message&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">pending</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">context</span> <span class="s2">&quot;incorrect email format&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;returns an error if an incorrect email format is submitted&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">pending</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This block is describing the create method, which will take in an email address parameter. If the email address is valid, then it will fire off an email to that email address, and then fire off a <strong>success</strong> message within a JSON response. If the email address is invalid, then it won&rsquo;t fire off the email, and will render an <strong>invalid</strong> message within a JSON response.</p>
+
+<figure class='code'><figcaption><span>spec/controllers/api/v1/students_controller_spec.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;POST &#39;create&#39; &quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">context</span> <span class="s2">&quot;correct email format&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;returns a successful json string with success message&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">post</span> <span class="ss">:create</span><span class="p">,</span> <span class="p">{</span> <span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;newstudent@example.com&quot;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_success</span>
+</span><span class='line'>        <span class="n">parsed_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="n">parsed_response</span><span class="o">[</span><span class="s1">&#39;success&#39;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Accepted email format.&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">context</span> <span class="s2">&quot;incorrect email format&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;returns an error if an incorrect email format is submitted&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">post</span> <span class="ss">:create</span><span class="p">,</span> <span class="p">{</span> <span class="ss">email</span><span class="p">:</span> <span class="s2">&quot;new@studentexample&quot;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="n">parsed_response</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_bad_request</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="n">parsed_response</span><span class="o">[</span><span class="s1">&#39;invalid&#39;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Invalid email format.&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the first test, we&rsquo;re passing in a valid email address inside of the post request for the <code>create</code> action. If it&rsquo;s valid, then we expect the JSON response to have a 200 status code, and we also expect <code>parsed_response</code> to have a <strong>success</strong> message as well. The second test passes in an invalid email address. We expect the JSON response to return a bad request status, more specifically a 400 status code, as well as a <strong>invalid</strong> message inside of the <code>parsed_response</code>.</p>
+
+<p>In order to make all of these tests pass, here&rsquo;s how the corresponding <code>app/controllers/api/v1/students_controller.rb</code> file looks:</p>
+
+<figure class='code'><figcaption><span>controllers/api/v1/students_controller.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">API::V1</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">StudentsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>    <span class="n">before_action</span> <span class="ss">:find_student</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:student</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>      <span class="vi">@students</span> <span class="o">=</span> <span class="no">Student</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@students</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@student</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">valid_email?</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:email</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">send_acceptance_email</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:email</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="p">{</span> <span class="ss">success</span><span class="p">:</span> <span class="s2">&quot;Accepted email format.&quot;</span> <span class="p">}</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="p">{</span> <span class="ss">invalid</span><span class="p">:</span> <span class="s2">&quot;Invalid email format.&quot;</span> <span class="p">},</span> <span class="ss">status</span><span class="p">:</span> <span class="ss">:bad_request</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">find_student</span>
+</span><span class='line'>      <span class="vi">@student</span> <span class="o">=</span> <span class="no">Student</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">rescue</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:RecordNotFound</span>
+</span><span class='line'>        <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="p">{</span> <span class="ss">error</span><span class="p">:</span> <span class="s2">&quot;Student does not exist&quot;</span> <span class="p">},</span> <span class="ss">status</span><span class="p">:</span> <span class="ss">:not_found</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">valid_email?</span><span class="p">(</span><span class="n">email_address</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">!!</span><span class="p">(</span><span class="n">email_address</span> <span class="o">=~</span> <span class="sr">/.+\@.+\..+/</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">send_acceptance_email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</span><span class='line'>      <span class="no">NewStudentMailer</span><span class="o">.</span><span class="n">acceptance_email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">deliver</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>index</code>, <code>show</code>, and <code>create</code> methods should be pretty straightforward, but perhaps I should elaborate more on the private methods. Within the context of building an API, we only need to focus on two: <code>find_student</code> and <code>valid_email?(email_address)</code>.</p>
+
+<p>The <code>find_student</code> method will query the Student model and its corresponding ActiveRecord database in order to find the student object with the ID attribute specified in params. In the event that it cannot find that corresponding student and Rails throws a <code>ActiveRecord::RecordNotFound</code> error, then it will execute a rescue clause that will render a JSON response with two components: the message &ldquo;Student does not exist&rdquo; and a 404 status code (&ldquo;Not Found&rdquo;).</p>
+
+<p>The &lsquo;valid_email?(email_address)&rsquo; method is simply a regex that will parse a parameter passed in, and determine whether or not it is a valid email address. If it is valid, it will fire off an email in the <code>send_acceptance_email(email)</code> method, but if it is not valid, then it will render a JSON response with an invalid format error message.</p>
+]]></content>
+    
+  </entry>
   
   <entry>
     
@@ -1753,105 +2136,6 @@ NGinx has emerged largely as a result of increased demand for online services an
 <p>Hello everyone (in Ruby 003 class on Monday, Oct 28), what is Avi&rsquo;s background?  Well, it&rsquo;s a white wall.</p>
 
 <p><img class="center" src="https://i.chzbgr.com/maxW500/5870736384/hB08BCDAD/"></p>
-]]></content>
-    
-  </entry>
-  
-  <entry>
-    
-    <title type="html"><![CDATA[RSpec: A Misunderstood Complement to Ruby]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle/"/>
-    
-    <updated>2013-10-20T21:37:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/10/20/rspec-a-misunderstood-obstacle</id>
-    
-    <content type="html"><![CDATA[<p>For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis.  Because RSpec is the testing framework for the Ruby language, I viewed it as an obstacle to my learning development.  After studying more about RSpec in the past few days, I&rsquo;m starting to realize that I have been viewing its fundamental purpose incorrectly.  RSpec is a complement to the Ruby developer&rsquo;s toolkit &mdash; it prevents unneccesary work by testing the behaviors of a framework.  In short, it is the blueprint of any application, and represents a guided set of directions that leads you to a finished product.</p>
-
-<p>In this blog post, I&rsquo;ll discuss the basic premise of RSpec and also discuss a few ways to refactor RSpec code.</p>
-
-<figure class='code'><figcaption><span>RSpec Basic Syntax</span><a href='https://speakerdeck.com/pat/rspec-introduction'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;basic RSpec syntax&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;describes how the code should behave&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="no">User</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">should</span> <span class="n">be</span><span class="p">(</span><span class="n">clear</span><span class="p">)</span>
-</span><span class='line'>      <span class="no">User</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">should</span> <span class="n">be</span><span class="p">(</span><span class="n">concise</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here&rsquo;s a simple example.</p>
-
-<figure class='code'><figcaption><span>Calculator</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Calculator</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;#multiply&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">it</span> <span class="s1">&#39;returns the product of its parameters&#39;</span> <span class="k">do</span>
-</span><span class='line'>          <span class="n">calc</span> <span class="o">=</span> <span class="no">Calculator</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>          <span class="n">calc</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="n">eq</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This example is to just show what RSpec was intended for in regards to test-driven development.  See how RSpec determines how the calculator should behave when the multiply method is called?  When given the parameters 4 and 5, the multiply method should return an integer value of 20.</p>
-
-<figure class='code'><figcaption><span>Refactor a name spec</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="no">James</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>      <span class="no">James</span><span class="o">.</span><span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">subject</span><span class="o">.</span><span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&ldquo;Subject&rdquo; always refers to an instance of a class.  In this case, James is an instance of the Person class, and the step of initializing a Person instance with the name James has been refactored by using &ldquo;subject.&rdquo;</p>
-
-<figure class='code'><figcaption><span>Using &#8216;Expect&#8217; instead of &#8216;Should&#8217;</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is a big change that I&rsquo;ve started to implement in my RSpec tests, largely because of issues that have to do with delegation.  There was a blog post (<a href="http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax">http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax</a>) that discussed the differences between &lsquo;expect&rsquo; and &lsquo;should.&rsquo;  My understanding of the Kernel library and the rspec-expectations are not very concrete yet, but it is partly a result of a library load.  If one library is loaded before the other, it can sometimes override syntax delegations for the same word.</p>
-
-<p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
 ]]></content>
     
   </entry>
