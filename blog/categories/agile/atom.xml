@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: agile | Archaic Positives]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/agile/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-05-04T13:41:21-04:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Intersection between Tolstoy and Agile Programming]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/"/>
+    <updated>2014-05-04T13:23:42-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming</id>
+    <content type="html"><![CDATA[<p><img class="center [tolstoy profile] <a" src="href="http://usoniandreams.info/wp-content/uploads/2013/11/leo-tolstoy_usonian_idea.jpg">http://usoniandreams.info/wp-content/uploads/2013/11/leo-tolstoy_usonian_idea.jpg</a>" width="620" height="480" title="&lsquo;Leo Tolstoy&rsquo;" ></p>
+
+<p>After I got back from the gym tonight, I decided in a spur of the moment decision to watch a quick TEDTalks episode.  I ended up choosing one that discussed “Agile Programming”, and the talk was given by a man named Bruce Feiler.  In his talk, he referenced the opening line of Leo Tolstoy’s book Anna Karenina.  I’ll come back to that.</p>
+
+<p>Bruce Feiler’s talk was something of a revelation for me.  He spoke about the concept of agile programming, which was a organizational concept created by a programmer named Jeff Sutherland to address the inefficiencies of the top-down approach to software development.  The idea is that if a company’s management comes up with an idea to develop into a software product, the creative process is too limited and does not involve a lot of feedback.  It will result in a product that is poor, insufficient, and outdated.  Agile programming focuses on bottom-up development, and there is emphasis on a few core tenets: “individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan.”</p>
+
+<p>Feiler took the concept of agile programming and refocused it into three core tenets that could be applied to any one entity, whether it’s an individual person or a collective organization.  First, always keep adapting to change.  Second, take opportunities to empower yourselves.  Finally, never stop telling your story.  The last concept sounds a little silly, but in the Internet age where information and content is at every turn, a sense of identity is more important than ever.  It’s important to know what exactly your values are, what your goals are, and to find that button that will make you click.  As Feiler said in the TEDTalk, “adaptability is fine, but we also need bedrock.”</p>
+
+<p>Feiler finished off his talk with a story about Leo Tolstoy, pictured above.  In the opening paragraph of Anna Karenina, Tolstoy opens with a very profound, yet thought provoking statement: “All happy families are alike.  Each unhappy family is unhappy in its own way.”  It sounds like a cliche sentence, but Tolstoy chose this line because it would come to define the entire narrative of Anna Karenina.  Applying this statement to our individual lives, we have the building blocks to make ourselves stronger, better, and happier.  We utilize these building blocks by applying the three tenets: adapt, empower, and share.</p>
+
+<p>When Tolstoy was five years old, his brother Nikolai came to him and said that he had engraved the secret to universal happiness on a stick, which Nikolai had buried in a ravine somewhere on the Tolstoy family estate in Russia.  ”If the stick were ever found,” Nikolai said, “all humankind would be happy.”  Tolstoy apparently was consumed with trying to find that stick, but never did find it.  On his deathbed, Tolstoy asked to be buried in the ravine where he believed the stick was buried.</p>
+
+<p>The point is, we hold the key to our universal happiness.  Adapt, empower, and share.  Feiler closed his discussion with this: “Happiness is not something that we find.  It’s something that we make.  What’s the secret to happiness in general?  Try.”</p>
+
+<p><a href="http://www.ted.com/talks/bruce_feiler_agile_programming_for_your_family">Bruce Feiler TedTalk</a></p>
+]]></content>
+  </entry>
+  
+</feed>

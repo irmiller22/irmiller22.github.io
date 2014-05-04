@@ -9,7 +9,10 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application). I& &hellip;">
+  <meta name="description" content="Variable Declaration and Constant Variables1
+2
+3
+var x = 10, y = 30, myMath = x + y; myMath in this case is the sum of variables x and y, which would &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +69,179 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-03T23:29:00-05:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Variable Declaration and Constant</p>
+
+<figure class='code'><figcaption><span>Variables</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">y</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">myMath</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>myMath in this case is the sum of variables x and y, which would be equal to 40.</p>
+
+<figure class='code'><figcaption><span>Constant</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//const is a keyword that will declare a constant</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">CONSTANT</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To find out what data type a variable is, you use the <code>typeof</code> method, as shown below:</p>
+
+<figure class='code'><figcaption><span>Typeof method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">const</span> <span class="nx">CAR</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">CAR</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//--&gt; number</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">string</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//--&gt; string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Conditional Statements</p>
+
+<p>You can also use an if/else statement to execute a given statement if a certain condition is true.  For example, if you wanted to check and see if a variable was considered a type of string, you&rsquo;d do the following:</p>
+
+<figure class='code'><figcaption><span>Conditional</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Ian&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;It is a string.&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;It ain&#39;t a string.&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Local vs. Global Scope</p>
+
+<figure class='code'><figcaption><span>Local vs. Global Scope</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">subtract</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">y</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The x and y variables that are outside of the add and subtract functions are called <code>global</code> variables.  They are declared outside of a function in the global scope, and are essentially accessible from anywhere inside of the program.</p>
+
+<p>Functions create a new scope.  The x variable inside the add function and the y variable inside of the subtract function are known as <code>local</code> variables.  They exist only in the context of the respective function, and are not accessible outside of the function.  Think of it as the Vegas motto; what happens here, stays here.</p>
+
+<p>Arrays in Javascript</p>
+
+<p>Making a list inside of our app would involve the following:</p>
+
+<figure class='code'><figcaption><span>List in JS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">students</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ian Miller&quot;</span><span class="p">,</span> <span class="s2">&quot;James Wood&quot;</span><span class="p">,</span> <span class="s2">&quot;Saron Yitbarek&quot;</span><span class="p">,</span> <span class="s2">&quot;John Cafferty&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looping Through Arrays</p>
+
+<figure class='code'><figcaption><span>Looping Through Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">trackStudents</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">roster</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class='line'>      <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span><span class='line'>              <span class="k">return</span> <span class="nx">roster</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">roster</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is just a simple looping function that takes a roster, and adds a name to the roster array.  If the array does not have any elements in it, then it will push that element onto the end of the array, which will be the first element.  Otherwise, for each element in the array, if an array position is undefined, then it will set that element equal to the name value.  Also, if it is the last element in the array, it will also push the name value to the end of the array.  Finally, once the whole array has been iterated through, it will return the array.</p>
+
+<p>These are mostly for me to remember and repeat.  I&rsquo;m currently branching out into other languages at the moment, and will be focusing on JS, jQuery, and Ajax.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1070,68 +1246,6 @@ NGinx has emerged largely as a result of increased demand for online services an
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/27/mvc-basics/">CRUD Applications: Importance of MVC</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-27T23:03:00-04:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This past weekend, we had an assignment to build a CRUD application from scratch (well, almost).  A CRUD application is short for the four basic applications of relational database management and storage: create, read, update, and delete.  The CRUD application allows interfacing between a database, a user interface, and HTTP protocols.  I thought that I&rsquo;d go ahead and describe the main components of our CRUD application that we built this weekend.  There are thee specific ones to take note of: the controllers, models, and views.</p>
-
-<p>Models are Ruby-specific classes that talk to the database, store, validate, and execute logic.  In other terms, they do all of the heavy lifting for our application.  They&rsquo;re basically the overworked accountant in the back room during tax season, churning out numbers while eating stale donuts at an absurd rate.</p>
-
-<p>Views are elements that the user sees and interface with.  In short, they will provide the user experience through HTML, CSS, Javascript, and other front-end aspects.  They&rsquo;re the responsible ladies and gentlemen specifically positioned near the front of the office to provide a sense of culture and value to the outside user looking in.</p>
-
-<p><img class="center" src="http://static2.fjcdn.com/thumbnails/comments/ah+alright+cheers.+yeah+doge+is+great+_56f6675509eadf36993a7e5b53c37f6d.jpg"></p>
-
-<p>Controllers deal with the back-end requests from users, data requests, data submissions, sessions, and so on.  Any time you enter data into a form on a website, such as a login and password, you are interacting with a controller after you have hit the submit button.  After the request is sent, the controller sends the response to the server, and the server then combines that data into a HTTP response that is sent back to the user.</p>
-
-<p><img class="center" src="http://i37.tinypic.com/2wrn985.gif" width="500"></p>
-
-<p>One term that I&rsquo;ve read about describes how you should structure your models and controllers: &ldquo;fat models, skinny controllers.&rdquo;  The idea is that your models are not just a simple form of abstration in your database layer, but they represent the entirety of the logic in your application.  It should be able to stand alone from the rest of the application.  By convention, it should not interact with other components of your application.  Each controller method also should represent one action.  The controllers simply just shuttle requests between your views and your models (or your user interface and the application logic).  Another primary reason why this is an important programming practice is that you have enabled 2 things: one, you&rsquo;ve made it easy to reuse your code due to its abstraction and simplicity, and two, you&rsquo;ve also made it simpler for testing your code.</p>
-
-<p><img class="center" src="http://www.mikebernat.com/images/cake/layercake.png" width="500"></p>
-
-<p>That&rsquo;s what I wanted to review in this blog post.  I&rsquo;ll also share some of my favorite, but terrible, puns with you.  Some of you might have already heard some of these.</p>
-
-<p>A truck transporting fruit in California overturned the other day.  It created quite a&hellip; jam.  That driver&rsquo;s career is also&hellip; toast.</p>
-
-<p>The other day, I couldn&rsquo;t quite remember how to throw a boomerang, but eventually it came back.</p>
-
-<p>Hello everyone (in Ruby 003 class on Monday, Oct 28), what is Avi&rsquo;s background?  Well, it&rsquo;s a white wall.</p>
-
-<p><img class="center" src="https://i.chzbgr.com/maxW500/5870736384/hB08BCDAD/"></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1149,6 +1263,10 @@ NGinx has emerged largely as a result of increased demand for online services an
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
       </li>
     
@@ -1162,10 +1280,6 @@ NGinx has emerged largely as a result of increased demand for online services an
     
       <li class="post">
         <a href="/blog/2014/03/19/rails-caching/">Rails Caching</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/27/controller-testing-via-rspec/">Controller Testing Via RSpec</a>
       </li>
     
   </ul>
