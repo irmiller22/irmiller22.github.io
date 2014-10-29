@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Working With Rack Sessions - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="I spent the last few days building a Flatiron School lab that specifically focused on setting sessions within a small Sinatra app. The idea was that &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:irmiller22.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Working With Rack Sessions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-29T14:46:57-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I spent the last few days building a <a href="https://flatironschool.com">Flatiron School</a> lab that specifically focused on setting sessions within a small Sinatra app. The idea was that this lab would help students better understand the concept of a <code>session</code>, and how they allow web applications to maintain state. By going through several RSpec tests and making them pass, the students would iteratively see what the <code>session</code> variable values would be in each step, and would understand the process from start to finish. The problem that I ran into was that I was not able to directly access the <code>session</code> variable in Sinatra.</p>
+
+<h3>The Root Problem?</h3>
+
+<p>The fundamental issue was that in Rack (on top of which Sinatra is built) does not allow you to directly access the <code>sessions</code> variable. I could not access it when I was writing acceptance tests, and so I set out to resolve that issue.</p>
+
+<h3>Troubleshoot, take 1</h3>
+
+<p>The first step that I took to troubleshoot this was to read through <a href="http://stackoverflow.com/questions/5175854/rack-session-cookie-and-sinatra-setting-and-accessing-data">this StackOverflow post</a> to see how I could directly access and manipulate session data. So one underlying thorn in the side was that it&rsquo;s hard to directly access <code>sessions</code> for acceptance testing purposes. I found this <a href="https://github.com/railsware/rack_session_access">gem</a> that supposedly makes it easier for a developer to access and manipulate <code>sessions</code> variables.</p>
+
+<p>I went down that road, and quickly realized that for the purposes of this lab, I was overcomplicating things a little bit. What the <code>Rack Session Access</code> gem does is that it provides middleware for your Sinatra app that allows you to set and obtain data for your application&rsquo;s current session. I didn&rsquo;t need to set anything - I just needed to be able to access the <code>sessions</code> hash and confirm that the values met the specifications set forth in my RSpec tests.</p>
+
+<p>Next option.</p>
+
+<h3>Troubleshoot, take 2</h3>
+
+<p>The second step I took was to read this <a href="http://stackoverflow.com/questions/9113162/accessing-session-in-sinatra-middleware">post</a>. This gave a better in depth explanation of the issue I was having, which was that I couldn&rsquo;t directly access the <code>sessions</code> hash method in Rack middleware. To remedy this, the top-voted answer suggested that I try to access the <code>sessions</code> hash through the <code>env</code> hash. It was through this post that I realized what I was doing incorrectly all along. I didn&rsquo;t have to implement the solution that was suggested in this post, but I had an idea what I could do to resolve the problem.</p>
+
+<p>Let&rsquo;s dig a little further.</p>
+
+<h3>Identifying the Solution</h3>
+
+<p>So how did I address this? So remember in the previous section that you can access the <code>sessions</code> hash through <code>env</code>. Before I address the solution, let&rsquo;s briefly run through the anatomy of a Rack <code>sessions</code> hash. When a new session is created, it creates a new <code>Rack::Request</code> object, as the example below shows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">request</span> <span class="o">=</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Request</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>request</code> object, which is assigned to a new instance of <code>Rack::Request</code>, has a method called <code>session</code>. When you call this method on the <code>request</code> object, it will return the <code>sessions</code> hash.</p>
+
+<p>Now, let&rsquo;s apply this in terms of acceptance testing. Using the <code>rack/test</code> module, I wrote the following method in my <code>spec_helper.rb</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">session</span>
+</span><span class='line'>  <span class="n">last_request</span><span class="o">.</span><span class="n">env</span><span class="o">[</span><span class="s1">&#39;rack.session&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>last_request</code> attribute is actually a <code>Rack::MockRequest</code> object that is used to generate a request, such as a <code>get '/'</code> request method. You can access the <code>sessions</code> hash of <code>last_request</code> by accessing the <code>rack.session</code> key inside of the <code>env</code> method. Once I was able to access this, then I was able to write tests that could be used to test the values inside my <code>sessions</code> variable.</p>
+
+<p>It&rsquo;s a very simple way to resolve the original problem, but it definitely threw me for a loop while I was in the process of problem solving. Isn&rsquo;t programming fun?</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-09-29T14:46:57-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:46 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/access/'>access</a>, <a class='category' href='/blog/categories/rack/'>rack</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/sessions/'>sessions</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions/" data-via="" data-counturl="http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/" title="Previous Post: Intersection between Tolstoy and Agile Programming">&laquo; Intersection between Tolstoy and Agile Programming</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/29/working-with-rack-sessions/">Working With Rack Sessions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection Between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/28/simple-authorizations-with-devise/">Simple Authorizations With Devise</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

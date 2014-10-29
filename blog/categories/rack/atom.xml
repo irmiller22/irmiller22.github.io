@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rack | My Octopress Blog]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/rack/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-10-29T11:30:32-04:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Working With Rack Sessions]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions/"/>
+    <updated>2014-09-29T14:46:57-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions</id>
+    <content type="html"><![CDATA[<p>I spent the last few days building a <a href="https://flatironschool.com">Flatiron School</a> lab that specifically focused on setting sessions within a small Sinatra app. The idea was that this lab would help students better understand the concept of a <code>session</code>, and how they allow web applications to maintain state. By going through several RSpec tests and making them pass, the students would iteratively see what the <code>session</code> variable values would be in each step, and would understand the process from start to finish. The problem that I ran into was that I was not able to directly access the <code>session</code> variable in Sinatra.</p>
+
+<h3>The Root Problem?</h3>
+
+<p>The fundamental issue was that in Rack (on top of which Sinatra is built) does not allow you to directly access the <code>sessions</code> variable. I could not access it when I was writing acceptance tests, and so I set out to resolve that issue.</p>
+
+<h3>Troubleshoot, take 1</h3>
+
+<p>The first step that I took to troubleshoot this was to read through <a href="http://stackoverflow.com/questions/5175854/rack-session-cookie-and-sinatra-setting-and-accessing-data">this StackOverflow post</a> to see how I could directly access and manipulate session data. So one underlying thorn in the side was that it&rsquo;s hard to directly access <code>sessions</code> for acceptance testing purposes. I found this <a href="https://github.com/railsware/rack_session_access">gem</a> that supposedly makes it easier for a developer to access and manipulate <code>sessions</code> variables.</p>
+
+<p>I went down that road, and quickly realized that for the purposes of this lab, I was overcomplicating things a little bit. What the <code>Rack Session Access</code> gem does is that it provides middleware for your Sinatra app that allows you to set and obtain data for your application&rsquo;s current session. I didn&rsquo;t need to set anything - I just needed to be able to access the <code>sessions</code> hash and confirm that the values met the specifications set forth in my RSpec tests.</p>
+
+<p>Next option.</p>
+
+<h3>Troubleshoot, take 2</h3>
+
+<p>The second step I took was to read this <a href="http://stackoverflow.com/questions/9113162/accessing-session-in-sinatra-middleware">post</a>. This gave a better in depth explanation of the issue I was having, which was that I couldn&rsquo;t directly access the <code>sessions</code> hash method in Rack middleware. To remedy this, the top-voted answer suggested that I try to access the <code>sessions</code> hash through the <code>env</code> hash. It was through this post that I realized what I was doing incorrectly all along. I didn&rsquo;t have to implement the solution that was suggested in this post, but I had an idea what I could do to resolve the problem.</p>
+
+<p>Let&rsquo;s dig a little further.</p>
+
+<h3>Identifying the Solution</h3>
+
+<p>So how did I address this? So remember in the previous section that you can access the <code>sessions</code> hash through <code>env</code>. Before I address the solution, let&rsquo;s briefly run through the anatomy of a Rack <code>sessions</code> hash. When a new session is created, it creates a new <code>Rack::Request</code> object, as the example below shows.</p>
+
+<pre><code class="ruby">def call(env)
+  request = Rack::Request.new(env)
+end
+</code></pre>
+
+<p>The <code>request</code> object, which is assigned to a new instance of <code>Rack::Request</code>, has a method called <code>session</code>. When you call this method on the <code>request</code> object, it will return the <code>sessions</code> hash.</p>
+
+<p>Now, let&rsquo;s apply this in terms of acceptance testing. Using the <code>rack/test</code> module, I wrote the following method in my <code>spec_helper.rb</code> file:</p>
+
+<pre><code class="ruby">def session
+  last_request.env['rack.session']
+end
+</code></pre>
+
+<p>The <code>last_request</code> attribute is actually a <code>Rack::MockRequest</code> object that is used to generate a request, such as a <code>get '/'</code> request method. You can access the <code>sessions</code> hash of <code>last_request</code> by accessing the <code>rack.session</code> key inside of the <code>env</code> method. Once I was able to access this, then I was able to write tests that could be used to test the values inside my <code>sessions</code> variable.</p>
+
+<p>It&rsquo;s a very simple way to resolve the original problem, but it definitely threw me for a loop while I was in the process of problem solving. Isn&rsquo;t programming fun?</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Params | My Octopress Blog]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/params/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-10-29T11:30:32-04:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Strong Params in Rails]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails/"/>
+    <updated>2014-04-01T23:10:39-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails</id>
+    <content type="html"><![CDATA[<p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
+
+<p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
+
+<p>Typically, we have a private method inside of the controller that delegates the <code>whitelisting</code> that should take place.</p>
+
+<p>For example:</p>
+
+<pre><code class="ruby UsersController">private
+
+def resource_params
+  params.require(:user).permit(:name, :age, :email)
+end
+</code></pre>
+
+<p>The <code>require</code> statement inside the <code>resource_params</code> method performs the parameter validation for the user parameter. If the user parameter exists, then it will go on and validate each of the attributes. If the user parameter does not exist, then it will throw an <code>ActionController::ParameterMissing</code> error and return a 400 status code response.</p>
+
+<p>Additionally, the <code>permit</code> method will strip out any attributes that do not belong inside of the params. For example, if we tried to include a <code>:admin</code> attribute inside of the <code>permit</code> method, it will not be passed into the params.</p>
+]]></content>
+  </entry>
+  
+</feed>

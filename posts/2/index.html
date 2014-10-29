@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://irmiller22.github.io/posts/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:irmiller22.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-21T14:55:00-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>2:55 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed language, meaning that it binds a type to a variable for the variable&rsquo;s lifetime, whereas dynamically typed languages bind the type to the value referenced by a variable. Simply, statically typed variables are immutable, whereas dynamically typed variables are mutable. Scala also supports both functional and object-oriented programming. It seems that these attributes would conflict with one another, but the argument is that both attributes in conjunction lead to synergies in both performance and architecture.</p>
+
+<p>Let&rsquo;s get started on the introduction.</p>
+
+<figure class='code'><figcaption><span>Print Out a String</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">book</span> <span class="k">=</span> <span class="s">&quot;Let&#39;s start learning about Scala&quot;</span>
+</span><span class='line'><span class="c1">// java.lang.String = Let&#39;s start learning about Scala</span>
+</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="n">book</span><span class="o">)</span>
+</span><span class='line'><span class="c1">// Let&#39;s start learning about Scala</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>val</code> is used to declare a read-only variable named <code>book</code>. In the next exercise, let&rsquo;s create a class that will take a number of parameters and then upcase them. We&rsquo;ll also refactor this function to make it more efficient and readable. Let&rsquo;s do it in the space below:</p>
+
+<figure class='code'><figcaption><span>Upper Case Function</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">class</span> <span class="nc">Upper</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">upper</span><span class="o">(</span><span class="n">strings</span><span class="k">:</span> <span class="kt">String*</span><span class="o">)</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">strings</span><span class="o">.</span><span class="n">map</span><span class="o">((</span><span class="n">s</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">())</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>We&rsquo;ve defined the class <code>Upper</code>, and specified its parameter <code>strings</code> as an undefined number of string values, evidenced by the splat in <code>String*</code>. Then we specify the return type <code>Seq[String]</code> as a collection (or array) of strings. Then inside of the method&rsquo;s body, where we call the <code>map</code> method on the strings array, and passed in <code>(s:String) =&gt; s.toUpperCase()</code> as a function literal. In other words, it executes that function for each mapped parameter of the array <code>strings</code>.</p>
+
+<p>Now let&rsquo;s initialize the Upper Case Function below:</p>
+
+<figure class='code'><figcaption><span>Initializing Upper Case Function</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">up</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Upper</span>
+</span><span class='line'><span class="nc">Console</span><span class="o">.</span><span class="n">println</span><span class="o">(</span><span class="n">up</span><span class="o">.</span><span class="n">upper</span><span class="o">(</span><span class="s">&quot;run&quot;</span><span class="o">,</span><span class="s">&quot;ian&quot;</span><span class="o">,</span><span class="s">&quot;Fly&quot;</span><span class="o">,</span><span class="s">&quot;hero&quot;</span><span class="o">))</span>
+</span><span class='line'><span class="c1">// Array(RUN, IAN, FLY, HERO)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>upper</code> method in the <code>Upper</code> class converts each parameter into an uppercase string, and returns them in an array.</p>
+
+<p>Now let&rsquo;s refactor.</p>
+
+<figure class='code'><figcaption><span>Upper Case Function Refactored #1</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">Upper</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">upper</span><span class="o">(</span><span class="n">strings</span><span class="k">:</span> <span class="kt">String*</span><span class="o">)</span> <span class="k">=</span> <span class="n">strings</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">toUpperCase</span><span class="o">())</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="nc">Upper</span><span class="o">.</span><span class="n">upper</span><span class="o">(</span><span class="s">&quot;run&quot;</span><span class="o">,</span><span class="s">&quot;ian&quot;</span><span class="o">,</span><span class="s">&quot;Fly&quot;</span><span class="o">,</span><span class="s">&quot;hero&quot;</span><span class="o">))</span>
+</span><span class='line'><span class="c1">// Array(RUN, IAN, FLY, HERO)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&rsquo;ve now declared an <code>object</code>, which in Scala is a singleton. In this situation, we only ever need one instance of Upper run at a time, so a singleton works appropriately. The <code>_</code> element inside of the <code>map</code> method is a placeholder variable that each string element will be assigned to before <code>toUpperCase()</code> is applied.</p>
+
+<p>This is the first day I&rsquo;ve used Scala, and my first impression is that it&rsquo;s a lot like a hybrid of Ruby and Java/JavaScript. I still need to get better at understanding how collections are referenced to and organized inside of functions, but I&rsquo;m looking forward to learning more Scala.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-03T23:29:00-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:29 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Variable Declaration and Constant</p>
+
+<figure class='code'><figcaption><span>Variables</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">y</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">myMath</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>myMath in this case is the sum of variables x and y, which would be equal to 40.</p>
+
+<figure class='code'><figcaption><span>Constant</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//const is a keyword that will declare a constant</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">CONSTANT</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To find out what data type a variable is, you use the <code>typeof</code> method, as shown below:</p>
+
+<figure class='code'><figcaption><span>Typeof method</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">const</span> <span class="nx">CAR</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">CAR</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//--&gt; number</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">string</span><span class="p">);</span>
+</span><span class='line'><span class="c1">//--&gt; string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Conditional Statements</p>
+
+<p>You can also use an if/else statement to execute a given statement if a certain condition is true.  For example, if you wanted to check and see if a variable was considered a type of string, you&rsquo;d do the following:</p>
+
+<figure class='code'><figcaption><span>Conditional</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Ian&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;It is a string.&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;It ain&#39;t a string.&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Local vs. Global Scope</p>
+
+<figure class='code'><figcaption><span>Local vs. Global Scope</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">subtract</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">y</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The x and y variables that are outside of the add and subtract functions are called <code>global</code> variables.  They are declared outside of a function in the global scope, and are essentially accessible from anywhere inside of the program.</p>
+
+<p>Functions create a new scope.  The x variable inside the add function and the y variable inside of the subtract function are known as <code>local</code> variables.  They exist only in the context of the respective function, and are not accessible outside of the function.  Think of it as the Vegas motto; what happens here, stays here.</p>
+
+<p>Arrays in Javascript</p>
+
+<p>Making a list inside of our app would involve the following:</p>
+
+<figure class='code'><figcaption><span>List in JS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">students</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ian Miller&quot;</span><span class="p">,</span> <span class="s2">&quot;James Wood&quot;</span><span class="p">,</span> <span class="s2">&quot;Saron Yitbarek&quot;</span><span class="p">,</span> <span class="s2">&quot;John Cafferty&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looping Through Arrays</p>
+
+<figure class='code'><figcaption><span>Looping Through Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">trackStudents</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">roster</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class='line'>      <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">if</span><span class="p">(</span><span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">){</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+</span><span class='line'>              <span class="k">return</span> <span class="nx">roster</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">roster</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">roster</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">roster</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is just a simple looping function that takes a roster, and adds a name to the roster array.  If the array does not have any elements in it, then it will push that element onto the end of the array, which will be the first element.  Otherwise, for each element in the array, if an array position is undefined, then it will set that element equal to the name value.  Also, if it is the last element in the array, it will also push the name value to the end of the array.  Finally, once the whole array has been iterated through, it will return the array.</p>
+
+<p>These are mostly for me to remember and repeat.  I&rsquo;m currently branching out into other languages at the moment, and will be focusing on JS, jQuery, and Ajax.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-12-27T11:08:00-05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:08 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
+
+<p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
+
+<p>I&rsquo;ll be using the example of a distributed solar generation product.  Whenever a consumer is experiencing unusually low solar energy production or energy generation patterns consistent with a malfunctioning module, it will send out a mailer notifying them of these issues.  In order to generate a mailer, you type in the following command:</p>
+
+<figure class='code'><figcaption><span>Mailer Generation</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="n">mailer</span> <span class="no">SolarMailer</span> <span class="n">error_report</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The next step is to set up the default settings of the mailer.</p>
+
+<figure class='code'><figcaption><span>Mailer Settings</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SolarMailer</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">default</span> <span class="ss">from</span><span class="p">:</span> <span class="s2">&quot;administrator@solartech.com&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">error_report</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="n">customer</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">mail</span> <span class="ss">to</span><span class="p">:</span> <span class="n">customer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="ss">subject</span><span class="p">:</span> <span class="s2">&quot;Panel </span><span class="si">#{</span><span class="n">panel</span><span class="o">.</span><span class="n">location</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">panel</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> is experiencing some technical issues.&quot;&quot;</span>
+</span><span class='line'><span class="s2"> end</span>
+</span><span class='line'><span class="s2">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After we have set up the default settings for the mailer, then we go to the Panel model in order to specify when the mailer should be sent out.</p>
+
+<figure class='code'><figcaption><span>Panel model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Panel</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:module</span>
+</span><span class='line'>  <span class="n">before_save</span> <span class="ss">:check_power_yield</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">check_power_yield</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">power_yield</span> <span class="o">&lt;=</span> <span class="mi">1200</span> <span class="n">kWh</span> <span class="c1">#base power generation</span>
+</span><span class='line'>          <span class="no">SolarMailer</span><span class="o">.</span><span class="n">error_report</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">customer</span><span class="p">)</span><span class="o">.</span><span class="n">deliver</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s pretty much it for a basic mailer.  You can style the mailer using HTML/CSS, and you can also add front-end features via Javascript (AJAX, jQuery).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/22/impetus-for-a-career-in-programming/">Impetus for a Career in Programming</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-12-22T13:26:00-05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>1:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
+
+<p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
+
+<p>I’ve always had a pretty imaginative brain, always willing to go into wild tangents that test the limits of my creativity. I’m not sure if it’s a result of my brain’s capacity for randomness, or if it’s just my brain trying to make sense of the endless chatter being fired between the synapses of my neural pathways. Part of me is convinced that this is a result of my disability. When one of the five senses is limited (in this case, sound), another is enhanced. In my situation, I think my visual ability is much more nuanced than the average person. Perhaps that transfers over into my subconscious somehow, which would explain my visual acuity.</p>
+
+<p>As a result of my hearing disability, I always enjoyed playing video games, particularly strategy games. It was something that gave me a full sense of control, something that I could, with 100% certainty, influence in terms of direction. In other words, it was an escape from the more difficult aspects of childhood, particularly my teenage years in which social interaction skyrocketed, leaving me behind my peers in social conversation.</p>
+
+<p>From middle school until college, I was always interested in video games. As a result of video games, I started tinkering around with computers, my first experience coming when I figured out how to take control of my middle school’s computers using MS/DOS, and would perpetually confuse my fellow students by hijacking their mouse cursor and typing cryptic messages into their word processor application. I remember when I built my first website. It was a Geocities all-in-one basic site that focused on posting answers to my math homework. I don’t know if it was ever used at all by my classmates, but I remember the crappy blue background with the black and green Comic Sans font. Why did everyone use Comic Sans back then? What a colossal waste of a font. Anyways, the foundation of my technological curiosity had been firmly implanted by the time I was in middle school.</p>
+
+<p>I was proficient in HTML and CSS back then, and was just starting to use JavaScript. I got so frustrated using JavaScript, largely because I was learning it on my own, and there were not many resources readily available in which you could find reliable answers. This is why having a community in which you can ask programming questions is so important. I lost my desire to continue my immersion into programming after a few months. Up until that point, many subjects came very easily to me then, such as English, Math, video games. I think the idea of a challenge discouraged me, and I was simply looking for something that provided instant gratification. I now realize that was a setback in terms of my mindset. Since then, the same question always came up from time to time: “what if?”. Looking back on it now, giving up was probably the biggest mistake I ever made.</p>
+
+<p>Fast forward to my senior year of college. I was an Economics major, authoring a thesis that detailed solar energy subsidy programs and the long-term effects of that respective government’s approach. To summarize my thesis, among all countries with mature renewable energy policy programs, Germany did best in structuring a long-term approach while the United States bungled it. At that point, I was certain that I was going into a career in renewable energy finance or policy.</p>
+
+<p>My career in renewable energy started off well. I became an intern at a very well respected renewable energy policy group in Washington, DC, and eventually wrote a white paper that discussed the merits of tax equity syndication for solar power development. At the conclusion of my internshp, I went to work for a biomass power startup, and gave me a wide breadth of expertise in project development in India and Tanzania.</p>
+
+<p>In the spring of 2013, I decided to take an online course for Python on CourseRA just to play around with the idea of programming, not realizing that it would ultimately alter my career path 9 months later. Through Rice University’s Python class on CourseRA, we built a number of small games, such as Tic-Tac-Toe, Paddleboard, and a simple spaceship game that reminded me a little bit of a 2D version of Star Wars. I started to help out with web application development for my company, and the product was supposed to be a dashboard for energy analytics. First I helped write the business documentation for it, then started working with a programmer to build out the framework for the application itself. Over the course of 2 months of working with a programmer, I decided that programming was what I wanted to spend the rest of my life doing. The constant problem solving, discussions about best courses of action, and brainstorming was the most intellectually challenged and enriched that I had felt since high school and college. When you attain that desire for learning, you never really want to let it go. That desire siezes you like adrenaline does a bungee jumper jumping off a bridge: simply relentless.</p>
+
+<p>I started taking courses on CourseAcademy and TeamTreehouse for Ruby. I had heard that Ruby was the hottest full-stack language at that point, and it was relatively straightforward to learn. I also applied to several boot camps, convinced that it was just what I needed to jumpstart my future. I ultimately settled on the Flatiron School in NYC because of its community-driven approach to programming, as well as its mission to help individuals find a passion in programming, and also encourage the involvement of women in what has been traditionally a male-dominated profession.</p>
+
+<p>Fast forward five months later. I am two weeks out of boot camp at Flatiron School. Has it been worth it? The reasons may be different for everyone, but for me, it certainly has. I’d even go as far as to say that it’s been life changing. I’ve met the most wonderful group of individuals at Flatiron, and I’ve learned a lot from them. And I can now call myself a programmer. Not a skilled one yet, but that’s what I am working towards, step by step. But there are three important results that have been made possible by my experiences in the past year. I’ve discovered my passion. I’ve re-ignited my desire to learn. And I’ve finally learned the lesson that I should have learned long ago, even with a particularly limiting disability; there  is no limit.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/17/walkthrough-of-microhaus-app/">Microhaus App: Part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-12-17T12:42:00-05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:42 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Today I decided to build a microblog app.  It is like a traditional blog, but it is private to a specific group of friends.  There are other options out there for a microblog, but I wanted to create the experience for myself, and how I would customize it for my group of friends.  After I finish the app, I plan to release it to my friends from college, and see what their feedback is.<br/>
+I started out by creating a new app via rails.  For the moment, I am calling the app &ldquo;microhaus.&rdquo;  I came up with this name particularly because it&rsquo;s a microblog, and it is accessible only to a small number of people (a circle of friends, if you will).</p>
+
+<figure class='code'><figcaption><span>Generating the new app</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="kp">new</span> <span class="n">microhaus</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I then made changes to the Gemfile in order to reflect the gem and database preferences.  This is what my gemfile currently looks like:</p>
+
+<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.1&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.3.0&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.2&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;better_errors&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;binding_of_caller&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capybara&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;cucumber-rails&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:doc</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sdoc&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;ve set up my test, development, and production environments.  Later on, I will add in other gems in order to enhance microhaus, but for the initial buildout process, these gems will do.</p>
+
+<p>I also created a User scaffold, which instantiates a migration for User, a controller, resources, erb templates, stylesheets, and tests.  After creating the scaffold, I ran the <code>rake db:migrate</code> command in order to migrate the Users table into the development database.</p>
+
+<p>Secondly, I added a Post scaffold via the <code>rails g scaffold Post content:string user_id:integer group_id:integer</code> command.  The idea is to have a post that belongs to a user, and can be viewed by a group in which the users have the corresponding group id.  We want each post to be viewable by users of the same group.</p>
+
+<p>At this point, I committed and pushed my changes up to Github.</p>
+
+<p>The next step is to build out a secure token generator that will be used to verify cookies when a new login session is initialized.  Here&rsquo;s the code I used to set this up:</p>
+
+<figure class='code'><figcaption><span>Secure Token Generator</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">secure_token</span>
+</span><span class='line'>  <span class="n">token_file</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;.secret&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">token_file</span><span class="p">)</span>
+</span><span class='line'>      <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">token_file</span><span class="p">)</span><span class="o">.</span><span class="n">chomp</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>      <span class="n">token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">hex</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+</span><span class='line'>      <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">token_file</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">token</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Microhaus</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span> <span class="n">secure_token</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>My approach to building an application closely mirrors that of Michael Hartl&rsquo;s approach, so as he recommends, this would be a good time to start writing out some tests.  I wrote out RSpec tests to make sure the &ldquo;About, Home, and Contact&rdquo; pages properly render as specified in my ERB templates.</p>
+
+<figure class='code'><figcaption><span>RSpec Tests</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:base_title</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;microhaus&#39;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;should have the content &#39;microhaus&#39;&quot;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">visit</span> <span class="s1">&#39;/static_pages/home&#39;</span>
+</span><span class='line'>          <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base_title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;should not have the custom title &#39;Home&#39;&quot;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">visit</span> <span class="s1">&#39;/static_pages/home&#39;</span>
+</span><span class='line'>          <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to_not</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;| Home&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;should have the base title&quot;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">visit</span> <span class="s1">&#39;/static_pages/home&#39;</span>
+</span><span class='line'>          <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;microhaus&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;About page&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;should have the title &#39;About&#39;&quot;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">visit</span> <span class="s1">&#39;/static_pages/about&#39;</span>
+</span><span class='line'>          <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base_title</span><span class="si">}</span><span class="s2"> | About&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">describe</span> <span class="s2">&quot;Contact page&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s2">&quot;should have the title &#39;Contact&#39;&quot;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">visit</span> <span class="s1">&#39;/static_pages/contact&#39;</span>
+</span><span class='line'>          <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base_title</span><span class="si">}</span><span class="s2"> | Contact&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At this point, we have the basic building blocks in place that are necessary to horizontally plan out our application structure.  Once that structure is in place, then we can start building the application vertically, and make changes/additions as necessary.</p>
+
+<p>The next step is to start building out the functionality for the ERB templates and also to build out the corresponding RSpec tests to ensure that the functionality is there.  These concepts will be covered in the next &ldquo;Microhaus&rdquo; post.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/14/big-o-notation/">Big O Notation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-12-14T12:32:00-05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Big O Notation is simply a measure of an algorithm&rsquo;s performance.  It focuses on two primary components: speed and size.  It also presents a best-case scenario of an algorithm as well as a worst-case scenario.</p>
+
+<p>There are four primary scenarios that the majority of individuals will deal with in Big O Notation: O(1), O(n), O(n<sup>2</sup>), and O(log n).</p>
+
+<p>The O(1) case simply refers to an algorithm in which the performance result is the same no matter the size of the input.  For example, a change in the value of a pre-existing array element will not change the time it takes to execute the algorithm.</p>
+
+<figure class='code'><figcaption><span>O(1)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">is_1?</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The O(n) case is an algorithm that iterates over a range of elements, and the performance result increases for each additional element in the collection.  If it took 1 second to iterate through each element and I had a total of 10 elements in my collection, it would take 10 seconds (10/1).  If I had 500 elements in my collection, it would take 50 seconds (500/10).</p>
+
+<p>The example below is a worst case scenario.  Since 10 is the last element in array, the each method won&rsquo;t break until it has run through and compared every value in the method.  If the comparator value were 1, then it would result in the best case scenario of O(1).  With every each statement that is used for comparison, it is always assumed that the worst case scenario is O(n), or the total size of the array.</p>
+
+<figure class='code'><figcaption><span>O(n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">comparison?</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">array</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">break</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">10</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The O(n<sup>2</sup>) case refers to a function whose performance increases in proportion to the square of the input size.  When an additional element is added to a collection, then the performance result will increase by the square of n.  This is particularly common in cases where you are iterating with nested loops.  You can take this even further: a nested loop with deeper iterations will result in a higher power value for n.  A loop with 2 nested loops inside of it will result in O(n<sup>3</sup>).  A well known example of this is the bubble sort.</p>
+
+<figure class='code'><figcaption><span>O(n^2)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">array</span><span class="o">.</span><span class="n">each_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">element</span><span class="o">|</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>              <span class="n">array</span><span class="o">[</span><span class="n">element</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">array</span><span class="o">[</span><span class="n">element</span><span class="o">]</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The O(log n) case is an algorithm that selects the middle element of the collection, and compares it against a specific value.  If the value is higher than the middle element, it will perform the same operation against the upper half of the collection.  If the value is lower than the middle element, it&rsquo;ll perform the same operation against the lower half.  It keeps splitting each respective collection until it finds the element it&rsquo;s looking for, or until all possibilities have been exhausted.  An example of this is the merge sort.</p>
+
+<figure class='code'><figcaption><span>O(log n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="o">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">array</span> <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="n">left</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">right</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">merge</span><span class="p">(</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">right</span><span class="p">))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sorted_array</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">until</span> <span class="n">left</span><span class="o">.</span><span class="n">empty?</span> <span class="o">||</span> <span class="n">right</span><span class="o">.</span><span class="n">empty?</span>
+</span><span class='line'>      <span class="n">sorted_array</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">left</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">?</span> <span class="n">left</span><span class="o">.</span><span class="n">shift</span> <span class="p">:</span> <span class="n">right</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">sorted_array</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">left</span><span class="p">)</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="n">sorted_array</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/17/the-art-of-a-question/">The Art of a Question</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-11-17T22:27:00-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
+
+<p>From time to time, I have found myself unable to ask the right questions.  It&rsquo;s as if there is a mental block in my head, unable to move forward beyond an obstacle, a metaphorical wrench stuck in the gears of my neocortex.  When that process unfolds, it is easy to doubt yourself and your ability to lead yourself out of the quagmire.  There is a reason why many individuals are daunted by the prospect of learning how to program.  It is a seemingly endless black hole that manifests itself as a negative feedback loop.  Despite the organized chaos that arises, most often overlook the key decision making component of programming: knowing where to start.</p>
+
+<p>Knowing where to start isn&rsquo;t even the be-all-end-all solution to asking the right question.  It is simply a starting place.  Just because a runner starts at mile 0.0 after a starter pistol has fired, it does not mean that failure is imminent.  It is a mindset.  A runner tackles a marathon one step at a time.  Step by step, two feet turns into 10.  10 feet turns into a mile.  A mile turns into 10 miles.  10 miles turn into 20.  It&rsquo;s about breaking down the obstacle into manageable parts, and moving on from segment to segment.  This works because of two reasons: one, it keeps the logical decision making process flowing, and two, it pushes doubt and negative reinforcement to the periphery of human consciousness.</p>
+
+<p>I read an article the other day discussing a concept called cognitive load.  According to George Miller, an eminent psychologist who taught at Princeton in the 1950&rsquo;s, our brain can realistically hold about seven pieces of information simultaneously at one point in time.  That number has since been revised to three or four.  This is a significant problem in the information age.  WIth historically recent advents such as the Internet, we are overly stimulated by the free flow of information, made possible largely by electronic devices.  Information enters and exits our cognitive consciousness that we don&rsquo;t grasp a basic level of understanding. We are unable to transfer it from our short-term to long-term memory stores, and consequently our ability to think critically and conceptually weakens.  Ergo, one step at a time.</p>
+
+<p>So it seems that there are valid reasons, backed by science, psychology, and other studies focused on the human brain, that call for the fragmentation of a complete problem into parts.  If someone were to ask the question, &ldquo;how does a route ultimately render a view in a Rails project?&rdquo;  This is my thinking process below.</p>
+
+<p>First off, there are multiple steps that between the route path and the view being rendered.  In MVC, there are typically eight steps in the chain of events.</p>
+
+<pre><code>First, a browser sends a request to the Rails router.  
+Second, a router sends the request to the respective controller.  
+Third, the controller asks the model to retrieve the respective data needed for the request from the database.  
+Fourth, the database sends that data back to the model.  
+Fifth, the model sends the retrieved data back to the controller.  
+Sixth, the data, encapsulated within the logic defined in the controller, is sent to the view.  Seventh, the view renders the data into the HTML page and is sent back to the controller.
+Eighth, and finally, the controller sends the view action back to the browser where it is rendered.
+</code></pre>
+
+<p>This is an oversimplified example, but the question went from a generic question about a route and respective view rendering to a multifaceted question made up of smaller implicit questions about the 8 steps of MVC progression.  Each step can also be broken down further to better understand the process.  Each little question is a foundation that can be built upon, and will ultimately to a deep understanding of how a simple Rails application works.</p>
+
+<p>So perhaps the best question is not simply a targeted question that seeks a one-dimensional answer, but rather a series of smaller, more basic questions derived from a larger question.  Simplicity is the best form of policy.  Start somewhere.  Plant your flag in the sand.  Let your initial question, and the subsequent chain of questions, be your guide.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/10/activerecord-validations/">ActiveRecord: Validations</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-11-10T22:20:00-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
+
+<p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
+
+<p>You can also place constraints upon your validations.  For example, if you&rsquo;re using <code>validates_length_of</code> for usernames, you can specify a range that the length must fall between.  For example:</p>
+
+<figure class='code'><figcaption><span>Validation - Username Length</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">validates_length_of</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">within</span><span class="p">:</span> <span class="mi">5</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If it exceeds the length, then you can provide an error message option that follows the validation.</p>
+
+<figure class='code'><figcaption><span>Validation - Username Length, Error</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">validates_length_of</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">within</span><span class="p">:</span> <span class="mi">5</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span><span class="p">,</span>                 <span class="ss">wrong_length</span><span class="p">:</span> <span class="s2">&quot;should be %{count} characters           long&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An important aspect of validations is enforcing uniqueness among join models in the database.  We have used this recently (in our Flatiron-Kitchen-Ruby-003 assignment).  In order to enforce uniqueness, we have to define a scope constraint.  For example, if we had three classes, <code>Registration</code>, <code>Course</code> and <code>Student</code>, how could we make sure that a student isn&rsquo;t registered more than once for a particular class?  We would define the scope of the <code>Registration</code> class, as shown below:</p>
+
+<figure class='code'><figcaption><span>Registration - Scope</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Registration</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:student</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:course</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">validates_uniqueness_of</span> <span class="ss">:student_id</span><span class="p">,</span> <span class="ss">scope</span><span class="p">:</span> <span class="ss">:course_id</span><span class="p">,</span> <span class="ss">message</span><span class="p">:</span> <span class="s2">&quot;can only register once per course&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Another one that you run into all the time:</p>
+
+<figure class='code'><figcaption><span>Email Validation</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Email</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">validates_uniqueness_of</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">message</span><span class="p">:</span> <span class="s2">&quot;already taken&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &ndash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/09/omniauth-an-introduction/">OmniAuth: An Introduction</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-11-09T14:52:00-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OmniAuth is simply middleware for authenticating users in applications.  Middleware is a way to filter requests and responses  that are coming into your application.  Each strategy that is used in the OmniAuth middleware is a class, and each strategy has two primary phases: a request phase and a callback phase.</p>
+
+<p>Let me take a step back, and explain what middleware is.  Middleware is the interface that communicates between the application and the web server.  In a way, it is generally a software library that assists with, but is not directly involved, in the execution of a specific task.  Some examples include authentication, data logging, performance monitoring, caching, and the like.  In this particular case, OmniAuth is dealing with authentication.</p>
+
+<figure class='code'><figcaption><span>config/initializers/omniauth.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">provider</span> <span class="ss">:twitter</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_KEY&#39;</span><span class="o">]</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_SECRET&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">provider</span> <span class="ss">:facebook</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FACEBOOK_ID&#39;</span><span class="o">]</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FACEBOOK_SECRET&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The two providers in the initializer above are called strategies.  A strategy, in OmniAuth&rsquo;s case, is a specific authentication class within the OmniAuth middleware structure.  OmniAuth has a large number of strategies, available at its Github documentation wiki, that provide authentication services for a wide number of websites, such as Twitter, Facebook, Github, and others (SOURCE - <a href="https://github.com/intridea/omniauth/wiki">https://github.com/intridea/omniauth/wiki</a>).</p>
+
+<p>Let&rsquo;s walk through an example with Github.  In the request stage, a client sends a request to the app.  The client is redirected to the <code>/auth/Github</code> route, and it points to the OmniAuth Github strategy specified in the config/initializer directory within the Rails project structure.  In order to properly authenticate the user, an authentication request is fired off to Github through the provider strategy.  Once the user is properly authenticated, the callback method, specified through <code>/auth/github/callback</code>, creates a user information hash that can now be accessed through the app (SOURCE - <a href="https://speakerdeck.com/xfernandox/the-anatomy-of-omniauth">https://speakerdeck.com/xfernandox/the-anatomy-of-omniauth</a>).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/explanation-of-nginx-and-passenger/">Explanation of NGinx and Passenger</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-11-04T20:19:00-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:19 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>NGinx is a open-source proxy server that primarily serves HTTP and HTTPS protocols.  Nginx was created to achieve three main goals: concurrency (process in which computations are executed simultaneously across several systems), high performance, and low memory usage.  It utilizes an event-driven approach to server requests, and allocates responses based upon server traffic and handling.  It has become a viable alternative to the Apache server model, which uses a process-driven methodology for handling large server requests.<br/>
+NGinx has emerged largely as a result of increased demand for online services and the rise of the web as a platform.  Unlike Apache, NGinx has a master process that delegates work to worker processes, and it is designed handle a large number of server connections with a small amount of memory.</p>
+
+<p>A number of companies, according to Wired, have run into scalability issues with Apache, and have transitioned to NGinx.  Facebook, Dropbox, and Wordpress are sites that utilize the NGinx server platform.</p>
+
+<p><img class="center" src="http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png"></p>
+
+<p>NGinx does not have a module load feature like Apache does, but that is where Passenger steps in, as it automates the module loading process.</p>
+
+<p>Passenger is an Rack application server software that is often used in conjunction with NGinx.  Similarly with mod_php for hosting PHP apps on Apache, Passenger simplifies the process of hosting Ruby apps on NGinx.  Passenger automates the process of starting/stopping a server, restarting after a server crash, and dynamically adjusts the number of processes on a server based on traffic.  It also allows the server to run more than 1 instance of the app, allowing greater use of server resources.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/index.html">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/29/working-with-rack-sessions/">Working With Rack Sessions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection Between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/28/simple-authorizations-with-devise/">Simple Authorizations With Devise</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

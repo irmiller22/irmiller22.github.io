@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | My Octopress Blog]]></title>
+  <link href="http://irmiller22.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://irmiller22.github.io/"/>
+  <updated>2014-10-29T11:30:32-04:00</updated>
+  <id>http://irmiller22.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Testing for a JSON API]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
+    <updated>2014-04-18T10:31:45-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/04/18/rspec-testing-for-a-json-api</id>
+    <content type="html"><![CDATA[<p>I am in the process of building out a JSON API for a registry application, that, when pinged by Salesforce, will fire off emails to prospective Flatiron students that notify them of their acceptance into the Flatiron School program. One thing that I noticed is that there aren&rsquo;t many resources out there for setting up a testing environment and eventually building out a JSON API via Ruby on Rails. Hopefully this resource will shed a little more light on how to accomplish that.</p>
+
+<p>The first step is to integrate a Rails serializer in order to encapsulate the JSON serialization of objects. We first install the <code>active_model_serializers</code> gem into the Gemfile, and then bundle. Now, for each model that we want to serialize for JSON serialization, we need to create a serializer: <code>rails g serializer student</code>.</p>
+
+<p>Inside of the serializer file that has just been generated, we need to add in student attributes that will be defined and visible in the JSON API.</p>
+
+<pre><code class="ruby app/serializers/student_serializer.rb">class StudentSerializer &lt; ActiveModel::Serializer
+  attributes :id, :first_name, :last_name, :email
+end
+</code></pre>
+
+<p>For example, this is how the JSON data will be represented on the API tree, based upon the order of attributes in the <code>student_serializer.rb</code> file above:</p>
+
+<pre><code class="ruby JSON data for student">  students:
+    [
+      {
+        id: 4,
+        first_name: "Doctor",
+        last_name: "Who",
+        email: "doctor_who@whoville.com"
+      }
+    ]
+</code></pre>
+
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#x6f;&#99;&#116;&#x6f;&#x72;&#95;&#x77;&#104;&#111;&#x40;&#x77;&#x68;&#x6f;&#118;&#x69;&#x6c;&#108;&#101;&#46;&#99;&#x6f;&#109;">&#100;&#111;&#x63;&#x74;&#x6f;&#x72;&#x5f;&#x77;&#x68;&#x6f;&#x40;&#119;&#104;&#x6f;&#118;&#x69;&#x6c;&#108;&#101;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+
+<p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
+
+<p>Next, I set up the routes for the <code>students</code> resource. My <code>config/routes.rb</code> file looks like this currently:</p>
+
+<pre><code class="ruby config/routes.rb">namespace :api do
+  namespace :v1 do
+    resources :students, only: [:index, :show, :create]
+  end
+end  
+</code></pre>
+
+<p>This is the basic setup for the API itself. At this point in the API development, we&rsquo;re only concerned with the <code>index</code>, <code>show</code>, and <code>create</code> actions for the API Students Controller. Now, we&rsquo;ll go ahead and set up the RSpec tests for the controller.</p>
+
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">require 'spec_helper'
+
+describe API::V1::StudentsController do
+  describe "GET 'index' " do
+    it "returns a successful 200 response" do
+      pending
+    end
+
+    it "returns all the students" do
+      pending
+    end
+  end
+</code></pre>
+
+<p>This describe block refers to the index action of the controller. In this block, we are testing for two expectations: for the JSON response for the index action to return a 200 status code, and for the JSON response to return the correct number of students that exist in the test database.</p>
+
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">require 'spec_helper'
+
+describe API::V1::StudentsController do
+  describe "GET 'index' " do
+    it "returns a successful 200 response" do
+       get :index, format: :json
+      expect(response).to be_success
+    end
+
+    it "returns all the students" do
+      FactoryGirl.create_list(:student, 5)
+      get :index, format: :json
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['students'].length).to eq(5)
+    end
+  end
+</code></pre>
+
+<p>In order to get these tests passing, we first need to submit a get request for the <code>index</code> action in a JSON format. We first expect the response to be successful, or more specifically, to result in a 200 status code.</p>
+
+<p>We also need to test whether or not it returns all of the existing students in the test database. I&rsquo;ve used the FactoryGirl gem to mock out the student list <code>create_list(:student, 5)</code>. I&rsquo;ve also set up the <code>parsed_response</code> variable, which will translate the response body in JSON format into a more readable format. Then I&rsquo;ve set the expectation that the <strong>length</strong> of the <code>parsed_response[students]</code> should be equal to 5, as specified in the <code>FactoryGirl.create_list(:student, 5)</code> line.</p>
+
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "GET 'show' " do
+    it "returns a successful 200 response" do
+      pending
+    end
+
+    it "returns data of an single student" do
+      pending
+    end
+
+    it "returns an error if the student does not exist" do
+      pending
+    end
+  end
+</code></pre>
+
+<p>This block refers to the show action. I am testing for three specific expectations: a successful JSON response to return a 200 status code, a successful response to return the correct student JSON object, and for the JSON response to return an error message for a student JSON object that doesn&rsquo;t exist.</p>
+
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "GET 'show' " do
+    let(:student) { create(:student) }
+
+    it "returns a successful 200 response" do
+      get :student, id: student, format: :json
+      expect(response).to be_success
+    end
+
+    it "returns data of an single student" do
+      get :student, id: student, format: :json
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['student']).to_not be_nil
+    end
+
+    it "returns an error if the student does not exist" do
+      get :student, id: 10 , format: :json
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['error']).to eq("Student does not exist")
+      expect(response).to be_not_found
+    end
+  end
+</code></pre>
+
+<p>We&rsquo;ve built out a student mock using FactoryGirl, and will be using this to test whether or not the <code>show</code> method returns the correct student from the test database based on the student&rsquo;s ID. For each test, we are submitting a get request for the student we mocked out earlier, and we should expect a 200 response for the first test, and for <code>parsed_response['student']</code> to essentially be a valid student object returned from the test database. For the third test, we are asking to return a student with an ID of 10, which doesn&rsquo;t exist in our database. We should expect an error messaged from <code>parsed_response['error']</code>, and we should also expect the response to return a message saying that the object was not found.</p>
+
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "POST 'create' " do
+    context "correct email format" do
+      it "returns a successful json string with success message" do
+        pending
+      end
+    end
+
+    context "incorrect email format" do
+      it "returns an error if an incorrect email format is submitted" do
+        pending
+      end  
+    end
+  end
+end
+</code></pre>
+
+<p>This block is describing the create method, which will take in an email address parameter. If the email address is valid, then it will fire off an email to that email address, and then fire off a <strong>success</strong> message within a JSON response. If the email address is invalid, then it won&rsquo;t fire off the email, and will render an <strong>invalid</strong> message within a JSON response.</p>
+
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "POST 'create' " do
+    context "correct email format" do
+      it "returns a successful json string with success message" do
+        post :create, { email: "newstudent@example.com" }
+        expect(response).to be_success
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['success']).to eq("Accepted email format.")
+      end
+    end
+
+    context "incorrect email format" do
+      it "returns an error if an incorrect email format is submitted" do
+        post :create, { email: "new@studentexample" }
+        parsed_response = JSON.parse(response.body)
+        expect(response).to be_bad_request
+        expect(parsed_response['invalid']).to eq("Invalid email format.")
+      end  
+    end
+  end
+end
+</code></pre>
+
+<p>In the first test, we&rsquo;re passing in a valid email address inside of the post request for the <code>create</code> action. If it&rsquo;s valid, then we expect the JSON response to have a 200 status code, and we also expect <code>parsed_response</code> to have a <strong>success</strong> message as well. The second test passes in an invalid email address. We expect the JSON response to return a bad request status, more specifically a 400 status code, as well as a <strong>invalid</strong> message inside of the <code>parsed_response</code>.</p>
+
+<p>In order to make all of these tests pass, here&rsquo;s how the corresponding <code>app/controllers/api/v1/students_controller.rb</code> file looks:</p>
+
+<pre><code class="ruby controllers/api/v1/students_controller.rb">module API::V1
+  class StudentsController &lt; ApplicationController
+    before_action :find_student, only: [:student]
+
+    def index
+      @students = Student.all
+      render json: @students
+    end
+
+    def show
+      render json: @student
+    end
+
+    def create
+      if valid_email?(params[:email])
+        send_acceptance_email(params[:email])
+        render json: { success: "Accepted email format." }
+      else
+        render json: { invalid: "Invalid email format." }, status: :bad_request
+      end
+    end
+
+    private
+
+    def find_student
+      @student = Student.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: "Student does not exist" }, status: :not_found
+    end
+
+    def valid_email?(email_address)
+      !!(email_address =~ /.+\@.+\..+/)
+    end
+
+    def send_acceptance_email(email)
+      NewStudentMailer.acceptance_email(email).deliver
+    end
+  end
+end
+</code></pre>
+
+<p>The <code>index</code>, <code>show</code>, and <code>create</code> methods should be pretty straightforward, but perhaps I should elaborate more on the private methods. Within the context of building an API, we only need to focus on two: <code>find_student</code> and <code>valid_email?(email_address)</code>.</p>
+
+<p>The <code>find_student</code> method will query the Student model and its corresponding ActiveRecord database in order to find the student object with the ID attribute specified in params. In the event that it cannot find that corresponding student and Rails throws a <code>ActiveRecord::RecordNotFound</code> error, then it will execute a rescue clause that will render a JSON response with two components: the message &ldquo;Student does not exist&rdquo; and a 404 status code (&ldquo;Not Found&rdquo;).</p>
+
+<p>The &lsquo;valid_email?(email_address)&rsquo; method is simply a regex that will parse a parameter passed in, and determine whether or not it is a valid email address. If it is valid, it will fire off an email in the <code>send_acceptance_email(email)</code> method, but if it is not valid, then it will render a JSON response with an invalid format error message.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Strong Params in Rails]]></title>
+    <link href="http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails/"/>
+    <updated>2014-04-01T23:10:39-04:00</updated>
+    <id>http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails</id>
+    <content type="html"><![CDATA[<p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
+
+<p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
+
+<p>Typically, we have a private method inside of the controller that delegates the <code>whitelisting</code> that should take place.</p>
+
+<p>For example:</p>
+
+<pre><code class="ruby UsersController">private
+
+def resource_params
+  params.require(:user).permit(:name, :age, :email)
+end
+</code></pre>
+
+<p>The <code>require</code> statement inside the <code>resource_params</code> method performs the parameter validation for the user parameter. If the user parameter exists, then it will go on and validate each of the attributes. If the user parameter does not exist, then it will throw an <code>ActionController::ParameterMissing</code> error and return a 400 status code response.</p>
+
+<p>Additionally, the <code>permit</code> method will strip out any attributes that do not belong inside of the params. For example, if we tried to include a <code>:admin</code> attribute inside of the <code>permit</code> method, it will not be passed into the params.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
+    <updated>2013-12-27T11:08:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
+    <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
+
+<p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
+
+<p>I&rsquo;ll be using the example of a distributed solar generation product.  Whenever a consumer is experiencing unusually low solar energy production or energy generation patterns consistent with a malfunctioning module, it will send out a mailer notifying them of these issues.  In order to generate a mailer, you type in the following command:</p>
+
+<pre><code class="ruby Mailer Generation">rails g mailer SolarMailer error_report
+</code></pre>
+
+<p>The next step is to set up the default settings of the mailer.</p>
+
+<pre><code class="ruby Mailer Settings">class SolarMailer &lt; ActionMailer::Base
+    default from: "administrator@solartech.com"
+
+    def error_report(panel, customer)
+        mail to: customer.email, subject: "Panel #{panel.location} #{panel.id} is experiencing some technical issues.""
+    end
+end
+</code></pre>
+
+<p>After we have set up the default settings for the mailer, then we go to the Panel model in order to specify when the mailer should be sent out.</p>
+
+<pre><code class="ruby Panel model">class Panel &lt; ActiveRecord::Base
+    belongs_to :module
+    before_save :check_power_yield
+
+    def check_power_yield
+        if power_yield &lt;= 1200 kWh #base power generation
+            SolarMailer.error_report(self, self.customer).deliver
+        end
+    end
+end
+</code></pre>
+
+<p>That&rsquo;s pretty much it for a basic mailer.  You can style the mailer using HTML/CSS, and you can also add front-end features via Javascript (AJAX, jQuery).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
+    <updated>2013-12-22T13:26:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/12/22/impetus-for-a-career-in-programming</id>
+    <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
+
+<p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
+
+<p>I’ve always had a pretty imaginative brain, always willing to go into wild tangents that test the limits of my creativity. I’m not sure if it’s a result of my brain’s capacity for randomness, or if it’s just my brain trying to make sense of the endless chatter being fired between the synapses of my neural pathways. Part of me is convinced that this is a result of my disability. When one of the five senses is limited (in this case, sound), another is enhanced. In my situation, I think my visual ability is much more nuanced than the average person. Perhaps that transfers over into my subconscious somehow, which would explain my visual acuity.</p>
+
+<p>As a result of my hearing disability, I always enjoyed playing video games, particularly strategy games. It was something that gave me a full sense of control, something that I could, with 100% certainty, influence in terms of direction. In other words, it was an escape from the more difficult aspects of childhood, particularly my teenage years in which social interaction skyrocketed, leaving me behind my peers in social conversation.</p>
+
+<p>From middle school until college, I was always interested in video games. As a result of video games, I started tinkering around with computers, my first experience coming when I figured out how to take control of my middle school’s computers using MS/DOS, and would perpetually confuse my fellow students by hijacking their mouse cursor and typing cryptic messages into their word processor application. I remember when I built my first website. It was a Geocities all-in-one basic site that focused on posting answers to my math homework. I don’t know if it was ever used at all by my classmates, but I remember the crappy blue background with the black and green Comic Sans font. Why did everyone use Comic Sans back then? What a colossal waste of a font. Anyways, the foundation of my technological curiosity had been firmly implanted by the time I was in middle school.</p>
+
+<p>I was proficient in HTML and CSS back then, and was just starting to use JavaScript. I got so frustrated using JavaScript, largely because I was learning it on my own, and there were not many resources readily available in which you could find reliable answers. This is why having a community in which you can ask programming questions is so important. I lost my desire to continue my immersion into programming after a few months. Up until that point, many subjects came very easily to me then, such as English, Math, video games. I think the idea of a challenge discouraged me, and I was simply looking for something that provided instant gratification. I now realize that was a setback in terms of my mindset. Since then, the same question always came up from time to time: “what if?”. Looking back on it now, giving up was probably the biggest mistake I ever made.</p>
+
+<p>Fast forward to my senior year of college. I was an Economics major, authoring a thesis that detailed solar energy subsidy programs and the long-term effects of that respective government’s approach. To summarize my thesis, among all countries with mature renewable energy policy programs, Germany did best in structuring a long-term approach while the United States bungled it. At that point, I was certain that I was going into a career in renewable energy finance or policy.</p>
+
+<p>My career in renewable energy started off well. I became an intern at a very well respected renewable energy policy group in Washington, DC, and eventually wrote a white paper that discussed the merits of tax equity syndication for solar power development. At the conclusion of my internshp, I went to work for a biomass power startup, and gave me a wide breadth of expertise in project development in India and Tanzania.</p>
+
+<p>In the spring of 2013, I decided to take an online course for Python on CourseRA just to play around with the idea of programming, not realizing that it would ultimately alter my career path 9 months later. Through Rice University’s Python class on CourseRA, we built a number of small games, such as Tic-Tac-Toe, Paddleboard, and a simple spaceship game that reminded me a little bit of a 2D version of Star Wars. I started to help out with web application development for my company, and the product was supposed to be a dashboard for energy analytics. First I helped write the business documentation for it, then started working with a programmer to build out the framework for the application itself. Over the course of 2 months of working with a programmer, I decided that programming was what I wanted to spend the rest of my life doing. The constant problem solving, discussions about best courses of action, and brainstorming was the most intellectually challenged and enriched that I had felt since high school and college. When you attain that desire for learning, you never really want to let it go. That desire siezes you like adrenaline does a bungee jumper jumping off a bridge: simply relentless.</p>
+
+<p>I started taking courses on CourseAcademy and TeamTreehouse for Ruby. I had heard that Ruby was the hottest full-stack language at that point, and it was relatively straightforward to learn. I also applied to several boot camps, convinced that it was just what I needed to jumpstart my future. I ultimately settled on the Flatiron School in NYC because of its community-driven approach to programming, as well as its mission to help individuals find a passion in programming, and also encourage the involvement of women in what has been traditionally a male-dominated profession.</p>
+
+<p>Fast forward five months later. I am two weeks out of boot camp at Flatiron School. Has it been worth it? The reasons may be different for everyone, but for me, it certainly has. I’d even go as far as to say that it’s been life changing. I’ve met the most wonderful group of individuals at Flatiron, and I’ve learned a lot from them. And I can now call myself a programmer. Not a skilled one yet, but that’s what I am working towards, step by step. But there are three important results that have been made possible by my experiences in the past year. I’ve discovered my passion. I’ve re-ignited my desire to learn. And I’ve finally learned the lesson that I should have learned long ago, even with a particularly limiting disability; there  is no limit.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord: Validations]]></title>
+    <link href="http://irmiller22.github.io/blog/2013/11/10/activerecord-validations/"/>
+    <updated>2013-11-10T22:20:00-05:00</updated>
+    <id>http://irmiller22.github.io/blog/2013/11/10/activerecord-validations</id>
+    <content type="html"><![CDATA[<p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
+
+<p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
+
+<p>You can also place constraints upon your validations.  For example, if you&rsquo;re using <code>validates_length_of</code> for usernames, you can specify a range that the length must fall between.  For example:</p>
+
+<pre><code class="ruby Validation - Username Length">class Account &lt; ActiveRecord::Base
+    validates_length_of :username, within: 5..20
+end
+</code></pre>
+
+<p>If it exceeds the length, then you can provide an error message option that follows the validation.</p>
+
+<pre><code class="ruby Validation - Username Length, Error">class Account &lt; ActiveRecord::Base
+    validates_length_of :username, within: 5..20,               wrong_length: "should be %{count} characters            long"
+end
+</code></pre>
+
+<p>An important aspect of validations is enforcing uniqueness among join models in the database.  We have used this recently (in our Flatiron-Kitchen-Ruby-003 assignment).  In order to enforce uniqueness, we have to define a scope constraint.  For example, if we had three classes, <code>Registration</code>, <code>Course</code> and <code>Student</code>, how could we make sure that a student isn&rsquo;t registered more than once for a particular class?  We would define the scope of the <code>Registration</code> class, as shown below:</p>
+
+<pre><code class="ruby Registration - Scope">class Registration &lt; ActiveRecord::Base
+    belongs_to :student
+    belongs_to :course
+
+    validates_uniqueness_of :student_id, scope: :course_id, message: "can only register once per course"
+</code></pre>
+
+<p>Another one that you run into all the time:</p>
+
+<pre><code class="ruby Email Validation">class Email &lt; ActiveRecord::Base
+    validates_uniqueness_of :address, message: "already taken"
+end
+</code></pre>
+
+<p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &ndash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
+]]></content>
+  </entry>
+  
+</feed>
