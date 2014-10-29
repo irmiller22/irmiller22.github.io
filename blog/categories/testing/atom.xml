@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Testing | My Octopress Blog]]></title>
+  <title><![CDATA[Category: testing | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-10-29T11:30:32-04:00</updated>
+  <updated>2014-10-29T11:55:21-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Ian Miller]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
-    <title type="html"><![CDATA[Working With Rack Sessions]]></title>
+    <title type="html"><![CDATA[Working with Rack Sessions]]></title>
     <link href="http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions/"/>
     <updated>2014-09-29T14:46:57-04:00</updated>
     <id>http://irmiller22.github.io/blog/2014/09/29/working-with-rack-sessions</id>
@@ -63,7 +63,7 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Controller Testing via RSpec]]></title>
+    <title type="html"><![CDATA[Controller Testing Via RSpec]]></title>
     <link href="http://irmiller22.github.io/blog/2014/02/27/controller-testing-via-rspec/"/>
     <updated>2014-02-27T10:01:37-05:00</updated>
     <id>http://irmiller22.github.io/blog/2014/02/27/controller-testing-via-rspec</id>
@@ -82,7 +82,7 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Foray Into Cucumber Feature Testing]]></title>
+    <title type="html"><![CDATA[Foray into Cucumber Feature Testing]]></title>
     <link href="http://irmiller22.github.io/blog/2014/02/23/foray-into-cucumber-feature-testing/"/>
     <updated>2014-02-23T14:45:33-05:00</updated>
     <id>http://irmiller22.github.io/blog/2014/02/23/foray-into-cucumber-feature-testing</id>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Agile | My Octopress Blog]]></title>
+  <title><![CDATA[Category: agile | Archaic Positives]]></title>
   <link href="http://irmiller22.github.io/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://irmiller22.github.io/"/>
-  <updated>2014-10-29T11:30:32-04:00</updated>
+  <updated>2014-10-29T11:55:21-04:00</updated>
   <id>http://irmiller22.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Ian Miller]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
-    <title type="html"><![CDATA[Intersection Between Tolstoy and Agile Programming]]></title>
+    <title type="html"><![CDATA[Intersection between Tolstoy and Agile Programming]]></title>
     <link href="http://irmiller22.github.io/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/"/>
     <updated>2014-05-04T13:23:42-04:00</updated>
     <id>http://irmiller22.github.io/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming</id>
