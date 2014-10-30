@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rspec, | Archaic Positives]]></title>
+  <link href="http://ianmiller.nyc/blog/categories/rspec/atom.xml" rel="self"/>
+  <link href="http://ianmiller.nyc/"/>
+  <updated>2014-10-30T10:30:47-04:00</updated>
+  <id>http://ianmiller.nyc/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CRUD Applications: Importance of MVC]]></title>
+    <link href="http://ianmiller.nyc/blog/2013/10/27/mvc-basics/"/>
+    <updated>2013-10-27T23:03:00-04:00</updated>
+    <id>http://ianmiller.nyc/blog/2013/10/27/mvc-basics</id>
+    <content type="html"><![CDATA[<p>This past weekend, we had an assignment to build a CRUD application from scratch (well, almost).  A CRUD application is short for the four basic applications of relational database management and storage: create, read, update, and delete.  The CRUD application allows interfacing between a database, a user interface, and HTTP protocols.  I thought that I&rsquo;d go ahead and describe the main components of our CRUD application that we built this weekend.  There are thee specific ones to take note of: the controllers, models, and views.</p>
+
+<p>Models are Ruby-specific classes that talk to the database, store, validate, and execute logic.  In other terms, they do all of the heavy lifting for our application.  They&rsquo;re basically the overworked accountant in the back room during tax season, churning out numbers while eating stale donuts at an absurd rate.</p>
+
+<p>Views are elements that the user sees and interface with.  In short, they will provide the user experience through HTML, CSS, Javascript, and other front-end aspects.  They&rsquo;re the responsible ladies and gentlemen specifically positioned near the front of the office to provide a sense of culture and value to the outside user looking in.</p>
+
+<p><img class="center <a" src="href="http://static2.fjcdn.com/thumbnails/comments/ah+alright+cheers.+yeah+doge+is+great+_56f6675509eadf36993a7e5b53c37f6d.jpg">http://static2.fjcdn.com/thumbnails/comments/ah+alright+cheers.+yeah+doge+is+great+_56f6675509eadf36993a7e5b53c37f6d.jpg</a>&#8221;></p>
+
+<p>Controllers deal with the back-end requests from users, data requests, data submissions, sessions, and so on.  Any time you enter data into a form on a website, such as a login and password, you are interacting with a controller after you have hit the submit button.  After the request is sent, the controller sends the response to the server, and the server then combines that data into a HTTP response that is sent back to the user.</p>
+
+<p><img class="center <a" src="href="http://i37.tinypic.com/2wrn985.gif">http://i37.tinypic.com/2wrn985.gif</a>&#8221; width=&#8221;500&#8221;></p>
+
+<p>One term that I&rsquo;ve read about describes how you should structure your models and controllers: &ldquo;fat models, skinny controllers.&rdquo;  The idea is that your models are not just a simple form of abstration in your database layer, but they represent the entirety of the logic in your application.  It should be able to stand alone from the rest of the application.  By convention, it should not interact with other components of your application.  Each controller method also should represent one action.  The controllers simply just shuttle requests between your views and your models (or your user interface and the application logic).  Another primary reason why this is an important programming practice is that you have enabled 2 things: one, you&rsquo;ve made it easy to reuse your code due to its abstraction and simplicity, and two, you&rsquo;ve also made it simpler for testing your code.</p>
+
+<p><img class="center <a" src="href="http://www.mikebernat.com/images/cake/layercake.png">http://www.mikebernat.com/images/cake/layercake.png</a>&#8221; width=&#8221;500&#8221;></p>
+
+<p>That&rsquo;s what I wanted to review in this blog post.  I&rsquo;ll also share some of my favorite, but terrible, puns with you.  Some of you might have already heard some of these.</p>
+
+<p>A truck transporting fruit in California overturned the other day.  It created quite a&hellip; jam.  That driver&rsquo;s career is also&hellip; toast.</p>
+
+<p>The other day, I couldn&rsquo;t quite remember how to throw a boomerang, but eventually it came back.</p>
+
+<p>Hello everyone (in Ruby 003 class on Monday, Oct 28), what is Avi&rsquo;s background?  Well, it&rsquo;s a white wall.</p>
+
+<p><img class="center <a" src="href="https://i.chzbgr.com/maxW500/5870736384/hB08BCDAD/">https://i.chzbgr.com/maxW500/5870736384/hB08BCDAD/</a>&#8221;></p>
+]]></content>
+  </entry>
+  
+</feed>

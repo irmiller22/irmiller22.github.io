@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: bootcamp | Archaic Positives]]></title>
+  <link href="http://ianmiller.nyc/blog/categories/bootcamp/atom.xml" rel="self"/>
+  <link href="http://ianmiller.nyc/"/>
+  <updated>2014-10-30T10:30:47-04:00</updated>
+  <id>http://ianmiller.nyc/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
+    <link href="http://ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
+    <updated>2013-12-22T13:26:00-05:00</updated>
+    <id>http://ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming</id>
+    <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
+
+<p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
+
+<p>I’ve always had a pretty imaginative brain, always willing to go into wild tangents that test the limits of my creativity. I’m not sure if it’s a result of my brain’s capacity for randomness, or if it’s just my brain trying to make sense of the endless chatter being fired between the synapses of my neural pathways. Part of me is convinced that this is a result of my disability. When one of the five senses is limited (in this case, sound), another is enhanced. In my situation, I think my visual ability is much more nuanced than the average person. Perhaps that transfers over into my subconscious somehow, which would explain my visual acuity.</p>
+
+<p>As a result of my hearing disability, I always enjoyed playing video games, particularly strategy games. It was something that gave me a full sense of control, something that I could, with 100% certainty, influence in terms of direction. In other words, it was an escape from the more difficult aspects of childhood, particularly my teenage years in which social interaction skyrocketed, leaving me behind my peers in social conversation.</p>
+
+<p>From middle school until college, I was always interested in video games. As a result of video games, I started tinkering around with computers, my first experience coming when I figured out how to take control of my middle school’s computers using MS/DOS, and would perpetually confuse my fellow students by hijacking their mouse cursor and typing cryptic messages into their word processor application. I remember when I built my first website. It was a Geocities all-in-one basic site that focused on posting answers to my math homework. I don’t know if it was ever used at all by my classmates, but I remember the crappy blue background with the black and green Comic Sans font. Why did everyone use Comic Sans back then? What a colossal waste of a font. Anyways, the foundation of my technological curiosity had been firmly implanted by the time I was in middle school.</p>
+
+<p>I was proficient in HTML and CSS back then, and was just starting to use JavaScript. I got so frustrated using JavaScript, largely because I was learning it on my own, and there were not many resources readily available in which you could find reliable answers. This is why having a community in which you can ask programming questions is so important. I lost my desire to continue my immersion into programming after a few months. Up until that point, many subjects came very easily to me then, such as English, Math, video games. I think the idea of a challenge discouraged me, and I was simply looking for something that provided instant gratification. I now realize that was a setback in terms of my mindset. Since then, the same question always came up from time to time: “what if?”. Looking back on it now, giving up was probably the biggest mistake I ever made.</p>
+
+<p>Fast forward to my senior year of college. I was an Economics major, authoring a thesis that detailed solar energy subsidy programs and the long-term effects of that respective government’s approach. To summarize my thesis, among all countries with mature renewable energy policy programs, Germany did best in structuring a long-term approach while the United States bungled it. At that point, I was certain that I was going into a career in renewable energy finance or policy.</p>
+
+<p>My career in renewable energy started off well. I became an intern at a very well respected renewable energy policy group in Washington, DC, and eventually wrote a white paper that discussed the merits of tax equity syndication for solar power development. At the conclusion of my internshp, I went to work for a biomass power startup, and gave me a wide breadth of expertise in project development in India and Tanzania.</p>
+
+<p>In the spring of 2013, I decided to take an online course for Python on CourseRA just to play around with the idea of programming, not realizing that it would ultimately alter my career path 9 months later. Through Rice University’s Python class on CourseRA, we built a number of small games, such as Tic-Tac-Toe, Paddleboard, and a simple spaceship game that reminded me a little bit of a 2D version of Star Wars. I started to help out with web application development for my company, and the product was supposed to be a dashboard for energy analytics. First I helped write the business documentation for it, then started working with a programmer to build out the framework for the application itself. Over the course of 2 months of working with a programmer, I decided that programming was what I wanted to spend the rest of my life doing. The constant problem solving, discussions about best courses of action, and brainstorming was the most intellectually challenged and enriched that I had felt since high school and college. When you attain that desire for learning, you never really want to let it go. That desire siezes you like adrenaline does a bungee jumper jumping off a bridge: simply relentless.</p>
+
+<p>I started taking courses on CourseAcademy and TeamTreehouse for Ruby. I had heard that Ruby was the hottest full-stack language at that point, and it was relatively straightforward to learn. I also applied to several boot camps, convinced that it was just what I needed to jumpstart my future. I ultimately settled on the Flatiron School in NYC because of its community-driven approach to programming, as well as its mission to help individuals find a passion in programming, and also encourage the involvement of women in what has been traditionally a male-dominated profession.</p>
+
+<p>Fast forward five months later. I am two weeks out of boot camp at Flatiron School. Has it been worth it? The reasons may be different for everyone, but for me, it certainly has. I’d even go as far as to say that it’s been life changing. I’ve met the most wonderful group of individuals at Flatiron, and I’ve learned a lot from them. And I can now call myself a programmer. Not a skilled one yet, but that’s what I am working towards, step by step. But there are three important results that have been made possible by my experiences in the past year. I’ve discovered my passion. I’ve re-ignited my desire to learn. And I’ve finally learned the lesson that I should have learned long ago, even with a particularly limiting disability; there  is no limit.</p>
+]]></content>
+  </entry>
+  
+</feed>
