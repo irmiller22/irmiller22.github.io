@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Archaic Positives]]></title>
   <link href="http://ianmiller.nyc/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://ianmiller.nyc/"/>
-  <updated>2014-10-30T10:38:59-04:00</updated>
+  <updated>2014-10-30T10:48:20-04:00</updated>
   <id>http://ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -42,7 +42,7 @@ end
     ]
 </code></pre>
 
-<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#111;&#99;&#116;&#111;&#114;&#95;&#x77;&#104;&#111;&#x40;&#x77;&#104;&#111;&#x76;&#x69;&#108;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;">&#100;&#111;&#99;&#116;&#x6f;&#x72;&#x5f;&#x77;&#104;&#111;&#x40;&#119;&#104;&#x6f;&#118;&#105;&#x6c;&#x6c;&#x65;&#46;&#x63;&#111;&#109;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#x6f;&#x63;&#x74;&#111;&#114;&#x5f;&#119;&#104;&#111;&#64;&#x77;&#104;&#111;&#x76;&#x69;&#108;&#x6c;&#x65;&#46;&#x63;&#111;&#109;">&#x64;&#x6f;&#99;&#116;&#111;&#114;&#95;&#119;&#104;&#x6f;&#x40;&#x77;&#x68;&#x6f;&#118;&#x69;&#x6c;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
 
 <p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
 
