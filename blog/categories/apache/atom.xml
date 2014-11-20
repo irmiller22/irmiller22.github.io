@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache | Archaic Positives]]></title>
   <link href="http://ianmiller.nyc/blog/categories/apache/atom.xml" rel="self"/>
   <link href="http://ianmiller.nyc/"/>
-  <updated>2014-11-18T11:36:57-05:00</updated>
+  <updated>2014-11-20T10:16:39-05:00</updated>
   <id>http://ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -23,7 +23,7 @@ NGinx has emerged largely as a result of increased demand for online services an
 
 <p>A number of companies, according to Wired, have run into scalability issues with Apache, and have transitioned to NGinx.  Facebook, Dropbox, and Wordpress are sites that utilize the NGinx server platform.</p>
 
-<p><img class="center <a" src="href="http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png">http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png</a>&#8221;></p>
+<p>{% img center <a href="http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png">http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png</a> %}</p>
 
 <p>NGinx does not have a module load feature like Apache does, but that is where Passenger steps in, as it automates the module loading process.</p>
 

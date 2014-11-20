@@ -9,7 +9,7 @@
   <meta name="author" content="Ian Miller">
 
   
-  <meta name="description" content="Abstraction is a concept that I have been thinking quite a lot about lately. It is a concept that has largely been foreign to me, and it is slowly &hellip;">
+  <meta name="description" content="NGinx is a open-source proxy server that primarily serves HTTP and HTTPS protocols. Nginx was created to achieve three main goals: concurrency ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+  
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/explanation-of-nginx-and-passenger/">Explanation of NGinx and Passenger</a></h1>
+      
+      
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-04T20:19:00-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>NGinx is a open-source proxy server that primarily serves HTTP and HTTPS protocols.  Nginx was created to achieve three main goals: concurrency (process in which computations are executed simultaneously across several systems), high performance, and low memory usage.  It utilizes an event-driven approach to server requests, and allocates responses based upon server traffic and handling.  It has become a viable alternative to the Apache server model, which uses a process-driven methodology for handling large server requests.<br/>
+NGinx has emerged largely as a result of increased demand for online services and the rise of the web as a platform.  Unlike Apache, NGinx has a master process that delegates work to worker processes, and it is designed handle a large number of server connections with a small amount of memory.</p>
+
+<p>A number of companies, according to Wired, have run into scalability issues with Apache, and have transitioned to NGinx.  Facebook, Dropbox, and Wordpress are sites that utilize the NGinx server platform.</p>
+
+<p><img class="center" src="http://www.wired.com/wiredenterprise/wp-content/uploads//2012/02/Screen-shot-2012-02-09-at-5.16.17-PM.png"></p>
+
+<p>NGinx does not have a module load feature like Apache does, but that is where Passenger steps in, as it automates the module loading process.</p>
+
+<p>Passenger is an Rack application server software that is often used in conjunction with NGinx.  Similarly with mod_php for hosting PHP apps on Apache, Passenger simplifies the process of hosting Ruby apps on NGinx.  Passenger automates the process of starting/stopping a server, restarting after a server crash, and dynamically adjusts the number of processes on a server based on traffic.  It also allows the server to run more than 1 instance of the app, allowing greater use of server resources.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -950,49 +997,9 @@ End</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-  
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/24/first-post/">First Post</a></h1>
-      
-      
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-24T16:51:00-04:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today was the second day of my developer-in-training at the Flatiron School.  Yesterday we spent the majority of the day discussing the nuances of Git and GitHub, which are variations of a VCS (version control system).  Ultimately Git helps simplify the collaboration process between developers by organizing the version control heirarchy.  This may not be as important when it&rsquo;s just one or two developers working together, but when you have a large number of developers (say, 15 or more), it definitely makes a difference.  We spent most of the day today setting up our developer environments.  This involved creating an Apple Developer account, installing software through the Terminal (such as Ruby, RVM, SQLite3, Homebrew, etc).</p>
-
-<p>This blog is what I will be using to keep track of my progress throughout the semester at Flatiron.  It has been relatively smooth sailing, but it will start to get more difficult as time passes.  We will start focusing on SQL tomorrow, and then move on to Ruby on Thursday.  I&rsquo;m very excited about my time here.  It will prove to be one of the most instrumental experiences that I have had, and I am excited about my opportunities that lie in wait.</p>
-
-<p>NYC has been a great place to live in so far.  I am currently in Williamsburg over in Brooklyn, and it is very accessible to Manhattan.  The L train is on my block, so it&rsquo;s roughly a 20 minute metro ride to the Bowling Green stop in Lower Manhattan.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="4">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1005,6 +1012,10 @@ End</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/04/the-voice-in-the-background/">The Voice in the Background</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
@@ -1020,10 +1031,6 @@ End</p>
     
       <li class="post">
         <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/28/simple-authorizations-with-devise/">Simple Authorizations with Devise</a>
       </li>
     
   </ul>
