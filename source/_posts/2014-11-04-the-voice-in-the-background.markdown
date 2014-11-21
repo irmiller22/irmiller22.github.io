@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Voice in the Background"
+title: "You're not an Impostor: How to Manage Self-Expectations as a New Developer"
 date: 2014-11-04 12:02:37 -0500
 comments: true
 categories: impostor syndrome programming ruby ian miller
@@ -17,7 +17,7 @@ When I started programming over a year ago, I kept second guessing myself every 
 ### To self-criticize is Human
 
 
-Humans by nature are very critical, sometimes overbearing creatures, and we tend to come down hard on our own inabilities to overcome small obstacles, often attributing them to some inherent flaw in our mental make-up. This humanistic trait essentially makes it even more difficult when it comes to learning something new. We fault ourselves for not being able to get it right away, and we give up either out of desperation or because we fear how much we don't know. As a result, we're mentally hard-wired to set ourselves up for failure.
+Humans are very critical, sometimes overbearing, creatures by nature, and we tend to come down hard on our own inabilities to overcome small obstacles, often attributing them to some inherent flaw in our mental make-up. This humanistic trait essentially makes it even more difficult when it comes to learning something new. We fault ourselves for not being able to get it right away, and we give up either out of desperation or because we fear how much we don't know. As a result, we're mentally hard-wired to set ourselves up for failure.
 
 {% img center http://core0.staticworld.net/images/idge/imported/article/itw/2013/12/10/2_5-100522019-orig.jpg %}
 
@@ -41,15 +41,15 @@ Simply put, you will never completely eradicate the presence of impostor syndrom
 
 Coming into programming from an accelerated learning route (via Flatiron School), this is something that our students run into firsthand. Going through the process of learning the nuances of Ruby, Sinatra, Rails, Javascript, and ultimately how to build a functioning web application can be extremely daunting. Even more so is the fact that they slowly have to remove their hands from the guardrails in order to stand on your own as a developer. This was the most challenging part about my own experience, and this is something our students face every semester.
 
-__Stay positive__. It’s important to keep in perspective how far you’ve come in such a short amount of time. Play up your successes, and think about your failures, and how you can learn from them. It doesn’t matter how many times you fall—what ultimately defines you as a developer is that you continue to get back up, and recognize that there will always be moments of uncertainty and discomfort.
+__Stay positive__. It’s important to keep in perspective how far you’ve come in such a short amount of time. Play up your successes, and think about your failures, and how you can learn from them. It doesn’t matter how many times you fall — what ultimately defines you as a developer is that you continue to get back up, and recognize that there will always be moments of uncertainty and discomfort.
 
-__Talk about it__. The realization that everyone felt the way I did was huge. With the help of others, I started using several techniques to keep my doubts about my abilities in check—like positive reinforcement from friends and co-workers, and journal entries. I started participating in weekly code talks called [Code Newbie](http://www.codenewbie.org/) that my friend, the amazingly talented and wonderful [Saron Yitbarek](https://twitter.com/saronyitbarek), started and currently maintains. She spoke about her experience at [RailsConf 2014](http://bloggytoons.com/code-club/) and in this [post](http://blog.flatironschool.com/post/102875482158/from-business-development-to-web-development-a).
+__Talk about it__. The realization that everyone felt the way I did was huge. With the help of others, I started using several techniques to keep my doubts about my abilities in check — like positive reinforcement from friends and co-workers, and journal entries. I started participating in weekly code talks called [Code Newbie](http://www.codenewbie.org/) that my friend, the amazingly talented and wonderful [Saron Yitbarek](https://twitter.com/saronyitbarek), started and currently maintains. She spoke about her experience at [RailsConf 2014](http://bloggytoons.com/code-club/) and in this [post](http://blog.flatironschool.com/post/102875482158/from-business-development-to-web-development-a).
 
   {% img center http://i.imgur.com/jIVhTbP.gif %}
 
-__Be OK with not knowing everything__. I’ve had to figure out how to be OK with (excited, even!) to not know everything—it’s an opportunity to learn new things and refine my current skills. If you’re a new developer, it’s fine to acknowledge the long path ahead of you. But know that you owe it to yourself to enjoy the process of learning along the way. Accept the fact that you will never know everything there is to know about programming, and that is fine. It should be about shared experiences and delayed gratification. Take pride in new skills, incremental returns, and be excited for the programmer you’ll become.
+__Be OK with not knowing everything__. I’ve had to figure out how to be OK with (excited, even!) to not know everything — it’s an opportunity to learn new things and refine my current skills. If you’re a new developer, it’s fine to acknowledge the long path ahead of you. But know that you owe it to yourself to enjoy the process of learning along the way. Accept the fact that you will never know everything there is to know about programming, and that is fine. It should be about shared experiences and delayed gratification. Take pride in new skills, incremental returns, and be excited for the programmer you’ll become.
 
-__Learn with others and let them teach you__. The best piece of advice I can give is that learning to become a programmer should not be an isolated, but rather a shared, experience. Through others, particularly a mentor, you can receive the validation and gentle push necessary to see you through the more challenging obstacles. Go to Meetups. Reach out to a developer that you like or admire. Emulate their workflow through observation. Build a web application on the side with a friend. Great software developers are the sum of their aggregated experiences over time. I guarantee you that they’ve experience more failures than they have successes. You never know what may come of your efforts unless you try.
+__Learn with others and let them teach you__. The best piece of advice I can give is that learning to become a programmer should not be an isolated, but rather a shared, experience. Through others, particularly a mentor, you can receive the validation and gentle push necessary to see you through the more challenging obstacles. Go to Meetups. Reach out to a developer that you like or admire. Emulate their workflow through observation. Build a web application on the side with a friend. Great software developers are the sum of their aggregated experiences over time. I guarantee you that they’ve experienced more failures than they have successes. You never know what may come of your efforts unless you try.
 
 ### Believe in yourself
 
