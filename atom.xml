@@ -4,7 +4,7 @@
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://ianmiller.nyc/atom.xml" rel="self"/>
   <link href="http://ianmiller.nyc/"/>
-  <updated>2014-11-21T10:05:23-05:00</updated>
+  <updated>2014-11-21T10:54:52-05:00</updated>
   <id>http://ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -63,9 +63,7 @@
 
 <p><strong>Learn with others and let them teach you</strong>. The best piece of advice I can give is that learning to become a programmer should not be an isolated, but rather a shared, experience. Through others, particularly a mentor, you can receive the validation and gentle push necessary to see you through the more challenging obstacles. Go to Meetups. Reach out to a developer that you like or admire. Emulate their workflow through observation. Build a web application on the side with a friend. Great software developers are the sum of their aggregated experiences over time. I guarantee you that they’ve experienced more failures than they have successes. You never know what may come of your efforts unless you try.</p>
 
-<h3>Believe in yourself</h3>
-
-<p>No one can predict the future. It is full of unknowns, and there are bound to be curve balls thrown here and there. It&rsquo;s very easy to convince yourself that you are a tiny fragment of what you really are. Despite the dark storm clouds of negativity or belittlement that may gather in your mind, believe in yourself. Temper your lofty expectations. Adapt. Empower. Share. As Bruce Feiler says, &ldquo;take a walk with a turtle. And behold the world in pause.&rdquo;</p>
+<p><strong>And most of all, believe in yourself</strong>. No one can predict the future. It is full of unknowns, and there are bound to be curve balls thrown here and there. It&rsquo;s very easy to convince yourself that you are a tiny fragment of what you really are. Despite the dark storm clouds of negativity or belittlement that may gather in your mind, believe in yourself. Temper your lofty expectations. Adapt. Empower. Share. As Bruce Feiler says, &ldquo;take a walk with a turtle. And behold the world in pause.&rdquo;</p>
 ]]></content>
     
   </entry>
@@ -204,7 +202,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#111;&#x63;&#116;&#111;&#114;&#x5f;&#119;&#104;&#x6f;&#x40;&#119;&#x68;&#x6f;&#118;&#105;&#108;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;">&#x64;&#111;&#99;&#116;&#111;&#x72;&#x5f;&#119;&#104;&#x6f;&#64;&#119;&#104;&#111;&#118;&#105;&#108;&#x6c;&#x65;&#46;&#99;&#111;&#109;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#111;&#99;&#x74;&#111;&#114;&#95;&#119;&#104;&#x6f;&#64;&#x77;&#x68;&#111;&#x76;&#105;&#x6c;&#108;&#101;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#x6f;&#99;&#116;&#111;&#x72;&#95;&#119;&#x68;&#x6f;&#64;&#119;&#x68;&#111;&#118;&#x69;&#108;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
 
 <p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
 
