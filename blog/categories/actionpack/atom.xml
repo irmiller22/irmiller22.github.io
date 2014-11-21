@@ -4,7 +4,7 @@
   <title><![CDATA[Category: actionpack | Archaic Positives]]></title>
   <link href="http://ianmiller.nyc/blog/categories/actionpack/atom.xml" rel="self"/>
   <link href="http://ianmiller.nyc/"/>
-  <updated>2014-11-20T10:16:39-05:00</updated>
+  <updated>2014-11-21T10:05:23-05:00</updated>
   <id>http://ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -24,7 +24,7 @@
 
 <p>In Ruby, abstraction is key to making your code achieve two things: more readable and reusable.  At this point, we&rsquo;ve learned to make our code more abstract via many concepts, such as MVC, ReST (Representational State Transfer), migrations, database abstraction via ActiveRecord, and routing.</p>
 
-<p>{%img center <a href="http://betweengo.com/docs/intro_rails/img/request_cycle.png">http://betweengo.com/docs/intro_rails/img/request_cycle.png</a> %}</p>
+<p><img class="center <a" src="href="http://betweengo.com/docs/intro_rails/img/request_cycle.png">http://betweengo.com/docs/intro_rails/img/request_cycle.png</a>&#8221;></p>
 
 <p>A major component of Ruby on Rails has really nailed down the abstract aspect of coding for me: ActiveRecord and its corresponding ActionPacks.  ActiveRecord serves as the &ldquo;Model&rdquo; component relational database for Rails.  It comes with a set of query methods used for creating, retrieving, updating, or destroying data in the database.  The model also is used for establishing association between classes.  For example, a king could have a &ldquo;has_many&rdquo; relationship with his subjects, while a subject has a &ldquo;belongs_to&rdquo; relationship with his king.</p>
 

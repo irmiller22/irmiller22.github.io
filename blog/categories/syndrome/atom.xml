@@ -4,7 +4,7 @@
   <title><![CDATA[Category: syndrome | Archaic Positives]]></title>
   <link href="http://ianmiller.nyc/blog/categories/syndrome/atom.xml" rel="self"/>
   <link href="http://ianmiller.nyc/"/>
-  <updated>2014-11-20T10:16:39-05:00</updated>
+  <updated>2014-11-21T10:05:23-05:00</updated>
   <id>http://ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -14,21 +14,21 @@
 
   
   <entry>
-    <title type="html"><![CDATA[The Voice in the Background]]></title>
+    <title type="html"><![CDATA[You're not an Impostor: How to Manage Self-Expectations as a New Developer]]></title>
     <link href="http://ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background/"/>
     <updated>2014-11-04T12:02:37-05:00</updated>
     <id>http://ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background</id>
     <content type="html"><![CDATA[<h1>Managing Uncertain Expectations</h1>
 
-<p>{% img center <a href="http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg">http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg</a> %}</p>
+<p><img class="center <a" src="href="http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg">http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg</a>&#8221;></p>
 
 <p>When I started programming over a year ago, I kept second guessing myself every step of the way because I believed that I truly didn’t know how to solve a problem or implement code correctly. I also believed that I was a burden on others, and the best strategy was to keep my banal questions to myself. Looking back, I wasted so much time and effort tricking myself into believing that I wasn’t good enough, and that I never would reach a state in which I was content with my abilities. I had no idea that I wasn’t alone.</p>
 
 <h3>To self-criticize is Human</h3>
 
-<p>Humans by nature are very critical, sometimes overbearing creatures, and we tend to come down hard on our own inabilities to overcome small obstacles, often attributing them to some inherent flaw in our mental make-up. This humanistic trait essentially makes it even more difficult when it comes to learning something new. We fault ourselves for not being able to get it right away, and we give up either out of desperation or because we fear how much we don&rsquo;t know. As a result, we&rsquo;re mentally hard-wired to set ourselves up for failure.</p>
+<p>Humans are very critical, sometimes overbearing, creatures by nature, and we tend to come down hard on our own inabilities to overcome small obstacles, often attributing them to some inherent flaw in our mental make-up. This humanistic trait essentially makes it even more difficult when it comes to learning something new. We fault ourselves for not being able to get it right away, and we give up either out of desperation or because we fear how much we don&rsquo;t know. As a result, we&rsquo;re mentally hard-wired to set ourselves up for failure.</p>
 
-<p>{% img center <a href="http://core0.staticworld.net/images/idge/imported/article/itw/2013/12/10/2_5-100522019-orig.jpg">http://core0.staticworld.net/images/idge/imported/article/itw/2013/12/10/2_5-100522019-orig.jpg</a> %}</p>
+<p><img class="center <a" src="href="http://core0.staticworld.net/images/idge/imported/article/itw/2013/12/10/2_5-100522019-orig.jpg">http://core0.staticworld.net/images/idge/imported/article/itw/2013/12/10/2_5-100522019-orig.jpg</a>&#8221;></p>
 
 <h3>Perspective is Everything</h3>
 
@@ -36,7 +36,7 @@
 
 <p>So what exactly is <a href="http://en.wikipedia.org/wiki/Impostor_syndrome">impostor syndrome</a>? Simply put, it is the feeling that &ldquo;we are frauds and we do not deserve the success we have achieved. Proof of success is dismissed as luck, timing, or as a result of deceiving others into thinking that they are more intelligent and competent than they believe themselves to be.&rdquo; Even more simply put, it is an incongruous perspective — the act of people with actual ability <strong>underestimating</strong> their relative competence.</p>
 
-<p>{% img center <a href="http://likecrystal.com/wp-content/uploads/2013/08/another-cat-imposter.jpg">http://likecrystal.com/wp-content/uploads/2013/08/another-cat-imposter.jpg</a> %}</p>
+<p><img class="center <a" src="href="http://likecrystal.com/wp-content/uploads/2013/08/another-cat-imposter.jpg">http://likecrystal.com/wp-content/uploads/2013/08/another-cat-imposter.jpg</a>&#8221;></p>
 
 <p>At some point in their career, a developer will experience impostor syndrome in some way, shape, or form. How they manage those feelings of insecurity depends on what strategies or techniques they decide to use.</p>
 
@@ -50,15 +50,15 @@
 
 <p>Coming into programming from an accelerated learning route (via Flatiron School), this is something that our students run into firsthand. Going through the process of learning the nuances of Ruby, Sinatra, Rails, Javascript, and ultimately how to build a functioning web application can be extremely daunting. Even more so is the fact that they slowly have to remove their hands from the guardrails in order to stand on your own as a developer. This was the most challenging part about my own experience, and this is something our students face every semester.</p>
 
-<p><strong>Stay positive</strong>. It’s important to keep in perspective how far you’ve come in such a short amount of time. Play up your successes, and think about your failures, and how you can learn from them. It doesn’t matter how many times you fall—what ultimately defines you as a developer is that you continue to get back up, and recognize that there will always be moments of uncertainty and discomfort.</p>
+<p><strong>Stay positive</strong>. It’s important to keep in perspective how far you’ve come in such a short amount of time. Play up your successes, and think about your failures, and how you can learn from them. It doesn’t matter how many times you fall — what ultimately defines you as a developer is that you continue to get back up, and recognize that there will always be moments of uncertainty and discomfort.</p>
 
-<p><strong>Talk about it</strong>. The realization that everyone felt the way I did was huge. With the help of others, I started using several techniques to keep my doubts about my abilities in check—like positive reinforcement from friends and co-workers, and journal entries. I started participating in weekly code talks called <a href="http://www.codenewbie.org/">Code Newbie</a> that my friend, the amazingly talented and wonderful <a href="https://twitter.com/saronyitbarek">Saron Yitbarek</a>, started and currently maintains. She spoke about her experience at <a href="http://bloggytoons.com/code-club/">RailsConf 2014</a> and in this <a href="http://blog.flatironschool.com/post/102875482158/from-business-development-to-web-development-a">post</a>.</p>
+<p><strong>Talk about it</strong>. The realization that everyone felt the way I did was huge. With the help of others, I started using several techniques to keep my doubts about my abilities in check — like positive reinforcement from friends and co-workers, and journal entries. I started participating in weekly code talks called <a href="http://www.codenewbie.org/">Code Newbie</a> that my friend, the amazingly talented and wonderful <a href="https://twitter.com/saronyitbarek">Saron Yitbarek</a>, started and currently maintains. She spoke about her experience at <a href="http://bloggytoons.com/code-club/">RailsConf 2014</a> and in this <a href="http://blog.flatironschool.com/post/102875482158/from-business-development-to-web-development-a">post</a>.</p>
 
-<p>  {% img center <a href="http://i.imgur.com/jIVhTbP.gif">http://i.imgur.com/jIVhTbP.gif</a> %}</p>
+<p>  <img class="center <a" src="href="http://i.imgur.com/jIVhTbP.gif">http://i.imgur.com/jIVhTbP.gif</a>&#8221;></p>
 
-<p><strong>Be OK with not knowing everything</strong>. I’ve had to figure out how to be OK with (excited, even!) to not know everything—it’s an opportunity to learn new things and refine my current skills. If you’re a new developer, it’s fine to acknowledge the long path ahead of you. But know that you owe it to yourself to enjoy the process of learning along the way. Accept the fact that you will never know everything there is to know about programming, and that is fine. It should be about shared experiences and delayed gratification. Take pride in new skills, incremental returns, and be excited for the programmer you’ll become.</p>
+<p><strong>Be OK with not knowing everything</strong>. I’ve had to figure out how to be OK with (excited, even!) to not know everything — it’s an opportunity to learn new things and refine my current skills. If you’re a new developer, it’s fine to acknowledge the long path ahead of you. But know that you owe it to yourself to enjoy the process of learning along the way. Accept the fact that you will never know everything there is to know about programming, and that is fine. It should be about shared experiences and delayed gratification. Take pride in new skills, incremental returns, and be excited for the programmer you’ll become.</p>
 
-<p><strong>Learn with others and let them teach you</strong>. The best piece of advice I can give is that learning to become a programmer should not be an isolated, but rather a shared, experience. Through others, particularly a mentor, you can receive the validation and gentle push necessary to see you through the more challenging obstacles. Go to Meetups. Reach out to a developer that you like or admire. Emulate their workflow through observation. Build a web application on the side with a friend. Great software developers are the sum of their aggregated experiences over time. I guarantee you that they’ve experience more failures than they have successes. You never know what may come of your efforts unless you try.</p>
+<p><strong>Learn with others and let them teach you</strong>. The best piece of advice I can give is that learning to become a programmer should not be an isolated, but rather a shared, experience. Through others, particularly a mentor, you can receive the validation and gentle push necessary to see you through the more challenging obstacles. Go to Meetups. Reach out to a developer that you like or admire. Emulate their workflow through observation. Build a web application on the side with a friend. Great software developers are the sum of their aggregated experiences over time. I guarantee you that they’ve experienced more failures than they have successes. You never know what may come of your efforts unless you try.</p>
 
 <h3>Believe in yourself</h3>
 
