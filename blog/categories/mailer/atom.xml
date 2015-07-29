@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mailer | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/mailer/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/mailer/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
     <updated>2013-12-27T11:08:00-05:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
+    <id>http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
     <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
 
 <p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: flatiron | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/flatiron/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/flatiron/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
     <updated>2013-12-22T13:26:00-05:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming</id>
+    <id>http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming</id>
     <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
 
 <p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
@@ -44,9 +44,9 @@
   
   <entry>
     <title type="html"><![CDATA[First Post]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2013/09/24/first-post/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2013/09/24/first-post/"/>
     <updated>2013-09-24T16:51:00-04:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2013/09/24/first-post</id>
+    <id>http://blog.ianmiller.nyc/blog/2013/09/24/first-post</id>
     <content type="html"><![CDATA[<p>Today was the second day of my developer-in-training at the Flatiron School.  Yesterday we spent the majority of the day discussing the nuances of Git and GitHub, which are variations of a VCS (version control system).  Ultimately Git helps simplify the collaboration process between developers by organizing the version control heirarchy.  This may not be as important when it&rsquo;s just one or two developers working together, but when you have a large number of developers (say, 15 or more), it definitely makes a difference.  We spent most of the day today setting up our developer environments.  This involved creating an Apple Developer account, installing software through the Terminal (such as Ruby, RVM, SQLite3, Homebrew, etc).</p>
 
 <p>This blog is what I will be using to keep track of my progress throughout the semester at Flatiron.  It has been relatively smooth sailing, but it will start to get more difficult as time passes.  We will start focusing on SQL tomorrow, and then move on to Ruby on Thursday.  I&rsquo;m very excited about my time here.  It will prove to be one of the most instrumental experiences that I have had, and I am excited about my opportunities that lie in wait.</p>

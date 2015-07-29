@@ -1,322 +1,313 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background/</loc>
     <lastmod>2014-11-04T12:02:37-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions/</loc>
     <lastmod>2014-09-29T14:46:57-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/</loc>
     <lastmod>2014-05-04T13:23:42-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/</loc>
     <lastmod>2014-04-18T10:31:45-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/04/01/strong-params-in-rails/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/04/01/strong-params-in-rails/</loc>
     <lastmod>2014-04-01T23:10:39-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise/</loc>
     <lastmod>2014-03-28T14:42:30-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/03/19/rails-caching/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/03/19/rails-caching/</loc>
     <lastmod>2014-03-19T09:27:04-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec/</loc>
     <lastmod>2014-02-27T10:01:37-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/02/23/foray-into-cucumber-feature-testing/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/02/23/foray-into-cucumber-feature-testing/</loc>
     <lastmod>2014-02-23T14:45:33-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/02/19/questions-about-cucumber/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/02/19/questions-about-cucumber/</loc>
     <lastmod>2014-02-19T09:58:47-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app/</loc>
     <lastmod>2014-02-02T15:05:05-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/01/21/scala-basics-an-introduction/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/01/21/scala-basics-an-introduction/</loc>
     <lastmod>2014-01-21T14:55:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2014/01/03/javascript-basics-an-introduction/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2014/01/03/javascript-basics-an-introduction/</loc>
     <lastmod>2014-01-03T23:29:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/</loc>
     <lastmod>2013-12-27T11:08:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/</loc>
     <lastmod>2013-12-22T13:26:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/12/17/walkthrough-of-microhaus-app/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/12/17/walkthrough-of-microhaus-app/</loc>
     <lastmod>2013-12-17T12:42:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/12/14/big-o-notation/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/12/14/big-o-notation/</loc>
     <lastmod>2013-12-14T12:32:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/11/17/the-art-of-a-question/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/11/17/the-art-of-a-question/</loc>
     <lastmod>2013-11-17T22:27:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/11/10/activerecord-validations/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/11/10/activerecord-validations/</loc>
     <lastmod>2013-11-10T22:20:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/11/09/omniauth-an-introduction/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/11/09/omniauth-an-introduction/</loc>
     <lastmod>2013-11-09T14:52:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/11/04/explanation-of-nginx-and-passenger/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/11/04/explanation-of-nginx-and-passenger/</loc>
     <lastmod>2013-11-04T20:19:00-05:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/30/a-new-addendum/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/30/a-new-addendum/</loc>
     <lastmod>2013-10-30T22:15:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/27/mvc-basics/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/27/mvc-basics/</loc>
     <lastmod>2013-10-27T23:03:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/20/rspec-a-misunderstood-obstacle/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/20/rspec-a-misunderstood-obstacle/</loc>
     <lastmod>2013-10-20T21:37:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/15/the-correct-times-to-use-self-in-a-class/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/15/the-correct-times-to-use-self-in-a-class/</loc>
     <lastmod>2013-10-15T08:44:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/13/haml-dry-version-of-html/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/13/haml-dry-version-of-html/</loc>
     <lastmod>2013-10-13T22:42:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/07/each/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/07/each/</loc>
     <lastmod>2013-10-07T23:31:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/10/07/problem-solving-and-iteration/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/10/07/problem-solving-and-iteration/</loc>
     <lastmod>2013-10-07T08:48:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/09/30/start-of-week-2/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/09/30/start-of-week-2/</loc>
     <lastmod>2013-09-30T08:42:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/09/25/flatiron-progression-day-3/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/09/25/flatiron-progression-day-3/</loc>
     <lastmod>2013-09-25T23:09:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/2013/09/24/first-post/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/2013/09/24/first-post/</loc>
     <lastmod>2013-09-24T16:51:00-04:00</lastmod>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/archives/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/archives/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/</loc>
+    <loc>http://blog.ianmiller.nyc/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/about/</loc>
+    <loc>http://blog.ianmiller.nyc/about/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/flatiron/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/flatiron/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/ruby/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/ruby/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/developer/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/developer/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/rspec/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/rspec/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/testing/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/testing/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/rspec/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/rspec/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/tips/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/tips/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/thoughts/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/thoughts/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/programming/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/programming/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/abstraction/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/abstraction/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/activerecord/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/activerecord/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/actionpack/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/actionpack/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/nginx/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/nginx/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/passenger/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/passenger/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/apache/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/apache/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/activerecord/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/activerecord/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/validation/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/validation/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/rails/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/rails/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/bootcamp/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/bootcamp/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/rails/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/rails/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/mailer/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/mailer/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/javascript/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/javascript/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/loops/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/loops/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/variables/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/variables/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/scala/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/scala/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/introduction/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/introduction/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/basics/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/basics/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/function/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/function/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/link/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/link/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/shortener/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/shortener/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/mongoid/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/mongoid/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/mongo/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/mongo/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/cucumber/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/cucumber/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/warden/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/warden/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/routing/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/routing/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/feature/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/feature/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/scenario/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/scenario/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/controller/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/controller/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/tdd/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/tdd/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/caching/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/caching/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/cancan/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/cancan/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/devise/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/devise/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/authorization/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/authorization/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/strong/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/strong/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/params/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/params/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/json/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/json/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/api/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/api/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/tedtalks/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/tedtalks/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/bruce/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/bruce/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/feiler/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/feiler/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/tolstoy/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/tolstoy/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/agile/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/agile/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/rack/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/rack/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/sessions/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/sessions/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/access/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/access/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/impostor/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/impostor/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/syndrome/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/syndrome/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/ian/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/ian/</loc>
   </url>
   <url>
-    <loc>http://www.ianmiller.nyc/blog/categories/miller/</loc>
-  </url>
-  <url>
-    <loc>http://www.ianmiller.nyc/page2/</loc>
-  </url>
-  <url>
-    <loc>http://www.ianmiller.nyc/page3/</loc>
-  </url>
-  <url>
-    <loc>http://www.ianmiller.nyc/page4/</loc>
+    <loc>http://blog.ianmiller.nyc/blog/categories/miller/</loc>
   </url>
 </urlset>

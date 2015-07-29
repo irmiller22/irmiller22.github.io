@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: api | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/api/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/api/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[RSpec Testing for a JSON API]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
     <updated>2014-04-18T10:31:45-04:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api</id>
+    <id>http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api</id>
     <content type="html"><![CDATA[<p>I am in the process of building out a JSON API for a registry application, that, when pinged by Salesforce, will fire off emails to prospective Flatiron students that notify them of their acceptance into the Flatiron School program. One thing that I noticed is that there aren&rsquo;t many resources out there for setting up a testing environment and eventually building out a JSON API via Ruby on Rails. Hopefully this resource will shed a little more light on how to accomplish that.</p>
 
 <p>The first step is to integrate a Rails serializer in order to encapsulate the JSON serialization of objects. We first install the <code>active_model_serializers</code> gem into the Gemfile, and then bundle. Now, for each model that we want to serialize for JSON serialization, we need to create a serializer: <code>rails g serializer student</code>.</p>
@@ -42,7 +42,7 @@ end
     ]
 </code></pre>
 
-<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#100;&#x6f;&#99;&#116;&#111;&#114;&#95;&#119;&#104;&#x6f;&#64;&#119;&#104;&#111;&#118;&#x69;&#108;&#108;&#x65;&#x2e;&#x63;&#111;&#109;">&#x64;&#x6f;&#99;&#116;&#111;&#x72;&#95;&#x77;&#x68;&#111;&#x40;&#119;&#104;&#x6f;&#118;&#105;&#x6c;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x64;&#111;&#x63;&#x74;&#111;&#x72;&#x5f;&#x77;&#x68;&#111;&#64;&#119;&#104;&#111;&#x76;&#x69;&#108;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#x64;&#x6f;&#99;&#x74;&#111;&#x72;&#x5f;&#119;&#104;&#111;&#x40;&#x77;&#104;&#x6f;&#118;&#x69;&#108;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
 
 <p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: tips | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/tips/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CRUD Applications: Importance of MVC]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2013/10/27/mvc-basics/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2013/10/27/mvc-basics/"/>
     <updated>2013-10-27T23:03:00-04:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2013/10/27/mvc-basics</id>
+    <id>http://blog.ianmiller.nyc/blog/2013/10/27/mvc-basics</id>
     <content type="html"><![CDATA[<p>This past weekend, we had an assignment to build a CRUD application from scratch (well, almost).  A CRUD application is short for the four basic applications of relational database management and storage: create, read, update, and delete.  The CRUD application allows interfacing between a database, a user interface, and HTTP protocols.  I thought that I&rsquo;d go ahead and describe the main components of our CRUD application that we built this weekend.  There are thee specific ones to take note of: the controllers, models, and views.</p>
 
 <p>Models are Ruby-specific classes that talk to the database, store, validate, and execute logic.  In other terms, they do all of the heavy lifting for our application.  They&rsquo;re basically the overworked accountant in the back room during tax season, churning out numbers while eating stale donuts at an absurd rate.</p>

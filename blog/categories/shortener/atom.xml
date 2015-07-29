@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: shortener | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/shortener/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/shortener/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails Link Shortener App]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app/"/>
     <updated>2014-02-02T15:05:05-05:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app</id>
+    <id>http://blog.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app</id>
     <content type="html"><![CDATA[<p>Over the last few days, there were primarily two things that I wanted to delve into conceptually and understand: MongoDB and the logic behind a link shortener. I decided to combine the two of these and create a simple Rails app in which you could shorten links.</p>
 
 <p>So, what is MongoDB? MongoDB is what&rsquo;s called a <code>NoSQL</code> database technology. A <code>NoSQL</code> database doesn&rsquo;t rely on a series of rows and columns within tables like a <code>SQL</code>, or relational, database does. <code>NoSQL</code> databases can store information in a variety of ways, but in the case of MongoDB, it stores it via a document database. Each respective document that you enter into the Mongo database is very similar to a JSON object in that they have a key-value store. However, the primary difference is that you do not access the documents via the key (think of accessing elements in a hash), but rather you query the database for these document elements.</p>

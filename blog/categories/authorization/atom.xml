@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: authorization | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/authorization/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/authorization/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Simple Authorizations with Devise]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise/"/>
     <updated>2014-03-28T14:42:30-04:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise</id>
+    <id>http://blog.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise</id>
     <content type="html"><![CDATA[<p>We are in the process of building an application that requires several levels of permissions for a User model. Because we do not quite fully understand the scope of what permissions will entail in future iterations of the application, we wanted to leave open the opportunity to expand the permissions scheme further. We made the decision to use CanCan and integrate with Devise. CanCan is an authorization library that defines permissions for different resources. In addition, Devise is a large authentication gem that&rsquo;s used for Rails, and has modules that allow for a large degree of customization.</p>
 
 <p>We added in the CanCan gem, and, while building out our login features, quickly ran into problems associated with the strong params component of Rails. For whatever reason, Rails was not able to properly create a new object because the authorization level integer (via bitmask attribute) was not able to pass through strong params. I quickly found out that we were not properly overriding the Devise params method that whitelists each of the attributes.</p>

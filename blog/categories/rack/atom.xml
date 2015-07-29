@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: rack | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/rack/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/rack/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Working with Rack Sessions]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions/"/>
     <updated>2014-09-29T14:46:57-04:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions</id>
+    <id>http://blog.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions</id>
     <content type="html"><![CDATA[<p>I spent the last few days building a <a href="https://flatironschool.com">Flatiron School</a> lab that specifically focused on setting sessions within a small Sinatra app. The idea was that this lab would help students better understand the concept of a <code>session</code>, and how they allow web applications to maintain state. By going through several RSpec tests and making them pass, the students would iteratively see what the <code>session</code> variable values would be in each step, and would understand the process from start to finish. The problem that I ran into was that I was not able to directly access the <code>session</code> variable in Sinatra.</p>
 
 <h3>The Root Problem?</h3>

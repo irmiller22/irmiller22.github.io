@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: activerecord, | Archaic Positives]]></title>
-  <link href="http://www.ianmiller.nyc/blog/categories/activerecord/atom.xml" rel="self"/>
-  <link href="http://www.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:40:30-04:00</updated>
-  <id>http://www.ianmiller.nyc/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/activerecord/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:43:21-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ActiveRecord: Validations]]></title>
-    <link href="http://www.ianmiller.nyc/blog/2013/11/10/activerecord-validations/"/>
+    <link href="http://blog.ianmiller.nyc/blog/2013/11/10/activerecord-validations/"/>
     <updated>2013-11-10T22:20:00-05:00</updated>
-    <id>http://www.ianmiller.nyc/blog/2013/11/10/activerecord-validations</id>
+    <id>http://blog.ianmiller.nyc/blog/2013/11/10/activerecord-validations</id>
     <content type="html"><![CDATA[<p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
 
 <p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
