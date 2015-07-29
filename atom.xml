@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-
   <title><![CDATA[Archaic Positives]]></title>
   <link href="http://blog.ianmiller.nyc/atom.xml" rel="self"/>
   <link href="http://blog.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:47:43-04:00</updated>
+  <updated>2015-07-29T13:18:51-04:00</updated>
   <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -14,13 +13,10 @@
 
   
   <entry>
-    
     <title type="html"><![CDATA[You're not an Impostor: How to Manage Self-Expectations as a New Developer]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/11/04/the-voice-in-the-background/"/>
     <updated>2014-11-04T12:02:37-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/11/04/the-voice-in-the-background</id>
     <content type="html"><![CDATA[<h1>Managing Uncertain Expectations</h1>
 
 <p><img class="center" src="http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg"></p>
@@ -65,17 +61,13 @@
 
 <p><strong>And most of all, believe in yourself</strong>. No one can predict the future. It is full of unknowns, and there are bound to be curve balls thrown here and there. It&rsquo;s very easy to convince yourself that you are a tiny fragment of what you really are. Despite the dark storm clouds of negativity or belittlement that may gather in your mind, believe in yourself. Temper your lofty expectations. Adapt. Empower. Share. As Bruce Feiler says, &ldquo;take a walk with a turtle. And behold the world in pause.&rdquo;</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Working with Rack Sessions]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/09/29/working-with-rack-sessions/"/>
     <updated>2014-09-29T14:46:57-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/09/29/working-with-rack-sessions</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/09/29/working-with-rack-sessions</id>
     <content type="html"><![CDATA[<p>I spent the last few days building a <a href="https://flatironschool.com">Flatiron School</a> lab that specifically focused on setting sessions within a small Sinatra app. The idea was that this lab would help students better understand the concept of a <code>session</code>, and how they allow web applications to maintain state. By going through several RSpec tests and making them pass, the students would iteratively see what the <code>session</code> variable values would be in each step, and would understand the process from start to finish. The problem that I ran into was that I was not able to directly access the <code>session</code> variable in Sinatra.</p>
 
 <h3>The Root Problem?</h3>
@@ -126,17 +118,13 @@
 
 <p>It&rsquo;s a very simple way to resolve the original problem, but it definitely threw me for a loop while I was in the process of problem solving. Isn&rsquo;t programming fun?</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Intersection between Tolstoy and Agile Programming]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/05/04/intersection-between-tolstoy-and-agile-programming/"/>
     <updated>2014-05-04T13:23:42-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/05/04/intersection-between-tolstoy-and-agile-programming</id>
     <content type="html"><![CDATA[<p><img class="center [tolstoy profile]" src="http://usoniandreams.info/wp-content/uploads/2013/11/leo-tolstoy_usonian_idea.jpg" width="620" height="480" title="'Leo Tolstoy'" ></p>
 
 <p>After I got back from the gym tonight, I decided in a spur of the moment decision to watch a quick TEDTalks episode.  I ended up choosing one that discussed “Agile Programming”, and the talk was given by a man named Bruce Feiler.  In his talk, he referenced the opening line of Leo Tolstoy’s book Anna Karenina.  I’ll come back to that.</p>
@@ -153,17 +141,13 @@
 
 <p><a href="http://www.ted.com/talks/bruce_feiler_agile_programming_for_your_family">Bruce Feiler TedTalk</a></p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[RSpec Testing for a JSON API]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/04/18/rspec-testing-for-a-json-api/"/>
     <updated>2014-04-18T10:31:45-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/04/18/rspec-testing-for-a-json-api</id>
     <content type="html"><![CDATA[<p>I am in the process of building out a JSON API for a registry application, that, when pinged by Salesforce, will fire off emails to prospective Flatiron students that notify them of their acceptance into the Flatiron School program. One thing that I noticed is that there aren&rsquo;t many resources out there for setting up a testing environment and eventually building out a JSON API via Ruby on Rails. Hopefully this resource will shed a little more light on how to accomplish that.</p>
 
 <p>The first step is to integrate a Rails serializer in order to encapsulate the JSON serialization of objects. We first install the <code>active_model_serializers</code> gem into the Gemfile, and then bundle. Now, for each model that we want to serialize for JSON serialization, we need to create a serializer: <code>rails g serializer student</code>.</p>
@@ -202,7 +186,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x64;&#111;&#x63;&#116;&#x6f;&#114;&#95;&#x77;&#x68;&#x6f;&#x40;&#x77;&#104;&#x6f;&#x76;&#x69;&#108;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#111;&#99;&#x74;&#111;&#x72;&#95;&#x77;&#104;&#111;&#64;&#119;&#x68;&#111;&#x76;&#x69;&#x6c;&#108;&#101;&#46;&#99;&#x6f;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#100;&#x6f;&#99;&#116;&#111;&#114;&#95;&#119;&#x68;&#x6f;&#x40;&#x77;&#x68;&#111;&#118;&#x69;&#108;&#108;&#101;&#46;&#99;&#111;&#x6d;">&#100;&#111;&#99;&#x74;&#111;&#114;&#x5f;&#119;&#104;&#111;&#64;&#119;&#104;&#111;&#118;&#x69;&#x6c;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
 
 <p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
 
@@ -536,17 +520,13 @@
 
 <p>The &lsquo;valid_email?(email_address)&rsquo; method is simply a regex that will parse a parameter passed in, and determine whether or not it is a valid email address. If it is valid, it will fire off an email in the <code>send_acceptance_email(email)</code> method, but if it is not valid, then it will render a JSON response with an invalid format error message.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Strong Params in Rails]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/04/01/strong-params-in-rails/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails/"/>
     <updated>2014-04-01T23:10:39-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/04/01/strong-params-in-rails</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails</id>
     <content type="html"><![CDATA[<p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
 
 <p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
@@ -572,17 +552,13 @@
 
 <p>Additionally, the <code>permit</code> method will strip out any attributes that do not belong inside of the params. For example, if we tried to include a <code>:admin</code> attribute inside of the <code>permit</code> method, it will not be passed into the params.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Simple Authorizations with Devise]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/03/28/simple-authorizations-with-devise/"/>
     <updated>2014-03-28T14:42:30-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/03/28/simple-authorizations-with-devise</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/03/28/simple-authorizations-with-devise</id>
     <content type="html"><![CDATA[<p>We are in the process of building an application that requires several levels of permissions for a User model. Because we do not quite fully understand the scope of what permissions will entail in future iterations of the application, we wanted to leave open the opportunity to expand the permissions scheme further. We made the decision to use CanCan and integrate with Devise. CanCan is an authorization library that defines permissions for different resources. In addition, Devise is a large authentication gem that&rsquo;s used for Rails, and has modules that allow for a large degree of customization.</p>
 
 <p>We added in the CanCan gem, and, while building out our login features, quickly ran into problems associated with the strong params component of Rails. For whatever reason, Rails was not able to properly create a new object because the authorization level integer (via bitmask attribute) was not able to pass through strong params. I quickly found out that we were not properly overriding the Devise params method that whitelists each of the attributes.</p>
@@ -693,17 +669,13 @@
 
 <p>As a result, we can scope the view throughout our app by referencing the <code>role</code> attribute of each User. The app is very young at this point, but already a major piece of our app has been implemented. Looking forward to seeing where this will be going.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Rails Caching]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/03/19/rails-caching/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/03/19/rails-caching/"/>
     <updated>2014-03-19T09:27:04-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/03/19/rails-caching</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/03/19/rails-caching</id>
     <content type="html"><![CDATA[<h1>Caching in Rails</h1>
 
 <h2>What is Caching?</h2>
@@ -757,17 +729,13 @@
 </ul>
 
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Controller Testing Via RSpec]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/02/27/controller-testing-via-rspec/"/>
     <updated>2014-02-27T10:01:37-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/02/27/controller-testing-via-rspec</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been testing controllers pretty often over the last few weeks, and wanted to write a few reminders to my future self. I&rsquo;ve been testing an app at work with RSpec, and have gleaned a few best practices to integrate into my unit tests for controllers.</p>
 
 <p>First off, the purpose of controller testing is to test the controller actions directly and see what they do. For example, if we are testing a redirect, we want to make sure that the controller action is redirecting to the right path. It&rsquo;s important to follow the AAA pattern: Arrange, Act, and Assert. You set up the test by arranging a <code>before(:each)</code> statement, and setting up the data needed to execute a test via let blocks. Then you act upon the arranged data by manipulating it to the test&rsquo;s specifications. Then you assert that the arranged data should result in some specific action or result. Arrange, act, and assert.</p>
@@ -780,17 +748,13 @@
 
 <p>Hopefully these thoughts and insights will prove useful to someone, as they will for me in the near future.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Foray into Cucumber Feature Testing]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/23/foray-into-cucumber-feature-testing/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/02/23/foray-into-cucumber-feature-testing/"/>
     <updated>2014-02-23T14:45:33-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/23/foray-into-cucumber-feature-testing</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/02/23/foray-into-cucumber-feature-testing</id>
     <content type="html"><![CDATA[<p>For the past 2 weeks, I have been getting more involved in Cucumber feature testing as a result of my day-to-day job. When I first started, I found the prospect of Rails feature testing daunting, because it seemed like a cumbersome task to implement on top of building actual application features.</p>
 
 <p>We had built out some features for a client project that I&rsquo;m currently working on, and we had decided to implement testing for features via Cucumber, rather than solely relying on RSpec testing. There was a reason for taking this approach: when designing a feature, we didn&rsquo;t want to overtest our feature to the point where we were overemphasizing testing of what could be a very basic feature. Cucumber allows for all-around integration testing without being overly verbose and cumbersome.</p>
@@ -955,17 +919,13 @@
 
 <p>Hopefully this gives you a general idea of how Cucumber feature tests are implemented. Each scenario that you generate must be short, succinct, and straightforward in regards to the feature that you&rsquo;re testing. It took me a while to figure out best practices for implementing such tests, but I was able to get the hang of it over the course of two weeks. Just keep practicing, and see if the feature story makes sense to you.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Questions and Thoughts About Cucumber for Myself]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/19/questions-about-cucumber/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/02/19/questions-about-cucumber/"/>
     <updated>2014-02-19T09:58:47-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/19/questions-about-cucumber</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/02/19/questions-about-cucumber</id>
     <content type="html"><![CDATA[<p>Questions:</p>
 
 <ul>
@@ -1014,17 +974,13 @@
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Rails Link Shortener App]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/02/02/basic-rails-link-shortener-app/"/>
     <updated>2014-02-02T15:05:05-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/02/basic-rails-link-shortener-app</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/02/02/basic-rails-link-shortener-app</id>
     <content type="html"><![CDATA[<p>Over the last few days, there were primarily two things that I wanted to delve into conceptually and understand: MongoDB and the logic behind a link shortener. I decided to combine the two of these and create a simple Rails app in which you could shorten links.</p>
 
 <p>So, what is MongoDB? MongoDB is what&rsquo;s called a <code>NoSQL</code> database technology. A <code>NoSQL</code> database doesn&rsquo;t rely on a series of rows and columns within tables like a <code>SQL</code>, or relational, database does. <code>NoSQL</code> databases can store information in a variety of ways, but in the case of MongoDB, it stores it via a document database. Each respective document that you enter into the Mongo database is very similar to a JSON object in that they have a key-value store. However, the primary difference is that you do not access the documents via the key (think of accessing elements in a hash), but rather you query the database for these document elements.</p>
@@ -1237,17 +1193,13 @@
 <br />
 EDIT: I incorrectly asserted that a MongoDB document element is similar to that of a key-value pair, and the appropriate revisions have been made. Many thanks to Myles Recny for catching that error.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[SCALA Basics: An Introduction]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/01/21/scala-basics-an-introduction/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/01/21/scala-basics-an-introduction/"/>
     <updated>2014-01-21T14:55:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/01/21/scala-basics-an-introduction</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/01/21/scala-basics-an-introduction</id>
     <content type="html"><![CDATA[<p>Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed language, meaning that it binds a type to a variable for the variable&rsquo;s lifetime, whereas dynamically typed languages bind the type to the value referenced by a variable. Simply, statically typed variables are immutable, whereas dynamically typed variables are mutable. Scala also supports both functional and object-oriented programming. It seems that these attributes would conflict with one another, but the argument is that both attributes in conjunction lead to synergies in both performance and architecture.</p>
 
 <p>Let&rsquo;s get started on the introduction.</p>
@@ -1314,17 +1266,13 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 <p>This is the first day I&rsquo;ve used Scala, and my first impression is that it&rsquo;s a lot like a hybrid of Ruby and Java/JavaScript. I still need to get better at understanding how collections are referenced to and organized inside of functions, but I&rsquo;m looking forward to learning more Scala.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[JavaScript Basics: An Introduction]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/01/03/javascript-basics-an-introduction/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2014/01/03/javascript-basics-an-introduction/"/>
     <updated>2014-01-03T23:29:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/01/03/javascript-basics-an-introduction</id>
-    
+    <id>http://blog.ianmiller.nyc/2014/01/03/javascript-basics-an-introduction</id>
     <content type="html"><![CDATA[<p>Variable Declaration and Constant</p>
 
 <figure class='code'><figcaption><span>Variables</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1462,17 +1410,13 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 <p>These are mostly for me to remember and repeat.  I&rsquo;m currently branching out into other languages at the moment, and will be focusing on JS, jQuery, and Ajax.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/12/27/how-to-generate-mailers-via-rails/"/>
     <updated>2013-12-27T11:08:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/12/27/how-to-generate-mailers-via-rails</id>
     <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
 
 <p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
@@ -1530,17 +1474,13 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 <p>That&rsquo;s pretty much it for a basic mailer.  You can style the mailer using HTML/CSS, and you can also add front-end features via Javascript (AJAX, jQuery).</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/12/22/impetus-for-a-career-in-programming/"/>
     <updated>2013-12-22T13:26:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/12/22/impetus-for-a-career-in-programming</id>
     <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
 
 <p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
@@ -1563,17 +1503,13 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 <p>Fast forward five months later. I am two weeks out of boot camp at Flatiron School. Has it been worth it? The reasons may be different for everyone, but for me, it certainly has. I’d even go as far as to say that it’s been life changing. I’ve met the most wonderful group of individuals at Flatiron, and I’ve learned a lot from them. And I can now call myself a programmer. Not a skilled one yet, but that’s what I am working towards, step by step. But there are three important results that have been made possible by my experiences in the past year. I’ve discovered my passion. I’ve re-ignited my desire to learn. And I’ve finally learned the lesson that I should have learned long ago, even with a particularly limiting disability; there  is no limit.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Microhaus App: Part I]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/12/17/walkthrough-of-microhaus-app/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/12/17/walkthrough-of-microhaus-app/"/>
     <updated>2013-12-17T12:42:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/12/17/walkthrough-of-microhaus-app</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/12/17/walkthrough-of-microhaus-app</id>
     <content type="html"><![CDATA[<p>Today I decided to build a microblog app.  It is like a traditional blog, but it is private to a specific group of friends.  There are other options out there for a microblog, but I wanted to create the experience for myself, and how I would customize it for my group of friends.  After I finish the app, I plan to release it to my friends from college, and see what their feedback is.<br/>
 I started out by creating a new app via rails.  For the moment, I am calling the app &ldquo;microhaus.&rdquo;  I came up with this name particularly because it&rsquo;s a microblog, and it is accessible only to a small number of people (a circle of friends, if you will).</p>
 
@@ -1767,17 +1703,13 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 
 <p>The next step is to start building out the functionality for the ERB templates and also to build out the corresponding RSpec tests to ensure that the functionality is there.  These concepts will be covered in the next &ldquo;Microhaus&rdquo; post.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[Big O Notation]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/12/14/big-o-notation/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/12/14/big-o-notation/"/>
     <updated>2013-12-14T12:32:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/12/14/big-o-notation</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/12/14/big-o-notation</id>
     <content type="html"><![CDATA[<p>Big O Notation is simply a measure of an algorithm&rsquo;s performance.  It focuses on two primary components: speed and size.  It also presents a best-case scenario of an algorithm as well as a worst-case scenario.</p>
 
 <p>There are four primary scenarios that the majority of individuals will deal with in Big O Notation: O(1), O(n), O(n<sup>2</sup>), and O(log n).</p>
@@ -1894,17 +1826,13 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[The Art of a Question]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/11/17/the-art-of-a-question/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/11/17/the-art-of-a-question/"/>
     <updated>2013-11-17T22:27:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/11/17/the-art-of-a-question</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/11/17/the-art-of-a-question</id>
     <content type="html"><![CDATA[<p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
 
 <p>From time to time, I have found myself unable to ask the right questions.  It&rsquo;s as if there is a mental block in my head, unable to move forward beyond an obstacle, a metaphorical wrench stuck in the gears of my neocortex.  When that process unfolds, it is easy to doubt yourself and your ability to lead yourself out of the quagmire.  There is a reason why many individuals are daunted by the prospect of learning how to program.  It is a seemingly endless black hole that manifests itself as a negative feedback loop.  Despite the organized chaos that arises, most often overlook the key decision making component of programming: knowing where to start.</p>
@@ -1930,17 +1858,13 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 <p>So perhaps the best question is not simply a targeted question that seeks a one-dimensional answer, but rather a series of smaller, more basic questions derived from a larger question.  Simplicity is the best form of policy.  Start somewhere.  Plant your flag in the sand.  Let your initial question, and the subsequent chain of questions, be your guide.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[ActiveRecord: Validations]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/11/10/activerecord-validations/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/11/10/activerecord-validations/"/>
     <updated>2013-11-10T22:20:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/11/10/activerecord-validations</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/11/10/activerecord-validations</id>
     <content type="html"><![CDATA[<p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
 
 <p>ActiveRecord has a number of simple declarative validations, such as <code>validates_absence_of</code>, <code>validates_acceptance_of</code>, and <code>validates_confirmation_of</code>.  The one validation that I think would come in quite handy is the <code>validates_format_of</code> validation.  According to the &ldquo;Rails 4 Way&rdquo;, it&rsquo;s heavily dependent upon regular expressions, but it&rsquo;s an invaluable way to check the formats of email addresses, web URIs, etc.</p>
@@ -1995,17 +1919,13 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 <p>In short, validations help you place constraints upon your code to make it less error-prone in regards to data persistence.  Think of validations as a gatekeeper for your application data &ndash; it lets the good pieces in, and keeps the bad ones out, assuming that you have the proper constraints in place.</p>
 ]]></content>
-    
   </entry>
   
   <entry>
-    
     <title type="html"><![CDATA[OmniAuth: An Introduction]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/11/09/omniauth-an-introduction/"/>
-    
+    <link href="http://blog.ianmiller.nyc/2013/11/09/omniauth-an-introduction/"/>
     <updated>2013-11-09T14:52:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/11/09/omniauth-an-introduction</id>
-    
+    <id>http://blog.ianmiller.nyc/2013/11/09/omniauth-an-introduction</id>
     <content type="html"><![CDATA[<p>OmniAuth is simply middleware for authenticating users in applications.  Middleware is a way to filter requests and responses  that are coming into your application.  Each strategy that is used in the OmniAuth middleware is a class, and each strategy has two primary phases: a request phase and a callback phase.</p>
 
 <p>Let me take a step back, and explain what middleware is.  Middleware is the interface that communicates between the application and the web server.  In a way, it is generally a software library that assists with, but is not directly involved, in the execution of a specific task.  Some examples include authentication, data logging, performance monitoring, caching, and the like.  In this particular case, OmniAuth is dealing with authentication.</p>
@@ -2025,7 +1945,6 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 <p>Let&rsquo;s walk through an example with Github.  In the request stage, a client sends a request to the app.  The client is redirected to the <code>/auth/Github</code> route, and it points to the OmniAuth Github strategy specified in the config/initializer directory within the Rails project structure.  In order to properly authenticate the user, an authentication request is fired off to Github through the provider strategy.  Once the user is properly authenticated, the callback method, specified through <code>/auth/github/callback</code>, creates a user information hash that can now be accessed through the app (SOURCE - <a href="https://speakerdeck.com/xfernandox/the-anatomy-of-omniauth">https://speakerdeck.com/xfernandox/the-anatomy-of-omniauth</a>).</p>
 ]]></content>
-    
   </entry>
   
 </feed>

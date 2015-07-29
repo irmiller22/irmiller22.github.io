@@ -4,7 +4,7 @@
   <title><![CDATA[Category: caching | Archaic Positives]]></title>
   <link href="http://blog.ianmiller.nyc/blog/categories/caching/atom.xml" rel="self"/>
   <link href="http://blog.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:47:43-04:00</updated>
+  <updated>2015-07-29T13:18:51-04:00</updated>
   <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails Caching]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/03/19/rails-caching/"/>
+    <link href="http://blog.ianmiller.nyc/2014/03/19/rails-caching/"/>
     <updated>2014-03-19T09:27:04-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/03/19/rails-caching</id>
+    <id>http://blog.ianmiller.nyc/2014/03/19/rails-caching</id>
     <content type="html"><![CDATA[<h1>Caching in Rails</h1>
 
 <h2>What is Caching?</h2>

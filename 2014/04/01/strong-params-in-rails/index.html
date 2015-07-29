@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Strong Params in Rails - Archaic Positives</title>
+  <meta name="author" content="Ian Miller">
+
+  
+  <meta name="description" content="Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="" rel="alternate" title="Archaic Positives" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45791487-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <img src="/images/ah_frame_transparent.svg" />
+  <h1><a href="/">Archaic Positives</a></h1>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Strong Params in Rails</h1>
+    
+  </header>
+
+
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/params/'>params</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/strong/'>strong</a>
+  
+</span>
+
+
+<div class="entry-content"><p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
+
+<p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
+
+<p>Typically, we have a private method inside of the controller that delegates the <code>whitelisting</code> that should take place.</p>
+
+<p>For example:</p>
+
+<figure class='code'><figcaption><span>UsersController</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">resource_params</span>
+</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>require</code> statement inside the <code>resource_params</code> method performs the parameter validation for the user parameter. If the user parameter exists, then it will go on and validate each of the attributes. If the user parameter does not exist, then it will throw an <code>ActionController::ParameterMissing</code> error and return a 400 status code response.</p>
+
+<p>Additionally, the <code>permit</code> method will strip out any attributes that do not belong inside of the params. For example, if we tried to include a <code>:admin</code> attribute inside of the <code>permit</code> method, it will not be passed into the params.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ian Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-01T23:10:39-04:00" pubdate data-updated="true"></time>
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/03/28/simple-authorizations-with-devise/" title="Previous Post: Simple Authorizations with Devise">&laquo; Simple Authorizations with Devise</a>
+      
+      
+        <a class="basic-alignment right" href="/2014/04/18/rspec-testing-for-a-json-api/" title="Next Post: RSpec Testing for a JSON API">RSpec Testing for a JSON API &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <form action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blog.ianmiller.nyc" />
+        <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+  
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/11/04/the-voice-in-the-background/">You&#8217;re not an Impostor: How to Manage Self-Expectations as a New Developer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ian Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/javascripts/aharris.js"></script>
+
+</body>
+</html>

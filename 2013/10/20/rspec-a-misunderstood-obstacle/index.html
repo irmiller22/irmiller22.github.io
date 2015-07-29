@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RSpec: A Misunderstood Complement to Ruby - Archaic Positives</title>
+  <meta name="author" content="Ian Miller">
+
+  
+  <meta name="description" content="For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis. Because RSpec is the testing framework &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.ianmiller.nyc/2013/10/20/rspec-a-misunderstood-obstacle/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="" rel="alternate" title="Archaic Positives" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45791487-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <img src="/images/ah_frame_transparent.svg" />
+  <h1><a href="/">Archaic Positives</a></h1>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">RSpec: A Misunderstood Complement to Ruby</h1>
+    
+  </header>
+
+
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+<div class="entry-content"><p>For the past few weeks, I have been dreading the moment when I would have to utilize RSpec on a regular basis.  Because RSpec is the testing framework for the Ruby language, I viewed it as an obstacle to my learning development.  After studying more about RSpec in the past few days, I&rsquo;m starting to realize that I have been viewing its fundamental purpose incorrectly.  RSpec is a complement to the Ruby developer&rsquo;s toolkit &ndash; it prevents unneccesary work by testing the behaviors of a framework.  In short, it is the blueprint of any application, and represents a guided set of directions that leads you to a finished product.</p>
+
+<p>In this blog post, I&rsquo;ll discuss the basic premise of RSpec and also discuss a few ways to refactor RSpec code.</p>
+
+<figure class='code'><figcaption><span>RSpec Basic Syntax</span><a href='https://speakerdeck.com/pat/rspec-introduction'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;basic RSpec syntax&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;describes how the code should behave&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">User</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">should</span> <span class="n">be</span><span class="p">(</span><span class="n">clear</span><span class="p">)</span>
+</span><span class='line'>      <span class="no">User</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">should</span> <span class="n">be</span><span class="p">(</span><span class="n">concise</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s a simple example.</p>
+
+<figure class='code'><figcaption><span>Calculator</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Calculator</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">describe</span> <span class="s1">&#39;#multiply&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">it</span> <span class="s1">&#39;returns the product of its parameters&#39;</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">calc</span> <span class="o">=</span> <span class="no">Calculator</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>          <span class="n">calc</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="n">eq</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This example is to just show what RSpec was intended for in regards to test-driven development.  See how RSpec determines how the calculator should behave when the multiply method is called?  When given the parameters 4 and 5, the multiply method should return an integer value of 20.</p>
+
+<figure class='code'><figcaption><span>Refactor a name spec</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">James</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="no">James</span><span class="o">.</span><span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">subject</span><span class="o">.</span><span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&ldquo;Subject&rdquo; always refers to an instance of a class.  In this case, James is an instance of the Person class, and the step of initializing a Person instance with the name James has been refactored by using &ldquo;subject.&rdquo;</p>
+
+<figure class='code'><figcaption><span>Using &#8216;Expect&#8217; instead of &#8216;Should&#8217;</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Person</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;responds to own name&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a big change that I&rsquo;ve started to implement in my RSpec tests, largely because of issues that have to do with delegation.  There was a blog post (<a href="http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax">http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax</a>) that discussed the differences between &lsquo;expect&rsquo; and &lsquo;should.&rsquo;  My understanding of the Kernel library and the rspec-expectations are not very concrete yet, but it is partly a result of a library load.  If one library is loaded before the other, it can sometimes override syntax delegations for the same word.</p>
+
+<p>Another reason is that it seems a little more clear to me in terms of understanding what&rsquo;s going on with the syntax, particularly when I am starting a new test from scratch.  Should semantically makes sense if you&rsquo;re writing tests for existing code, but not necessarily if you haven&rsquo;t written a line of code yet.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ian Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-20T21:37:00-04:00" pubdate data-updated="true"></time>
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/10/15/the-correct-times-to-use-self-in-a-class/" title="Previous Post: The Correct Usage of 'self' in a Class">&laquo; The Correct Usage of &#8216;self&#8217; in a Class</a>
+      
+      
+        <a class="basic-alignment right" href="/2013/10/27/mvc-basics/" title="Next Post: CRUD Applications: Importance of MVC">CRUD Applications: Importance of MVC &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <form action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blog.ianmiller.nyc" />
+        <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+  
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/11/04/the-voice-in-the-background/">You&#8217;re not an Impostor: How to Manage Self-Expectations as a New Developer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ian Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/javascripts/aharris.js"></script>
+
+</body>
+</html>

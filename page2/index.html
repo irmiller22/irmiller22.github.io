@@ -18,19 +18,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.ianmiller.nyc/page2">
+  <link rel="canonical" href="http://blog.ianmiller.nyc/page2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Archaic Positives" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="" rel="alternate" title="Archaic Positives" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -47,33 +45,13 @@
 
 </head>
 
-<body   class="collapse-sidebar sidebar-footer" >
-  <header role="banner">
-	<div class="header-title"><a href="/">Archaic Positives</a></div>
-
-
-	<br><div class="header-subtitle">Adventurer, Traveler, Rubyist</div>
+<body   >
+  <header role="banner"><hgroup>
+  <img src="/images/ah_frame_transparent.svg" />
+  <h1><a href="/">Archaic Positives</a></h1>
+</hgroup>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:blog.ianmiller.nyc" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-</ul>
-
-</nav>
   <div id="main">
     <div id="content">
       <div class="blog-index">
@@ -83,14 +61,15 @@
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2014/02/02/basic-rails-link-shortener-app/">Rails Link Shortener App</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/02/basic-rails-link-shortener-app/">Rails Link Shortener App</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -103,10 +82,16 @@
 
 
 <time datetime="2014-02-02T15:05:05-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/link/'>link</a>, <a class='category' href='/blog/categories/mongo/'>mongo</a>, <a class='category' href='/blog/categories/mongoid/'>mongoid</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/shortener/'>shortener</a>
+  
+</span>
 
 
   <div class="entry-content"><p>Over the last few days, there were primarily two things that I wanted to delve into conceptually and understand: MongoDB and the logic behind a link shortener. I decided to combine the two of these and create a simple Rails app in which you could shorten links.</p>
@@ -331,14 +316,15 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/21/scala-basics-an-introduction/">SCALA Basics: An Introduction</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -351,10 +337,16 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 
 <time datetime="2014-01-21T14:55:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/basics/'>basics</a>, <a class='category' href='/blog/categories/function/'>function</a>, <a class='category' href='/blog/categories/introduction/'>introduction</a>, <a class='category' href='/blog/categories/scala/'>scala</a>
+  
+</span>
 
 
   <div class="entry-content"><p>Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed language, meaning that it binds a type to a variable for the variable&rsquo;s lifetime, whereas dynamically typed languages bind the type to the value referenced by a variable. Simply, statically typed variables are immutable, whereas dynamically typed variables are mutable. Scala also supports both functional and object-oriented programming. It seems that these attributes would conflict with one another, but the argument is that both attributes in conjunction lead to synergies in both performance and architecture.</p>
@@ -433,14 +425,15 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/03/javascript-basics-an-introduction/">JavaScript Basics: An Introduction</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -453,10 +446,16 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 
 <time datetime="2014-01-03T23:29:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/loops/'>loops</a>, <a class='category' href='/blog/categories/variables/'>variables</a>
+  
+</span>
 
 
   <div class="entry-content"><p>Variable Declaration and Constant</p>
@@ -606,14 +605,15 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/27/how-to-generate-mailers-via-rails/">How to Generate Mailers via Rails</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -626,10 +626,16 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 
 <time datetime="2013-12-27T11:08:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mailer/'>mailer</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
 
 
   <div class="entry-content"><p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
@@ -699,14 +705,15 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/12/22/impetus-for-a-career-in-programming/">Impetus for a Career in Programming</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/22/impetus-for-a-career-in-programming/">Impetus for a Career in Programming</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -719,10 +726,16 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 
 <time datetime="2013-12-22T13:26:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bootcamp/'>bootcamp</a>, <a class='category' href='/blog/categories/flatiron/'>flatiron</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
 
 
   <div class="entry-content"><p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
@@ -757,14 +770,15 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/12/17/walkthrough-of-microhaus-app/">Microhaus App: Part I</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/17/walkthrough-of-microhaus-app/">Microhaus App: Part I</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -777,10 +791,10 @@ EDIT: I incorrectly asserted that a MongoDB document element is similar to that 
 
 
 <time datetime="2013-12-17T12:42:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
 
 
   <div class="entry-content"><p>Today I decided to build a microblog app.  It is like a traditional blog, but it is private to a specific group of friends.  There are other options out there for a microblog, but I wanted to create the experience for myself, and how I would customize it for my group of friends.  After I finish the app, I plan to release it to my friends from college, and see what their feedback is.<br/>
@@ -986,14 +1000,15 @@ I started out by creating a new app via rails.  For the moment, I am calling the
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/12/14/big-o-notation/">Big O Notation</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/14/big-o-notation/">Big O Notation</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -1006,10 +1021,10 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 
 
 <time datetime="2013-12-14T12:32:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
 
 
   <div class="entry-content"><p>Big O Notation is simply a measure of an algorithm&rsquo;s performance.  It focuses on two primary components: speed and size.  It also presents a best-case scenario of an algorithm as well as a worst-case scenario.</p>
@@ -1138,14 +1153,15 @@ I started out by creating a new app via rails.  For the moment, I am calling the
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/11/17/the-art-of-a-question/">The Art of a Question</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/17/the-art-of-a-question/">The Art of a Question</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -1158,10 +1174,10 @@ I started out by creating a new app via rails.  For the moment, I am calling the
 
 
 <time datetime="2013-11-17T22:27:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
 
 
   <div class="entry-content"><p>For once, I want to take a break from exploring programming topics, and explore the rationale behind asking the right question.  Or rather, is it insomuch asking the right question, or guiding yourself in the right direction?  I think it is a little bit of both, with more emphasis on guidance.  It&rsquo;s not so much the silver-bullet question that will find you the answers, but it&rsquo;s a series of small, seemingly mundane questions that will ultimately lead to the epiphany where all of the previously perplexing concepts suddenly click together into a cohesive abstraction.</p>
@@ -1199,14 +1215,15 @@ Eighth, and finally, the controller sends the view action back to the browser wh
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/11/10/activerecord-validations/">ActiveRecord: Validations</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/10/activerecord-validations/">ActiveRecord: Validations</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -1219,10 +1236,16 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 
 <time datetime="2013-11-10T22:20:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/activerecord/'>activerecord,</a>, <a class='category' href='/blog/categories/rails/'>rails,</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/validation/'>validation,</a>
+  
+</span>
 
 
   <div class="entry-content"><p>Validations are necessary to prevent invalid data from being persisted into the database.  They are necessary to allow for efficient data entry and processing, and prevent uncessary situations such as empty user-name fields pushing empty strings into a database.</p>
@@ -1289,14 +1312,15 @@ Eighth, and finally, the controller sends the view action back to the browser wh
     <article>
       
   <header>
+    
+      <h1 class="entry-title"><a href="/2013/11/09/omniauth-an-introduction/">OmniAuth: An Introduction</a></h1>
+    
+  </header>
+
+
   
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/09/omniauth-an-introduction/">OmniAuth: An Introduction</a></h1>
+    <p class="meta">
       
-      
-    
-      <p class="meta">
-        
 
 
 
@@ -1309,10 +1333,10 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 
 <time datetime="2013-11-09T14:52:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
+      
+    </p>
+  
+  
 
 
   <div class="entry-content"><p>OmniAuth is simply middleware for authenticating users in applications.  Middleware is a way to filter requests and responses  that are coming into your application.  Each strategy that is used in the OmniAuth middleware is a class, and each strategy has two primary phases: a request phase and a callback phase.</p>
@@ -1352,60 +1376,39 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 </div>
 <aside class="sidebar">
   
+    <form action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blog.ianmiller.nyc" />
+        <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+  
+  
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/11/04/the-voice-in-the-background/">You&#8217;re not an Impostor: How to Manage Self-Expectations as a New Developer</a>
+        <a href="/2014/11/04/the-voice-in-the-background/">You&#8217;re not an Impostor: How to Manage Self-Expectations as a New Developer</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
+        <a href="/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
+        <a href="/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+        <a href="/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+        <a href="/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
       </li>
     
   </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/irmiller22">@irmiller22</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'irmiller22',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -1415,13 +1418,12 @@ Eighth, and finally, the controller sends the view action back to the browser wh
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 -  Ian Miller <br/>
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
-	  
-  </span>
+  Copyright &copy; 2015 - Ian Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
 </footer>
@@ -1436,6 +1438,9 @@ Eighth, and finally, the controller sends the view action back to the browser wh
 
 
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/javascripts/aharris.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Abstraction: Path to Simplicity - Archaic Positives</title>
+  <meta name="author" content="Ian Miller">
+
+  
+  <meta name="description" content="Abstraction is a concept that I have been thinking quite a lot about lately. It is a concept that has largely been foreign to me, and it is slowly &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.ianmiller.nyc/2013/10/30/a-new-addendum/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="" rel="alternate" title="Archaic Positives" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45791487-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <img src="/images/ah_frame_transparent.svg" />
+  <h1><a href="/">Archaic Positives</a></h1>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Abstraction: Path to Simplicity</h1>
+    
+  </header>
+
+
+
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/abstraction/'>abstraction</a>, <a class='category' href='/blog/categories/actionpack/'>actionpack</a>, <a class='category' href='/blog/categories/activerecord/'>activerecord</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/thoughts/'>thoughts</a>
+  
+</span>
+
+
+<div class="entry-content"><p>Abstraction is a concept that I have been thinking quite a lot about lately.  It is a concept that has largely been foreign to me, and it is slowly dawning on me that abstraction lies all around us.</p>
+
+<p>The Webster Dictionary defines abstraction as a &ldquo;general idea or quality rather than an actual person, object, or event.&rdquo;  If we took the literal translation of the root abstractus (past participle of abstrahere), we would get &ldquo;to draw away; to detach or divert.&rdquo;  This term was first used by Oswald Herzog to describe the artistic attitudes and implementations of the Dadaists (in 1519, &lsquo;Der Abstrakte Expressionismus&rsquo;).  He wrote, &ldquo;it is pure creation.  It does not borrow objects from the real world; it creates its own objects &hellip; the abstract reveals the will of the artist; it becomes expression.&rdquo;  Abstraction, in the general sense of the word, is the process by which we generate semantic meaning with a concept.</p>
+
+<p>In Ruby, abstraction is key to making your code achieve two things: more readable and reusable.  At this point, we&rsquo;ve learned to make our code more abstract via many concepts, such as MVC, ReST (Representational State Transfer), migrations, database abstraction via ActiveRecord, and routing.</p>
+
+<p><img class="center" src="http://betweengo.com/docs/intro_rails/img/request_cycle.png"></p>
+
+<p>A major component of Ruby on Rails has really nailed down the abstract aspect of coding for me: ActiveRecord and its corresponding ActionPacks.  ActiveRecord serves as the &ldquo;Model&rdquo; component relational database for Rails.  It comes with a set of query methods used for creating, retrieving, updating, or destroying data in the database.  The model also is used for establishing association between classes.  For example, a king could have a &ldquo;has_many&rdquo; relationship with his subjects, while a subject has a &ldquo;belongs_to&rdquo; relationship with his king.</p>
+
+<figure class='code'><figcaption><span>Monarchy Association</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">King</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:subjects</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:lords</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Subject</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:king</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:lord</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:children</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ActionController serves as the &ldquo;Controller&rdquo; engine of Rails.  By definition, a controller acts as the intermediary between the views and the models, and shuttles along HTTP responses, view renders, and redirects between the two.  The controller logic is encapsulated into each individual method, and each method should really have only one action in order to simplify the logic behind the controller.  The controller is designed to encapsulate the logic behind the app into specific CRUD methods, as shown below.</p>
+
+<figure class='code'><figcaption><span>Subjects Controller</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SubjectsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:set_subject</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>      <span class="vi">@subjects</span> <span class="o">=</span> <span class="no">Subject</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>      <span class="no">Subject</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">retrieve_subject_params</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">subjects_path</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'>      <span class="vi">@subject</span> <span class="o">=</span> <span class="no">Subject</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="vi">@lords</span> <span class="o">=</span> <span class="no">Lord</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">edit</span>
+</span><span class='line'>      <span class="vi">@subject</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>      <span class="vi">@subject</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>      <span class="vi">@subject</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">retrieve_subject_params</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">subjects_path</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">destroy</span>
+</span><span class='line'>      <span class="vi">@subject</span><span class="o">.</span><span class="n">destroy</span>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">subjects_path</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">set_subject</span>
+</span><span class='line'>      <span class="vi">@subject</span> <span class="o">=</span> <span class="no">Subject</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">retrieve_subject_params</span>
+</span><span class='line'>      <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:subject</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:region</span><span class="p">,</span> <span class="ss">:lord_id</span><span class="p">,</span> <span class="ss">:class</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ActionDispatch serves as a routing engine.  It is responsible for recognizing a path as specified in the model logic and dispatching it according to that route&rsquo;s specific action.  A route action should do only one thing, while keeping in convention via the &ldquo;fat model, skinny controller&rdquo; paradigm.  ActionDispatch takes care of the majority of your routes through resource routing.  With Rails, we can declare our <code>index, show, new, edit, create, update, and destroy</code> routes with one single line of code.  For example, if we wanted to have a resource for our king, subject, and lord classes, you&rsquo;d simply do the following:</p>
+
+<figure class='code'><figcaption><span>Resources for King</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">KingdomOfValyria</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">resources</span> <span class="ss">:kings</span>
+</span><span class='line'>  <span class="n">resources</span> <span class="ss">:subjects</span>
+</span><span class='line'>  <span class="n">resources</span> <span class="ss">:lords</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">root</span> <span class="s1">&#39;front#index&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ActionView is the Rails engine responsible for maintaining the HTML views that are rendered to the browser.  For each controller that&rsquo;s present in the app, there is a corresponding <code>app/views</code> directory that stores ERB templates used for HTML browser rendering.</p>
+
+<figure class='code'><figcaption><span>Subject View</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;&lt;</span><span class="sx">%= @subject.name %&gt; - Subject of King &lt;%=</span> <span class="vi">@subject</span><span class="o">.</span><span class="n">king</span><span class="o">.</span><span class="n">name</span> <span class="sx">%&gt;&lt;/h1&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="ss">Lord</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= @subject.lord.name %&gt;&lt;/p&gt;</span>
+</span><span class='line'><span class="sx">&lt;p&gt;Lives: &lt;%=</span> <span class="n">link_to</span> <span class="vi">@subject</span><span class="o">.</span><span class="n">region</span><span class="p">,</span> <span class="vi">@subject</span><span class="o">.</span><span class="n">region</span> <span class="sx">%&gt;&lt;/a&gt;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'><span class="sr">&lt;% unless @subject.children.empty? %&gt;</span>
+</span><span class='line'><span class="sr">  &lt;h2&gt;Children&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">ol</span><span class="o">&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="sx">% @subject.children.each </span><span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">      &lt;li&gt;</span><span class="o">&lt;</span><span class="sx">%= link_to child.name, child %&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="sx">    &lt;% end %&gt;</span>
+</span><span class='line'><span class="sx">  &lt;/ol&gt;&lt;br&gt;</span>
+</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Back&quot;</span><span class="p">,</span> <span class="n">subjects_path</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;%= link_to &quot;Edit&quot;, edit_subject_path %&gt;</span>
+</span><span class='line'><span class="o">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Delete&quot;</span><span class="p">,</span> <span class="vi">@subject</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Being able to effectively encapsulate your logic into separate logic categories is such a necessary skill-set to understand in order to become a proficient Ruby on Rails developer.  I&rsquo;m still in the process of learning how to whittle down my logic into singular methods and actions.  Ruby is a language that was built for abstraction.  It is meant to simplify logic in your code, and as Matz said once, &ldquo;I hope to see Ruby help every programmer in the world to be productive, and to enjoy programming, and to be happy.&rdquo;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ian Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-30T22:15:00-04:00" pubdate data-updated="true"></time>
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/10/27/mvc-basics/" title="Previous Post: CRUD Applications: Importance of MVC">&laquo; CRUD Applications: Importance of MVC</a>
+      
+      
+        <a class="basic-alignment right" href="/2013/11/04/explanation-of-nginx-and-passenger/" title="Next Post: Explanation of NGinx and Passenger">Explanation of NGinx and Passenger &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <form action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blog.ianmiller.nyc" />
+        <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+  
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/11/04/the-voice-in-the-background/">You&#8217;re not an Impostor: How to Manage Self-Expectations as a New Developer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Ian Miller -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/javascripts/aharris.js"></script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: scala | Archaic Positives]]></title>
   <link href="http://blog.ianmiller.nyc/blog/categories/scala/atom.xml" rel="self"/>
   <link href="http://blog.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:47:43-04:00</updated>
+  <updated>2015-07-29T13:18:51-04:00</updated>
   <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[SCALA Basics: An Introduction]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/01/21/scala-basics-an-introduction/"/>
+    <link href="http://blog.ianmiller.nyc/2014/01/21/scala-basics-an-introduction/"/>
     <updated>2014-01-21T14:55:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/01/21/scala-basics-an-introduction</id>
+    <id>http://blog.ianmiller.nyc/2014/01/21/scala-basics-an-introduction</id>
     <content type="html"><![CDATA[<p>Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed language, meaning that it binds a type to a variable for the variable&rsquo;s lifetime, whereas dynamically typed languages bind the type to the value referenced by a variable. Simply, statically typed variables are immutable, whereas dynamically typed variables are mutable. Scala also supports both functional and object-oriented programming. It seems that these attributes would conflict with one another, but the argument is that both attributes in conjunction lead to synergies in both performance and architecture.</p>
 
 <p>Let&rsquo;s get started on the introduction.</p>

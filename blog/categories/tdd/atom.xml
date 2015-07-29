@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Archaic Positives]]></title>
   <link href="http://blog.ianmiller.nyc/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://blog.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:47:43-04:00</updated>
+  <updated>2015-07-29T13:18:51-04:00</updated>
   <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Controller Testing Via RSpec]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec/"/>
+    <link href="http://blog.ianmiller.nyc/2014/02/27/controller-testing-via-rspec/"/>
     <updated>2014-02-27T10:01:37-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec</id>
+    <id>http://blog.ianmiller.nyc/2014/02/27/controller-testing-via-rspec</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been testing controllers pretty often over the last few weeks, and wanted to write a few reminders to my future self. I&rsquo;ve been testing an app at work with RSpec, and have gleaned a few best practices to integrate into my unit tests for controllers.</p>
 
 <p>First off, the purpose of controller testing is to test the controller actions directly and see what they do. For example, if we are testing a redirect, we want to make sure that the controller action is redirecting to the right path. It&rsquo;s important to follow the AAA pattern: Arrange, Act, and Assert. You set up the test by arranging a <code>before(:each)</code> statement, and setting up the data needed to execute a test via let blocks. Then you act upon the arranged data by manipulating it to the test&rsquo;s specifications. Then you assert that the arranged data should result in some specific action or result. Arrange, act, and assert.</p>

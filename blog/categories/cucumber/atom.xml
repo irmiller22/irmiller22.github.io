@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cucumber | Archaic Positives]]></title>
   <link href="http://blog.ianmiller.nyc/blog/categories/cucumber/atom.xml" rel="self"/>
   <link href="http://blog.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:47:43-04:00</updated>
+  <updated>2015-07-29T13:18:51-04:00</updated>
   <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Foray into Cucumber Feature Testing]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/23/foray-into-cucumber-feature-testing/"/>
+    <link href="http://blog.ianmiller.nyc/2014/02/23/foray-into-cucumber-feature-testing/"/>
     <updated>2014-02-23T14:45:33-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/23/foray-into-cucumber-feature-testing</id>
+    <id>http://blog.ianmiller.nyc/2014/02/23/foray-into-cucumber-feature-testing</id>
     <content type="html"><![CDATA[<p>For the past 2 weeks, I have been getting more involved in Cucumber feature testing as a result of my day-to-day job. When I first started, I found the prospect of Rails feature testing daunting, because it seemed like a cumbersome task to implement on top of building actual application features.</p>
 
 <p>We had built out some features for a client project that I&rsquo;m currently working on, and we had decided to implement testing for features via Cucumber, rather than solely relying on RSpec testing. There was a reason for taking this approach: when designing a feature, we didn&rsquo;t want to overtest our feature to the point where we were overemphasizing testing of what could be a very basic feature. Cucumber allows for all-around integration testing without being overly verbose and cumbersome.</p>
@@ -114,9 +114,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Questions and Thoughts About Cucumber for Myself]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/02/19/questions-about-cucumber/"/>
+    <link href="http://blog.ianmiller.nyc/2014/02/19/questions-about-cucumber/"/>
     <updated>2014-02-19T09:58:47-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/02/19/questions-about-cucumber</id>
+    <id>http://blog.ianmiller.nyc/2014/02/19/questions-about-cucumber</id>
     <content type="html"><![CDATA[<p>Questions:</p>
 
 <ul>

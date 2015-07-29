@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Archaic Positives]]></title>
   <link href="http://blog.ianmiller.nyc/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.ianmiller.nyc/"/>
-  <updated>2015-07-29T12:47:43-04:00</updated>
+  <updated>2015-07-29T13:18:51-04:00</updated>
   <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[You're not an Impostor: How to Manage Self-Expectations as a New Developer]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background/"/>
+    <link href="http://blog.ianmiller.nyc/2014/11/04/the-voice-in-the-background/"/>
     <updated>2014-11-04T12:02:37-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/11/04/the-voice-in-the-background</id>
+    <id>http://blog.ianmiller.nyc/2014/11/04/the-voice-in-the-background</id>
     <content type="html"><![CDATA[<h1>Managing Uncertain Expectations</h1>
 
 <p><img class="center <a" src="href="http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg">http://recruiterpoet.files.wordpress.com/2011/11/white2.jpg</a>&#8221;></p>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[RSpec Testing for a JSON API]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
+    <link href="http://blog.ianmiller.nyc/2014/04/18/rspec-testing-for-a-json-api/"/>
     <updated>2014-04-18T10:31:45-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/04/18/rspec-testing-for-a-json-api</id>
+    <id>http://blog.ianmiller.nyc/2014/04/18/rspec-testing-for-a-json-api</id>
     <content type="html"><![CDATA[<p>I am in the process of building out a JSON API for a registry application, that, when pinged by Salesforce, will fire off emails to prospective Flatiron students that notify them of their acceptance into the Flatiron School program. One thing that I noticed is that there aren&rsquo;t many resources out there for setting up a testing environment and eventually building out a JSON API via Ruby on Rails. Hopefully this resource will shed a little more light on how to accomplish that.</p>
 
 <p>The first step is to integrate a Rails serializer in order to encapsulate the JSON serialization of objects. We first install the <code>active_model_serializers</code> gem into the Gemfile, and then bundle. Now, for each model that we want to serialize for JSON serialization, we need to create a serializer: <code>rails g serializer student</code>.</p>
@@ -93,7 +93,7 @@ end
     ]
 </code></pre>
 
-<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#111;&#99;&#116;&#111;&#x72;&#x5f;&#119;&#x68;&#x6f;&#64;&#x77;&#x68;&#111;&#118;&#105;&#108;&#108;&#101;&#x2e;&#x63;&#x6f;&#109;">&#100;&#111;&#99;&#x74;&#x6f;&#114;&#95;&#119;&#x68;&#111;&#64;&#119;&#104;&#111;&#x76;&#x69;&#x6c;&#108;&#x65;&#46;&#99;&#111;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#100;&#111;&#99;&#x74;&#x6f;&#114;&#95;&#119;&#104;&#111;&#64;&#x77;&#x68;&#111;&#x76;&#x69;&#108;&#x6c;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#x6f;&#x63;&#x74;&#x6f;&#x72;&#95;&#119;&#104;&#111;&#64;&#x77;&#x68;&#111;&#x76;&#x69;&#x6c;&#x6c;&#x65;&#46;&#x63;&#111;&#109;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
 
 <p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
 
@@ -283,9 +283,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Strong Params in Rails]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2014/04/01/strong-params-in-rails/"/>
+    <link href="http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails/"/>
     <updated>2014-04-01T23:10:39-04:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2014/04/01/strong-params-in-rails</id>
+    <id>http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails</id>
     <content type="html"><![CDATA[<p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
 
 <p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
@@ -309,9 +309,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
+    <link href="http://blog.ianmiller.nyc/2013/12/27/how-to-generate-mailers-via-rails/"/>
     <updated>2013-12-27T11:08:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
+    <id>http://blog.ianmiller.nyc/2013/12/27/how-to-generate-mailers-via-rails</id>
     <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
 
 <p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
@@ -352,9 +352,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Impetus for a Career in Programming]]></title>
-    <link href="http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming/"/>
+    <link href="http://blog.ianmiller.nyc/2013/12/22/impetus-for-a-career-in-programming/"/>
     <updated>2013-12-22T13:26:00-05:00</updated>
-    <id>http://blog.ianmiller.nyc/blog/2013/12/22/impetus-for-a-career-in-programming</id>
+    <id>http://blog.ianmiller.nyc/2013/12/22/impetus-for-a-career-in-programming</id>
     <content type="html"><![CDATA[<p>I’m currently on a flight over the continental US, on board Virgin America flight #27, headed from New York City to San Francisco, CA. Since I left NYC, I’ve been thinking a lot about my path to programming, and how I ultimately ended up in my current position. I think it’s a combination of several factors, most importantly the re-discovery of childhood pursuits.</p>
 
 <p>Now for the moment of full disclosure: I have a severe hearing disability. I have roughly 75-85% hearing loss, and it’s hard to ascertain the exact number because it varies over time. I also think this fact goes a long ways towards explaining the meandering path behind me as I searched for my passion.</p>
