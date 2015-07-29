@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Controller Testing Via RSpec - Archaic Positives</title>
+  <meta name="author" content="Ian Miller">
+
+  
+  <meta name="description" content="I&rsquo;ve been testing controllers pretty often over the last few weeks, and wanted to write a few reminders to my future self. I&rsquo;ve been &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ianmiller.nyc/blog/2014/02/27/controller-testing-via-rspec">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Archaic Positives" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45791487-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Archaic Positives</a></div>
+
+
+	<br><div class="header-subtitle">Adventurer, Traveler, Rubyist</div>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ianmiller.nyc" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Controller Testing via RSpec</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:01:37-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve been testing controllers pretty often over the last few weeks, and wanted to write a few reminders to my future self. I&rsquo;ve been testing an app at work with RSpec, and have gleaned a few best practices to integrate into my unit tests for controllers.</p>
+
+<p>First off, the purpose of controller testing is to test the controller actions directly and see what they do. For example, if we are testing a redirect, we want to make sure that the controller action is redirecting to the right path. It&rsquo;s important to follow the AAA pattern: Arrange, Act, and Assert. You set up the test by arranging a <code>before(:each)</code> statement, and setting up the data needed to execute a test via let blocks. Then you act upon the arranged data by manipulating it to the test&rsquo;s specifications. Then you assert that the arranged data should result in some specific action or result. Arrange, act, and assert.</p>
+
+<p>Another tip to keep in mind. Avoid before(:all) statements whenever possible, because you hardly will ever need it, and it sort of goes against Sandi Metz&rsquo;s Single Responsibility Principle (SRP). If you ever actually do need it, you are most likely dealing with a very extraordinary circumstance. The before(:all) block can affect test-data stability due to unwanted side effects.</p>
+
+<p>For BDD/Rspec language, prefer to use active language instead of passive language. Of course the system should do something. Let&rsquo;s write tests where the language asserts definitively that it does or does not do something, thereby documenting not what our system should do but what it does do. It&rsquo;s important to be as clear and succinct in our language about what our expectations are.</p>
+
+<p>Finally, a small but important distinction between <code>let()</code> and <code>let!()</code>. An object defined in a <code>let()</code> statement is lazily evaluated, meaning that it won&rsquo;t instantiate that object until it has been called in a RSpec test. However, an object defined in a <code>let!()</code> statement is forcefully evaluated, and the object will be instantiated once the statement has been invoked.</p>
+
+<p>Hopefully these thoughts and insights will prove useful to someone, as they will for me in the near future.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ian Miller</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T10:01:37-05:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/controller/'>controller</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/23/foray-into-cucumber-feature-testing/" title="Previous Post: Foray into Cucumber Feature Testing">&laquo; Foray into Cucumber Feature Testing</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/03/19/rails-caching/" title="Next Post: Rails Caching">Rails Caching &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/04/the-voice-in-the-background/">You&#8217;re not an Impostor: How to Manage Self-Expectations as a New Developer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/29/working-with-rack-sessions/">Working with Rack Sessions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/04/intersection-between-tolstoy-and-agile-programming/">Intersection between Tolstoy and Agile Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/18/rspec-testing-for-a-json-api/">RSpec Testing for a JSON API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/01/strong-params-in-rails/">Strong Params in Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/irmiller22">@irmiller22</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'irmiller22',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 -  Ian Miller <br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

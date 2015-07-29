@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mailer | Archaic Positives]]></title>
+  <link href="http://www.ianmiller.nyc/blog/categories/mailer/atom.xml" rel="self"/>
+  <link href="http://www.ianmiller.nyc/"/>
+  <updated>2015-07-29T12:38:13-04:00</updated>
+  <id>http://www.ianmiller.nyc/</id>
+  <author>
+    <name><![CDATA[Ian Miller]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Generate Mailers via Rails]]></title>
+    <link href="http://www.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails/"/>
+    <updated>2013-12-27T11:08:00-05:00</updated>
+    <id>http://www.ianmiller.nyc/blog/2013/12/27/how-to-generate-mailers-via-rails</id>
+    <content type="html"><![CDATA[<p>One topic that we never covered in regards to Rails was how to properly generate mailers (automatically generated emails from a web application).</p>
+
+<p>I&rsquo;m covering this because I have not used mailers before, and I think it&rsquo;s a pretty pertinent feature of Rails that everyone should know.</p>
+
+<p>I&rsquo;ll be using the example of a distributed solar generation product.  Whenever a consumer is experiencing unusually low solar energy production or energy generation patterns consistent with a malfunctioning module, it will send out a mailer notifying them of these issues.  In order to generate a mailer, you type in the following command:</p>
+
+<pre><code class="ruby Mailer Generation">rails g mailer SolarMailer error_report
+</code></pre>
+
+<p>The next step is to set up the default settings of the mailer.</p>
+
+<pre><code class="ruby Mailer Settings">class SolarMailer &lt; ActionMailer::Base
+    default from: "administrator@solartech.com"
+
+    def error_report(panel, customer)
+        mail to: customer.email, subject: "Panel #{panel.location} #{panel.id} is experiencing some technical issues.""
+    end
+end
+</code></pre>
+
+<p>After we have set up the default settings for the mailer, then we go to the Panel model in order to specify when the mailer should be sent out.</p>
+
+<pre><code class="ruby Panel model">class Panel &lt; ActiveRecord::Base
+    belongs_to :module
+    before_save :check_power_yield
+
+    def check_power_yield
+        if power_yield &lt;= 1200 kWh #base power generation
+            SolarMailer.error_report(self, self.customer).deliver
+        end
+    end
+end
+</code></pre>
+
+<p>That&rsquo;s pretty much it for a basic mailer.  You can style the mailer using HTML/CSS, and you can also add front-end features via Javascript (AJAX, jQuery).</p>
+]]></content>
+  </entry>
+  
+</feed>
