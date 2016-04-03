@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Javascript | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/javascript/atom.xml" rel="self"/>
-  <link href="http://irmiller22.github.io/"/>
-  <updated>2016-04-03T15:46:59-04:00</updated>
-  <id>http://irmiller22.github.io/</id>
+  <title><![CDATA[Category: javascript | Archaic Positives]]></title>
+  <link href="http://blog.ianmiller.nyc/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2016-04-03T18:58:07-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,26 +15,23 @@
   
   <entry>
     <title type="html"><![CDATA[JavaScript Basics: An Introduction]]></title>
-    <link href="http://irmiller22.github.io/blog/2014/01/03/javascript-basics-an-introduction/"/>
+    <link href="http://blog.ianmiller.nyc/2014/01/03/javascript-basics-an-introduction/"/>
     <updated>2014-01-03T23:29:00-05:00</updated>
-    <id>http://irmiller22.github.io/blog/2014/01/03/javascript-basics-an-introduction</id>
+    <id>http://blog.ianmiller.nyc/2014/01/03/javascript-basics-an-introduction</id>
     <content type="html"><![CDATA[<p>Variable Declaration and Constant</p>
 
-<p>```javascript Variables
-var x = 10,</p>
-
-<pre><code>    y = 30, 
-    myMath = x + y;
+<pre><code class="javascript Variables">var x = 10,
+        y = 30, 
+        myMath = x + y;
 </code></pre>
 
-<p>```
-myMath in this case is the sum of variables x and y, which would be equal to 40.</p>
+<p>myMath in this case is the sum of variables x and y, which would be equal to 40.</p>
 
-<p><code>javascript Constant
-//const is a keyword that will declare a constant
+<pre><code class="javascript Constant">//const is a keyword that will declare a constant
 const CONSTANT = 22;
-</code>
-To find out what data type a variable is, you use the <code>typeof</code> method, as shown below:
+</code></pre>
+
+<p>To find out what data type a variable is, you use the <code>typeof</code> method, as shown below:
 <code>javascript Typeof method
 const CAR = 2;
 console.log(typeof CAR);
@@ -48,44 +45,31 @@ console.log(typeof string);
 
 <p>You can also use an if/else statement to execute a given statement if a certain condition is true.  For example, if you wanted to check and see if a variable was considered a type of string, you&rsquo;d do the following:</p>
 
-<p>```javascript Conditional
-var name = &ldquo;Ian&rdquo;;
-if(typeof(name) == &ldquo;string&rdquo;){</p>
-
-<pre><code>console.log("It is a string.");
+<pre><code class="javascript Conditional">var name = "Ian";
+if(typeof(name) == "string"){
+    console.log("It is a string.");
+}else{
+    console.log("It ain't a string.");
+}
 </code></pre>
-
-<p>}else{</p>
-
-<pre><code>console.log("It ain't a string.");
-</code></pre>
-
-<p>}
-```</p>
 
 <p>Local vs. Global Scope</p>
 
-<p>```javascript Local vs. Global Scope
-var x = 5;
-var y = 10;</p>
+<pre><code class="javascript Local vs. Global Scope">var x = 5;
+var y = 10;
 
-<p>function add(a,b){</p>
+function add(a,b){
+    var x = a + b;
+    return x;
+}
 
-<pre><code>var x = a + b;
-return x;
+function subtract(a,b){
+    var y = a - b;
+    return y;
+}
 </code></pre>
 
-<p>}</p>
-
-<p>function subtract(a,b){</p>
-
-<pre><code>var y = a - b;
-return y;
-</code></pre>
-
-<p>}
-<code>``
-The x and y variables that are outside of the add and subtract functions are called</code>global` variables.  They are declared outside of a function in the global scope, and are essentially accessible from anywhere inside of the program.</p>
+<p>The x and y variables that are outside of the add and subtract functions are called <code>global</code> variables.  They are declared outside of a function in the global scope, and are essentially accessible from anywhere inside of the program.</p>
 
 <p>Functions create a new scope.  The x variable inside the add function and the y variable inside of the subtract function are known as <code>local</code> variables.  They exist only in the context of the respective function, and are not accessible outside of the function.  Think of it as the Vegas motto; what happens here, stays here.</p>
 
@@ -98,26 +82,22 @@ var students = ["Ian Miller", "James Wood", "Saron Yitbarek", "John Cafferty"];
 
 <p>Looping Through Arrays</p>
 
-<p>```javascript Looping Through Array
-function trackStudents(name, roster){</p>
-
-<pre><code>if (roster.length == 0){
-    roster.push(name);
-} else{
-    for(var i=0; i &lt; roster.length; i++) {
-        if(roster[i] == undefined){
-            roster[i] = name;
-            return roster;
-        } else if (i == roster.length - 1) {
-            roster.push(name);
+<pre><code class="javascript Looping Through Array">function trackStudents(name, roster){
+    if (roster.length == 0){
+        roster.push(name);
+    } else{
+        for(var i=0; i &lt; roster.length; i++) {
+            if(roster[i] == undefined){
+                roster[i] = name;
+                return roster;
+            } else if (i == roster.length - 1) {
+                roster.push(name);
+            }
         }
-    }
-</code></pre>
-
-<p>  }
+  }
   return roster;
 }
-```</p>
+</code></pre>
 
 <p>This is just a simple looping function that takes a roster, and adds a name to the roster array.  If the array does not have any elements in it, then it will push that element onto the end of the array, which will be the first element.  Otherwise, for each element in the array, if an array position is undefined, then it will set that element equal to the name value.  Also, if it is the last element in the array, it will also push the name value to the end of the array.  Finally, once the whole array has been iterated through, it will return the array.</p>
 

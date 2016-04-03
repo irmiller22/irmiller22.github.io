@@ -1,4 +1,5 @@
+&#8212;
+layout: null
 User-agent: *
 Disallow: 
-
-Sitemap: http://irmiller22.github.io/sitemap.xml 
+Sitemap: http://blog.ianmiller.nyc/sitemap.xml

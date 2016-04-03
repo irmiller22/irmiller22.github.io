@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: json | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/json/atom.xml" rel="self"/>
-  <link href="http://irmiller22.github.io/"/>
-  <updated>2016-04-03T15:46:59-04:00</updated>
-  <id>http://irmiller22.github.io/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/json/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2016-04-03T18:58:07-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,249 +15,212 @@
   
   <entry>
     <title type="html"><![CDATA[RSpec Testing for a JSON API]]></title>
-    <link href="http://irmiller22.github.io/blog/2014/04/18/rspec-testing-for-a-json-api/"/>
+    <link href="http://blog.ianmiller.nyc/2014/04/18/rspec-testing-for-a-json-api/"/>
     <updated>2014-04-18T10:31:45-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2014/04/18/rspec-testing-for-a-json-api</id>
+    <id>http://blog.ianmiller.nyc/2014/04/18/rspec-testing-for-a-json-api</id>
     <content type="html"><![CDATA[<p>I am in the process of building out a JSON API for a registry application, that, when pinged by Salesforce, will fire off emails to prospective Flatiron students that notify them of their acceptance into the Flatiron School program. One thing that I noticed is that there aren&rsquo;t many resources out there for setting up a testing environment and eventually building out a JSON API via Ruby on Rails. Hopefully this resource will shed a little more light on how to accomplish that.</p>
 
 <p>The first step is to integrate a Rails serializer in order to encapsulate the JSON serialization of objects. We first install the <code>active_model_serializers</code> gem into the Gemfile, and then bundle. Now, for each model that we want to serialize for JSON serialization, we need to create a serializer: <code>rails g serializer student</code>.</p>
 
 <p>Inside of the serializer file that has just been generated, we need to add in student attributes that will be defined and visible in the JSON API.</p>
 
-<p><code>ruby app/serializers/student_serializer.rb
-class StudentSerializer &lt; ActiveModel::Serializer
+<pre><code class="ruby app/serializers/student_serializer.rb">class StudentSerializer &lt; ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :email
 end
-</code></p>
+</code></pre>
 
 <p>For example, this is how the JSON data will be represented on the API tree, based upon the order of attributes in the <code>student_serializer.rb</code> file above:</p>
 
-<p>```ruby JSON data for student
-  students:</p>
-
-<pre><code>[
-  {
-    id: 4,
-    first_name: "Doctor",
-    last_name: "Who",
-    email: "doctor_who@whoville.com"
-  }
-]
+<pre><code class="ruby JSON data for student">  students:
+    [
+      {
+        id: 4,
+        first_name: "Doctor",
+        last_name: "Who",
+        email: "doctor_who@whoville.com"
+      }
+    ]
 </code></pre>
 
-<p>```</p>
-
-<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#100;&#111;&#x63;&#116;&#111;&#114;&#x5f;&#x77;&#104;&#111;&#64;&#x77;&#104;&#111;&#118;&#x69;&#108;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;">&#100;&#x6f;&#99;&#116;&#x6f;&#114;&#95;&#x77;&#104;&#111;&#x40;&#119;&#104;&#x6f;&#118;&#x69;&#108;&#108;&#101;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
+<p>There is a key called students, and inside of its value store, it holds a collection of student objects. Inside of the array collection, there is 1 student with an id of 4, first name of &ldquo;Doctor&rdquo;, last name of &ldquo;Who&rdquo;, and an email &ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x64;&#111;&#99;&#x74;&#x6f;&#114;&#x5f;&#119;&#x68;&#x6f;&#64;&#119;&#104;&#111;&#x76;&#105;&#x6c;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#x64;&#111;&#99;&#x74;&#111;&#x72;&#x5f;&#119;&#104;&#x6f;&#64;&#119;&#104;&#111;&#x76;&#105;&#108;&#108;&#101;&#46;&#99;&#111;&#x6d;</a>&rdquo;. This is a demonstrative example of how the JSON object data will be rendered when the API is pinged.</p>
 
 <p>In the <code>app/controllers</code> directory, I created a new folder system that allows for semantic versioning of the API. Currently my directory looks like this: <code>app/controllers/api/v1</code>. Inside of that folder structure, I have one file: <code>students_controller.rb</code>. We will come back to these files once we start building out our controller actions.</p>
 
 <p>Next, I set up the routes for the <code>students</code> resource. My <code>config/routes.rb</code> file looks like this currently:</p>
 
-<p>```ruby config/routes.rb
-namespace :api do
-  namespace :v1 do</p>
-
-<pre><code>resources :students, only: [:index, :show, :create]
+<pre><code class="ruby config/routes.rb">namespace :api do
+  namespace :v1 do
+    resources :students, only: [:index, :show, :create]
+  end
+end  
 </code></pre>
-
-<p>  end
-end<br/>
-```</p>
 
 <p>This is the basic setup for the API itself. At this point in the API development, we&rsquo;re only concerned with the <code>index</code>, <code>show</code>, and <code>create</code> actions for the API Students Controller. Now, we&rsquo;ll go ahead and set up the RSpec tests for the controller.</p>
 
-<p>```ruby spec/controllers/api/v1/students_controller_spec.rb
-require &lsquo;spec_helper&rsquo;</p>
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">require 'spec_helper'
 
-<p>describe API::V1::StudentsController do
-  describe &ldquo;GET &lsquo;index&rsquo; &rdquo; do</p>
+describe API::V1::StudentsController do
+  describe "GET 'index' " do
+    it "returns a successful 200 response" do
+      pending
+    end
 
-<pre><code>it "returns a successful 200 response" do
-  pending
-end
-
-it "returns all the students" do
-  pending
-end
+    it "returns all the students" do
+      pending
+    end
+  end
 </code></pre>
-
-<p>  end
-```</p>
 
 <p>This describe block refers to the index action of the controller. In this block, we are testing for two expectations: for the JSON response for the index action to return a 200 status code, and for the JSON response to return the correct number of students that exist in the test database.</p>
 
-<p>```ruby spec/controllers/api/v1/students_controller_spec.rb
-require &lsquo;spec_helper&rsquo;</p>
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">require 'spec_helper'
 
-<p>describe API::V1::StudentsController do
-  describe &ldquo;GET &lsquo;index&rsquo; &rdquo; do</p>
+describe API::V1::StudentsController do
+  describe "GET 'index' " do
+    it "returns a successful 200 response" do
+       get :index, format: :json
+      expect(response).to be_success
+    end
 
-<pre><code>it "returns a successful 200 response" do
-   get :index, format: :json
-  expect(response).to be_success
-end
-
-it "returns all the students" do
-  FactoryGirl.create_list(:student, 5)
-  get :index, format: :json
-  parsed_response = JSON.parse(response.body)
-  expect(parsed_response['students'].length).to eq(5)
-end
+    it "returns all the students" do
+      FactoryGirl.create_list(:student, 5)
+      get :index, format: :json
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['students'].length).to eq(5)
+    end
+  end
 </code></pre>
-
-<p>  end
-```</p>
 
 <p>In order to get these tests passing, we first need to submit a get request for the <code>index</code> action in a JSON format. We first expect the response to be successful, or more specifically, to result in a 200 status code.</p>
 
 <p>We also need to test whether or not it returns all of the existing students in the test database. I&rsquo;ve used the FactoryGirl gem to mock out the student list <code>create_list(:student, 5)</code>. I&rsquo;ve also set up the <code>parsed_response</code> variable, which will translate the response body in JSON format into a more readable format. Then I&rsquo;ve set the expectation that the <strong>length</strong> of the <code>parsed_response[students]</code> should be equal to 5, as specified in the <code>FactoryGirl.create_list(:student, 5)</code> line.</p>
 
-<p>```ruby spec/controllers/api/v1/students_controller_spec.rb
-  describe &ldquo;GET &lsquo;show&rsquo; &rdquo; do</p>
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "GET 'show' " do
+    it "returns a successful 200 response" do
+      pending
+    end
 
-<pre><code>it "returns a successful 200 response" do
-  pending
-end
+    it "returns data of an single student" do
+      pending
+    end
 
-it "returns data of an single student" do
-  pending
-end
-
-it "returns an error if the student does not exist" do
-  pending
-end
+    it "returns an error if the student does not exist" do
+      pending
+    end
+  end
 </code></pre>
-
-<p>  end
-```</p>
 
 <p>This block refers to the show action. I am testing for three specific expectations: a successful JSON response to return a 200 status code, a successful response to return the correct student JSON object, and for the JSON response to return an error message for a student JSON object that doesn&rsquo;t exist.</p>
 
-<p>```ruby spec/controllers/api/v1/students_controller_spec.rb
-  describe &ldquo;GET &lsquo;show&rsquo; &rdquo; do</p>
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "GET 'show' " do
+    let(:student) { create(:student) }
 
-<pre><code>let(:student) { create(:student) }
+    it "returns a successful 200 response" do
+      get :student, id: student, format: :json
+      expect(response).to be_success
+    end
 
-it "returns a successful 200 response" do
-  get :student, id: student, format: :json
-  expect(response).to be_success
-end
+    it "returns data of an single student" do
+      get :student, id: student, format: :json
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['student']).to_not be_nil
+    end
 
-it "returns data of an single student" do
-  get :student, id: student, format: :json
-  parsed_response = JSON.parse(response.body)
-  expect(parsed_response['student']).to_not be_nil
-end
-
-it "returns an error if the student does not exist" do
-  get :student, id: 10 , format: :json
-  parsed_response = JSON.parse(response.body)
-  expect(parsed_response['error']).to eq("Student does not exist")
-  expect(response).to be_not_found
-end
+    it "returns an error if the student does not exist" do
+      get :student, id: 10 , format: :json
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['error']).to eq("Student does not exist")
+      expect(response).to be_not_found
+    end
+  end
 </code></pre>
-
-<p>  end
-```</p>
 
 <p>We&rsquo;ve built out a student mock using FactoryGirl, and will be using this to test whether or not the <code>show</code> method returns the correct student from the test database based on the student&rsquo;s ID. For each test, we are submitting a get request for the student we mocked out earlier, and we should expect a 200 response for the first test, and for <code>parsed_response['student']</code> to essentially be a valid student object returned from the test database. For the third test, we are asking to return a student with an ID of 10, which doesn&rsquo;t exist in our database. We should expect an error messaged from <code>parsed_response['error']</code>, and we should also expect the response to return a message saying that the object was not found.</p>
 
-<p>```ruby spec/controllers/api/v1/students_controller_spec.rb
-  describe &ldquo;POST &lsquo;create&rsquo; &rdquo; do</p>
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "POST 'create' " do
+    context "correct email format" do
+      it "returns a successful json string with success message" do
+        pending
+      end
+    end
 
-<pre><code>context "correct email format" do
-  it "returns a successful json string with success message" do
-    pending
+    context "incorrect email format" do
+      it "returns an error if an incorrect email format is submitted" do
+        pending
+      end  
+    end
   end
 end
-
-context "incorrect email format" do
-  it "returns an error if an incorrect email format is submitted" do
-    pending
-  end  
-end
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <p>This block is describing the create method, which will take in an email address parameter. If the email address is valid, then it will fire off an email to that email address, and then fire off a <strong>success</strong> message within a JSON response. If the email address is invalid, then it won&rsquo;t fire off the email, and will render an <strong>invalid</strong> message within a JSON response.</p>
 
-<p>```ruby spec/controllers/api/v1/students_controller_spec.rb
-  describe &ldquo;POST &lsquo;create&rsquo; &rdquo; do</p>
+<pre><code class="ruby spec/controllers/api/v1/students_controller_spec.rb">  describe "POST 'create' " do
+    context "correct email format" do
+      it "returns a successful json string with success message" do
+        post :create, { email: "newstudent@example.com" }
+        expect(response).to be_success
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['success']).to eq("Accepted email format.")
+      end
+    end
 
-<pre><code>context "correct email format" do
-  it "returns a successful json string with success message" do
-    post :create, { email: "newstudent@example.com" }
-    expect(response).to be_success
-    parsed_response = JSON.parse(response.body)
-    expect(parsed_response['success']).to eq("Accepted email format.")
+    context "incorrect email format" do
+      it "returns an error if an incorrect email format is submitted" do
+        post :create, { email: "new@studentexample" }
+        parsed_response = JSON.parse(response.body)
+        expect(response).to be_bad_request
+        expect(parsed_response['invalid']).to eq("Invalid email format.")
+      end  
+    end
   end
 end
-
-context "incorrect email format" do
-  it "returns an error if an incorrect email format is submitted" do
-    post :create, { email: "new@studentexample" }
-    parsed_response = JSON.parse(response.body)
-    expect(response).to be_bad_request
-    expect(parsed_response['invalid']).to eq("Invalid email format.")
-  end  
-end
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <p>In the first test, we&rsquo;re passing in a valid email address inside of the post request for the <code>create</code> action. If it&rsquo;s valid, then we expect the JSON response to have a 200 status code, and we also expect <code>parsed_response</code> to have a <strong>success</strong> message as well. The second test passes in an invalid email address. We expect the JSON response to return a bad request status, more specifically a 400 status code, as well as a <strong>invalid</strong> message inside of the <code>parsed_response</code>.</p>
 
 <p>In order to make all of these tests pass, here&rsquo;s how the corresponding <code>app/controllers/api/v1/students_controller.rb</code> file looks:</p>
 
-<p>```ruby controllers/api/v1/students_controller.rb
-module API::V1
-  class StudentsController &lt; ApplicationController</p>
+<pre><code class="ruby controllers/api/v1/students_controller.rb">module API::V1
+  class StudentsController &lt; ApplicationController
+    before_action :find_student, only: [:student]
 
-<pre><code>before_action :find_student, only: [:student]
+    def index
+      @students = Student.all
+      render json: @students
+    end
 
-def index
-  @students = Student.all
-  render json: @students
-end
+    def show
+      render json: @student
+    end
 
-def show
-  render json: @student
-end
+    def create
+      if valid_email?(params[:email])
+        send_acceptance_email(params[:email])
+        render json: { success: "Accepted email format." }
+      else
+        render json: { invalid: "Invalid email format." }, status: :bad_request
+      end
+    end
 
-def create
-  if valid_email?(params[:email])
-    send_acceptance_email(params[:email])
-    render json: { success: "Accepted email format." }
-  else
-    render json: { invalid: "Invalid email format." }, status: :bad_request
+    private
+
+    def find_student
+      @student = Student.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: "Student does not exist" }, status: :not_found
+    end
+
+    def valid_email?(email_address)
+      !!(email_address =~ /.+\@.+\..+/)
+    end
+
+    def send_acceptance_email(email)
+      NewStudentMailer.acceptance_email(email).deliver
+    end
   end
 end
-
-private
-
-def find_student
-  @student = Student.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Student does not exist" }, status: :not_found
-end
-
-def valid_email?(email_address)
-  !!(email_address =~ /.+\@.+\..+/)
-end
-
-def send_acceptance_email(email)
-  NewStudentMailer.acceptance_email(email).deliver
-end
 </code></pre>
-
-<p>  end
-end
-```</p>
 
 <p>The <code>index</code>, <code>show</code>, and <code>create</code> methods should be pretty straightforward, but perhaps I should elaborate more on the private methods. Within the context of building an API, we only need to focus on two: <code>find_student</code> and <code>valid_email?(email_address)</code>.</p>
 

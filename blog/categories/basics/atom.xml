@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: basics | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/basics/atom.xml" rel="self"/>
-  <link href="http://irmiller22.github.io/"/>
-  <updated>2016-04-03T15:46:59-04:00</updated>
-  <id>http://irmiller22.github.io/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/basics/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2016-04-03T18:58:07-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,57 +15,47 @@
   
   <entry>
     <title type="html"><![CDATA[SCALA Basics: An Introduction]]></title>
-    <link href="http://irmiller22.github.io/blog/2014/01/21/scala-basics-an-introduction/"/>
+    <link href="http://blog.ianmiller.nyc/2014/01/21/scala-basics-an-introduction/"/>
     <updated>2014-01-21T14:55:00-05:00</updated>
-    <id>http://irmiller22.github.io/blog/2014/01/21/scala-basics-an-introduction</id>
+    <id>http://blog.ianmiller.nyc/2014/01/21/scala-basics-an-introduction</id>
     <content type="html"><![CDATA[<p>Scala is a programming language meant to address scalability issues that confront a large number of developers today. It is a statically typed language, meaning that it binds a type to a variable for the variable&rsquo;s lifetime, whereas dynamically typed languages bind the type to the value referenced by a variable. Simply, statically typed variables are immutable, whereas dynamically typed variables are mutable. Scala also supports both functional and object-oriented programming. It seems that these attributes would conflict with one another, but the argument is that both attributes in conjunction lead to synergies in both performance and architecture.</p>
 
 <p>Let&rsquo;s get started on the introduction.</p>
 
-<p><code>scala Print Out a String
-val book = "Let's start learning about Scala"
+<pre><code class="scala Print Out a String">val book = "Let's start learning about Scala"
 // java.lang.String = Let's start learning about Scala
 println(book)
 // Let's start learning about Scala
-</code></p>
+</code></pre>
 
 <p><code>val</code> is used to declare a read-only variable named <code>book</code>. In the next exercise, let&rsquo;s create a class that will take a number of parameters and then upcase them. We&rsquo;ll also refactor this function to make it more efficient and readable. Let&rsquo;s do it in the space below:</p>
 
-<p>```scala Upper Case Function</p>
-
-<pre><code>class Upper {
-    def upper(strings: String*): Seq[String] = {
-        strings.map((s:String) =&gt; s.toUpperCase())
+<pre><code class="scala Upper Case Function">    class Upper {
+        def upper(strings: String*): Seq[String] = {
+            strings.map((s:String) =&gt; s.toUpperCase())
+        }
     }
-}
 </code></pre>
-
-<p>```</p>
 
 <p>We&rsquo;ve defined the class <code>Upper</code>, and specified its parameter <code>strings</code> as an undefined number of string values, evidenced by the splat in <code>String*</code>. Then we specify the return type <code>Seq[String]</code> as a collection (or array) of strings. Then inside of the method&rsquo;s body, where we call the <code>map</code> method on the strings array, and passed in <code>(s:String) =&gt; s.toUpperCase()</code> as a function literal. In other words, it executes that function for each mapped parameter of the array <code>strings</code>.</p>
 
 <p>Now let&rsquo;s initialize the Upper Case Function below:</p>
 
-<p><code>scala Initializing Upper Case Function
-val up = new Upper
+<pre><code class="scala Initializing Upper Case Function">val up = new Upper
 Console.println(up.upper("run","ian","Fly","hero"))
 // Array(RUN, IAN, FLY, HERO)
-</code></p>
+</code></pre>
 
 <p>The <code>upper</code> method in the <code>Upper</code> class converts each parameter into an uppercase string, and returns them in an array.</p>
 
 <p>Now let&rsquo;s refactor.</p>
 
-<p>```scala Upper Case Function Refactored #1
-object Upper {</p>
-
-<pre><code>def upper(strings: String*) = strings.map(_.toUpperCase())
-</code></pre>
-
-<p>}
-println(Upper.upper(&ldquo;run&rdquo;,&ldquo;ian&rdquo;,&ldquo;Fly&rdquo;,&ldquo;hero&rdquo;))
+<pre><code class="scala Upper Case Function Refactored #1">object Upper {
+    def upper(strings: String*) = strings.map(_.toUpperCase())
+}
+println(Upper.upper("run","ian","Fly","hero"))
 // Array(RUN, IAN, FLY, HERO)
-```</p>
+</code></pre>
 
 <p>We&rsquo;ve now declared an <code>object</code>, which in Scala is a singleton. In this situation, we only ever need one instance of Upper run at a time, so a singleton works appropriately. The <code>_</code> element inside of the <code>map</code> method is a placeholder variable that each string element will be assigned to before <code>toUpperCase()</code> is applied.</p>
 

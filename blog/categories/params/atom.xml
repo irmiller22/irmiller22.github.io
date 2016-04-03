@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: params | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/params/atom.xml" rel="self"/>
-  <link href="http://irmiller22.github.io/"/>
-  <updated>2016-04-03T15:46:59-04:00</updated>
-  <id>http://irmiller22.github.io/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/params/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2016-04-03T18:58:07-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Strong Params in Rails]]></title>
-    <link href="http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails/"/>
+    <link href="http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails/"/>
     <updated>2014-04-01T23:10:39-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2014/04/01/strong-params-in-rails</id>
+    <id>http://blog.ianmiller.nyc/2014/04/01/strong-params-in-rails</id>
     <content type="html"><![CDATA[<p>Recently, I ran into issues trying to pass a new variable into my params hash after integrating Devise into my app, so I decided to do a refresher of strong params. Strong params was implemented in Rails so that users could not maliciously manipulate form submissions via form fields.</p>
 
 <p>Strong parameters was implemented in Rails 3 via <code>whitelisting</code>, which is the act of permitting specific attributes that can be passed into the params hash via the model. In Rails 4, the responsibility of <code>whitelisting</code> has now been passed to the controller.</p>
@@ -26,13 +26,12 @@
 
 <p>For example:</p>
 
-<p>```ruby UsersController
-private</p>
+<pre><code class="ruby UsersController">private
 
-<p>def resource_params
+def resource_params
   params.require(:user).permit(:name, :age, :email)
 end
-```</p>
+</code></pre>
 
 <p>The <code>require</code> statement inside the <code>resource_params</code> method performs the parameter validation for the user parameter. If the user parameter exists, then it will go on and validate each of the attributes. If the user parameter does not exist, then it will throw an <code>ActionController::ParameterMissing</code> error and return a 400 status code response.</p>
 

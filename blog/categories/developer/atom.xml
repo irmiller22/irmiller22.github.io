@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Developer | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/developer/atom.xml" rel="self"/>
-  <link href="http://irmiller22.github.io/"/>
-  <updated>2016-04-03T15:46:59-04:00</updated>
-  <id>http://irmiller22.github.io/</id>
+  <title><![CDATA[Category: developer | Archaic Positives]]></title>
+  <link href="http://blog.ianmiller.nyc/blog/categories/developer/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2016-04-03T18:58:07-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[First Post]]></title>
-    <link href="http://irmiller22.github.io/blog/2013/09/24/first-post/"/>
+    <link href="http://blog.ianmiller.nyc/2013/09/24/first-post/"/>
     <updated>2013-09-24T16:51:00-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2013/09/24/first-post</id>
+    <id>http://blog.ianmiller.nyc/2013/09/24/first-post</id>
     <content type="html"><![CDATA[<p>Today was the second day of my developer-in-training at the Flatiron School.  Yesterday we spent the majority of the day discussing the nuances of Git and GitHub, which are variations of a VCS (version control system).  Ultimately Git helps simplify the collaboration process between developers by organizing the version control heirarchy.  This may not be as important when it&rsquo;s just one or two developers working together, but when you have a large number of developers (say, 15 or more), it definitely makes a difference.  We spent most of the day today setting up our developer environments.  This involved creating an Apple Developer account, installing software through the Terminal (such as Ruby, RVM, SQLite3, Homebrew, etc).</p>
 
 <p>This blog is what I will be using to keep track of my progress throughout the semester at Flatiron.  It has been relatively smooth sailing, but it will start to get more difficult as time passes.  We will start focusing on SQL tomorrow, and then move on to Ruby on Thursday.  I&rsquo;m very excited about my time here.  It will prove to be one of the most instrumental experiences that I have had, and I am excited about my opportunities that lie in wait.</p>

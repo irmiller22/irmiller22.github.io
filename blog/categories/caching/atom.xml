@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: caching | Archaic Positives]]></title>
-  <link href="http://irmiller22.github.io/blog/categories/caching/atom.xml" rel="self"/>
-  <link href="http://irmiller22.github.io/"/>
-  <updated>2016-04-03T15:46:59-04:00</updated>
-  <id>http://irmiller22.github.io/</id>
+  <link href="http://blog.ianmiller.nyc/blog/categories/caching/atom.xml" rel="self"/>
+  <link href="http://blog.ianmiller.nyc/"/>
+  <updated>2016-04-03T18:58:07-04:00</updated>
+  <id>http://blog.ianmiller.nyc/</id>
   <author>
     <name><![CDATA[Ian Miller]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails Caching]]></title>
-    <link href="http://irmiller22.github.io/blog/2014/03/19/rails-caching/"/>
+    <link href="http://blog.ianmiller.nyc/2014/03/19/rails-caching/"/>
     <updated>2014-03-19T09:27:04-04:00</updated>
-    <id>http://irmiller22.github.io/blog/2014/03/19/rails-caching</id>
+    <id>http://blog.ianmiller.nyc/2014/03/19/rails-caching</id>
     <content type="html"><![CDATA[<h1>Caching in Rails</h1>
 
 <h2>What is Caching?</h2>
@@ -32,7 +32,7 @@
 
 <h3>Action Caching</h3>
 
-<p>Action caching is used where page caching can&rsquo;t be utilized &mdash; such as with pages that require authentication. It is very similar to page caching, except that the incoming request hits the Rails stack so that <code>before</code> filters can be executed before the cache is served. Since Rails 4, the action caching feature has been removed into a separate gem called <code>actionpack-action</code>.</p>
+<p>Action caching is used where page caching can&rsquo;t be utilized &ndash; such as with pages that require authentication. It is very similar to page caching, except that the incoming request hits the Rails stack so that <code>before</code> filters can be executed before the cache is served. Since Rails 4, the action caching feature has been removed into a separate gem called <code>actionpack-action</code>.</p>
 
 <h3>Fragment Caching</h3>
 
@@ -49,18 +49,18 @@
 <p>This is the foundation for interacting with the Rails cache. The class in Rails is provided via <code>ActiveSupport::Cache::Store</code>. There are four primary methods: <code>read</code>, <code>write</code>, <code>delete</code>, <code>exist?</code>, and <code>fetch</code>. The <code>fetch</code> method takes a block and will return an existing cache, or it will evaluate the block and write the result to the cache if a cache doesn&rsquo;t exist previously.</p>
 
 <p>There are four options that can be passed in to the <code>config.cache_store=</code> configuration. They are:
-&ndash; <code>:namespace</code> &ndash; Option is used to create a namespace within the cache store (useful when cache is shared with other applications). Default is the application name and Rails environment.
-&ndash; <code>:compress</code> &ndash; Used to indicate that compression should be used in the cache (useful for transferring large caches)
-&ndash; <code>:compress_threshold</code> &ndash; Used int conjunction with <code>:compress</code> to indicate a threshold under which caches should not be compressed (default is 16 kilobytes)
-&ndash; <code>:expires_in</code> &ndash; Sets an expiration time in seconds
-&ndash; <code>:race_condition_ttl</code> &ndash; Used in conjunction with <code>:expires_in</code> option to prevent race conditions when a cache expires (basically prevents multiple processes from regenerating cache entries simultaneously)</p>
+- <code>:namespace</code> - Option is used to create a namespace within the cache store (useful when cache is shared with other applications). Default is the application name and Rails environment.
+- <code>:compress</code> - Used to indicate that compression should be used in the cache (useful for transferring large caches)
+- <code>:compress_threshold</code> - Used int conjunction with <code>:compress</code> to indicate a threshold under which caches should not be compressed (default is 16 kilobytes)
+- <code>:expires_in</code> - Sets an expiration time in seconds
+- <code>:race_condition_ttl</code> - Used in conjunction with <code>:expires_in</code> option to prevent race conditions when a cache expires (basically prevents multiple processes from regenerating cache entries simultaneously)</p>
 
 <h3>Cache::MemoryStore</h3>
 
 <p>This stores cache entries in memory. This has a size limit specified by the <code>:size</code> option (default size is 32 megabytes). When the cache exceeds the size limit, a cleanup will occur. This is not ideal for large app deployments, and typically works best for small, low traffic sites.</p>
 
 <p>This has to be specified in configurations via:
-&ndash; <code>config.cache_store = :memory_store, { size: 128.megabytes }</code></p>
+- <code>config.cache_store = :memory_store, { size: 128.megabytes }</code></p>
 
 <h2>Heroku Cache Configuration Setup</h2>
 
