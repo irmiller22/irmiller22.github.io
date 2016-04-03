@@ -13,7 +13,7 @@ body {
 	max-width: 750px;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
-	
+
 	h1, h2, h3, h4, h5 {
 		font-family: 'Helvetica Neue', sans-serif;
 		font-weight: 100;
@@ -31,7 +31,7 @@ body {
 		font-family: 'Helvetica Neue', sans-serif;
 		font-weight: 100;
 		text-align: center;
-		
+
 		.header-title {
 			font-size: 2em;
 			text-transform: lowercase;
@@ -41,19 +41,19 @@ body {
 				color: #222;
 				text-decoration: none;
 			}
-			
+
 			a:hover {
 				color: #3a8acc;
 			};
 		}
-		
+
 		.header-subtitle {
 			font-size: 1em;
 			text-transform: uppercase;
 			letter-spacing: 4px;
 			color: #3a8acc;
 		}
-		
+
 		h1 {
 			a, a:visited, a:hover {
 				color: #8c8c8c;
@@ -140,7 +140,7 @@ body {
 					font-family: 'Helvetica Neue', sans-serif;
 					font-weight: 100;
 				}
-			}	
+			}
 		}
 	}
 }
@@ -164,7 +164,7 @@ article {
 
 #content {
 	div.pagination {
-		margin: 0 10px;  
+		margin: 0 10px;
 		padding-bottom: 1.5em;
 		margin-top: 4em;
 		position: relative;
@@ -178,7 +178,7 @@ article {
 
 	div.pagination a {
 		color: #888;
-	}	
+	}
 
 	.blog-index {
 		article {
@@ -216,7 +216,7 @@ article {
 		h1.entry-title {
 			font-family: 'Helvetica Neue', sans-serif;
 			font-weight: 100;
-			font-size: 2.75em;		
+			font-size: 2.75em;
 		}
 
 		time {
@@ -267,7 +267,7 @@ h1.entry-title {
 	article {
 		h1 {
 			a, a:hover {
-				margin-left: 2.0em;	
+				margin-left: 2.0em;
 				font-family: 'Helvetica Neue', sans-serif;
 				font-weight: 100;
 				text-decoration: none;

@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://irmiller22.github.io
+url: http://blog.ianmiller.nyc
 title: Archaic Positives
 subtitle: Adventurer, Traveler, Rubyist
 author: Ian Miller
@@ -16,7 +16,7 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
+subscribe_rss:
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
@@ -27,7 +27,7 @@ email:
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
 source: source
 destination: public
 plugins: plugins
@@ -39,7 +39,7 @@ rdiscount:
     - autolink
     - footnotes
     - smart
-pygments: false # default python pygments have been replaced by pygments.rb
+highlighter: pygments # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
@@ -63,14 +63,14 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user: irmiller22	
+github_user: irmiller22
 github_repo_count: 0
-github_show_profile_link: true
-github_skip_forks: true
+github_show_profile_link: false
+github_skip_forks: false
 
 # Twitter
 twitter_user: irmiller22
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: false
@@ -94,7 +94,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-45791487-2
 
 # Facebook Like
 facebook_like: true

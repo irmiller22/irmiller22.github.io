@@ -5,7 +5,7 @@ comments: false
 sharing: true
 footer: true
 ---
-##My name is Ian Miller.
+## My name is Ian Miller.
   
 I am currently a web developer based in New York City. I am a graduate of the [Flatiron School](http://flatironschool.com/), and I am primarily active in the Ruby and JavaScript languages, as well as the Rails framework.
 
